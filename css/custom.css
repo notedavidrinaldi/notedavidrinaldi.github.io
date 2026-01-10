@@ -1,0 +1,256 @@
+/* =========================
+   IOT LAB THEME
+   ========================= */
+
+/* Global background */
+body {
+  background-color: #0d1117;
+}
+
+/* Title & headings */
+.post-title,
+h1, h2, h3, h4 {
+  color: #e6edf3;
+}
+
+/* Accent heading style */
+.post-content h2 {
+  border-left: 4px solid #4ea1ff;
+  padding-left: 12px;
+}
+
+.post-content h3 {
+  border-left: 3px solid #00e5a8;
+  padding-left: 10px;
+}
+
+/* Links */
+a {
+  color: #4ea1ff;
+}
+
+a:hover {
+  color: #00e5a8;
+}
+
+/* Inline code */
+code {
+  background-color: #161b22;
+  color: #00e5a8;
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-size: 0.95em;
+}
+
+/* Code block */
+pre {
+  background-color: #0b1220;
+  border-radius: 10px;
+  padding: 14px;
+  overflow-x: auto;
+  border: 1px solid #1f2937;
+}
+
+/* Blockquote (note / warning) */
+blockquote {
+  border-left: 4px solid #00e5a8;
+  background-color: #0b1220;
+  padding: 12px 16px;
+  color: #c9d1d9;
+}
+
+/* Tables (for research data) */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th {
+  background-color: #161b22;
+  color: #4ea1ff;
+  padding: 10px;
+}
+
+table td {
+  border: 1px solid #1f2937;
+  padding: 10px;
+}
+
+/* Tag pills */
+.tag {
+  background-color: #161b22;
+  color: #00e5a8;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 0.85em;
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid #1f2937;
+  color: #8b949e;
+}
+
+/* =========================
+   NODE-RED FLOW STYLE
+   ========================= */
+
+.nodered-flow {
+  background: linear-gradient(135deg, #0b1220, #161b22);
+  border-left: 5px solid #ff4d4d;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 20px 0;
+  color: #c9d1d9;
+}
+
+.nodered-flow::before {
+  content: "Node-RED Flow";
+  display: block;
+  font-size: 0.8em;
+  color: #ff4d4d;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+/* =========================
+   RFID DATA HIGHLIGHT
+   ========================= */
+
+.rfid-epc {
+  color: #4ea1ff;
+  background-color: #0b1220;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-family: monospace;
+}
+
+.rfid-tid {
+  color: #00e5a8;
+  background-color: #0b1220;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-family: monospace;
+}
+
+.rfid-uid {
+  color: #ffb86c;
+  background-color: #0b1220;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-family: monospace;
+}
+/* =========================
+   EXPERIMENT / METHODOLOGY
+   ========================= */
+
+.experiment-box {
+  border: 1px dashed #4ea1ff;
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin: 24px 0;
+  background-color: #0b1220;
+}
+
+.experiment-box::before {
+  content: "Eksperimen";
+  display: block;
+  font-size: 0.85em;
+  font-weight: bold;
+  color: #4ea1ff;
+  margin-bottom: 10px;
+}
+
+.method-box {
+  border: 1px dashed #00e5a8;
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin: 24px 0;
+  background-color: #0b1220;
+}
+
+.method-box::before {
+  content: "Metodologi";
+  display: block;
+  font-size: 0.85em;
+  font-weight: bold;
+  color: #00e5a8;
+  margin-bottom: 10px;
+}
+/* ===== IoT COLOR THEME ===== */
+:root {
+  --iot-blue: #0a2540;
+  --iot-green: #00c389;
+  --iot-orange: #ff8c42;
+  --iot-bg: #f6f9fc;
+}
+
+/* Body */
+body {
+  background-color: var(--iot-bg);
+}
+
+/* Headings */
+h1, h2, h3 {
+  color: var(--iot-blue);
+}
+
+/* Link */
+a {
+  color: var(--iot-green);
+}
+a:hover {
+  color: var(--iot-orange);
+}
+
+/* ===== Node-RED Flow Box ===== */
+.nodered-box {
+  border-left: 5px solid var(--iot-orange);
+  background: #fff7f0;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+.nodered-box strong {
+  color: var(--iot-orange);
+}
+
+/* ===== RFID Highlight ===== */
+.rfid {
+  background: #0a2540;
+  color: #00ffb3;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+/* ===== Experiment / Method Box ===== */
+.experiment-box {
+  border: 1px dashed var(--iot-green);
+  background: #f0fffa;
+  padding: 20px;
+  margin: 25px 0;
+  border-radius: 10px;
+}
+.experiment-box h4 {
+  margin-top: 0;
+  color: var(--iot-green);
+}
+.rfid-box {
+  border-left: 4px solid #00e5ff;
+  background: #0f172a;
+  padding: 12px;
+  margin: 16px 0;
+  font-family: monospace;
+}
+.nodered-box {
+  border: 1px dashed #ff5722;
+  background: #1e1e1e;
+  padding: 12px;
+}
+.method-box {
+  background: #020617;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 20px 0;
+}

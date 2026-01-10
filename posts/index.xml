@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on IoT Lab Notes</title><link>https://notedavidrinaldi.github.io/posts/</link><description>Recent content in Posts on IoT Lab Notes</description><generator>Hugo -- 0.146.0</generator><language>en-us</language><lastBuildDate>Sat, 10 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://notedavidrinaldi.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Implementasi RFID pada Sistem IoT Menggunakan Node-RED</title><link>https://notedavidrinaldi.github.io/posts/integrasi-rfid-invengo-nodered/</link><pubDate>Sat, 10 Jan 2026 00:00:00 +0000</pubDate><guid>https://notedavidrinaldi.github.io/posts/integrasi-rfid-invengo-nodered/</guid><description>&lt;h2 id="abstrak">Abstrak&lt;/h2>
+&lt;p>Penelitian ini membahas implementasi sistem &lt;strong>Internet of Things (IoT)&lt;/strong> berbasis &lt;strong>RFID&lt;/strong>
+dengan pemrosesan data menggunakan &lt;strong>Node-RED&lt;/strong> untuk monitoring dan pencatatan data secara real-time.&lt;/p>
+&lt;hr>
+&lt;h2 id="1-pendahuluan">1. Pendahuluan&lt;/h2>
+&lt;p>Perkembangan IoT memungkinkan integrasi perangkat fisik dengan sistem digital.
+RFID digunakan untuk identifikasi objek secara otomatis tanpa kontak langsung.&lt;/p>
+&lt;hr>
+&lt;h2 id="2-arsitektur-sistem">2. Arsitektur Sistem&lt;/h2>
+&lt;!-- raw HTML omitted -->
+&lt;hr>
+&lt;h2 id="3-perangkat--bahan">3. Perangkat &amp;amp; Bahan&lt;/h2>
+&lt;ul>
+&lt;li>RFID Reader UHF&lt;/li>
+&lt;li>RFID Tag&lt;/li>
+&lt;li>Raspberry Pi / Server Linux&lt;/li>
+&lt;li>Node-RED&lt;/li>
+&lt;li>Database (MySQL / PostgreSQL)&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="4-metodologi-penelitian">4. Metodologi Penelitian&lt;/h2>
+&lt;!-- raw HTML omitted -->
+&lt;ol>
+&lt;li>Pembacaan tag RFID&lt;/li>
+&lt;li>Parsing data EPC dan TID&lt;/li>
+&lt;li>Pengiriman data ke Node-RED&lt;/li>
+&lt;li>Penyimpanan ke database&lt;/li>
+&lt;li>Visualisasi dashboard&lt;/li>
+&lt;/ol>
+&lt;!-- raw HTML omitted -->
+&lt;hr>
+&lt;h2 id="5-implementasi-sistem">5. Implementasi Sistem&lt;/h2>
+&lt;h3 id="51-pembacaan-rfid">5.1 Pembacaan RFID&lt;/h3>
+&lt;p>Contoh data RFID:&lt;/p></description></item></channel></rss>
