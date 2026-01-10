@@ -254,3 +254,23 @@ a:hover {
   padding: 16px;
   margin: 20px 0;
 }
+/* ===== STATUS BADGE ===== */
+.status {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.status-ongoing {
+  background: #f9a825;
+}
+
+.status-completed {
+  background: #2e7d32;
+}
+
+.status-planned {
+  background: #546e7a;
+}

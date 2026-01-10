@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://notedavidrinaldi.github.io/sitemap.xml
