@@ -4,10 +4,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <meta name="robots" content="index, follow">
-  <title>PALASIK Documentation Center | David Rinaldi</title>
-  <meta name="description" content="Portal dokumentasi PALASIK: ringkas eksekutif, operasional non-teknis, stakeholder, dan teknis lengkap.">
+  <title>PALASIK Teknis | David Rinaldi</title>
+  <meta name="description" content="Dokumentasi teknis PALASIK: arsitektur, alur event, 3-minute quickstart, SOP deploy, dan indikator kesehatan.">
   <meta name="author" content="David Rinaldi">
-  <link rel="canonical" href="https://notedavidrinaldi.github.io/palasik/">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/palasik/teknis/">
   <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
   <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
   <script>
@@ -35,11 +35,11 @@
     </div>
     <ul id="menu">
       <li><a href="/" title="Home">Home</a></li>
-      <li><a href="/palasik/" title="PALASIK Docs"><span class="active">PALASIK Docs</span></a></li>
+      <li><a href="/palasik/" title="PALASIK Docs">PALASIK Docs</a></li>
       <li><a href="/palasik/executive-summary/" title="Executive Summary">Executive Summary</a></li>
-      <li><a href="/palasik/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
+      <li><a href="/palasik/non-teknis/" title="Non Teknis">Non-Teknis</a></li>
       <li><a href="/palasik/stakeholder/" title="Stakeholder">Stakeholder</a></li>
-      <li><a href="/palasik/teknis/" title="Teknis">Teknis</a></li>
+      <li><a href="/palasik/teknis/" title="Teknis"><span class="active">Teknis</span></a></li>
       <li><a href="/demit/" title="DEMIT Runtime">DEMIT Runtime</a></li>
     </ul>
   </nav>
@@ -48,77 +48,115 @@
 <main class="main docs-shell">
   <article class="post-single">
     <header class="post-header">
-      <div class="breadcrumbs"><a href="/">Home</a></div>
-      <h1 class="page-title">PALASIK Documentation Center</h1>
-      <div class="doc-subtitle">Pusat akses dokumentasi terstruktur untuk eksekutif, non-teknis, stakeholder, dan teknis.</div>
+      <div class="breadcrumbs"><a href="/">Home</a> &raquo; <a href="/palasik/">PALASIK</a> &raquo; <a href="/palasik/teknis/">Teknis</a></div>
+      <h1 class="page-title">Dokumentasi Teknis PALASIK</h1>
+      <div class="doc-subtitle">Panduan praktik dan operasional teknis untuk implementasi cepat</div>
     </header>
-
-    <div class="doc-tags">
-      <span class="tag">Zero Trust</span><span class="tag">Edge Security</span><span class="tag">Policy Engine</span><span class="tag">Trust Engine</span><span class="tag">DEMIT</span>
-    </div>
-
-    <div class="inline-note"><strong>Versi portal:</strong> 1 Jul 2026. Semua versi dokumentasi terhubung dari halaman ini.</div>
 
     <div class="toc">
       <details open>
-        <summary accesskey="c" title="(Alt + C)"><span class="details">Dokumen yang tersedia</span></summary>
+        <summary accesskey="c" title="(Alt + C)"><span class="details">Table of Contents</span></summary>
         <div class="inner">
           <ul>
-            <li><a href="#executive">Executive Summary</a></li>
-            <li><a href="#non-teknis">Tim Non-Teknis</a></li>
-            <li><a href="#stakeholder">Versi Stakeholder</a></li>
-            <li><a href="#teknis">Dokumentasi Teknis</a></li>
-            <li><a href="#quick">Quick Start 3 Menit</a></li>
-            <li><a href="#operasional">Operasional &amp; Deployment</a></li>
+            <li><a href="#arsitektur">Arsitektur Ringkas</a></li>
+            <li><a href="#cara-pakai">Cara Pakai Nyata (3 Menit)</a></li>
+            <li><a href="#deploy">Deployment Aman</a></li>
+            <li><a href="#rollback">Rollback</a></li>
+            <li><a href="#sop">SOP Harian</a></li>
+            <li><a href="#indikator">Indikator Kesehatan</a></li>
+            <li><a href="#referensi">Referensi</a></li>
           </ul>
         </div>
       </details>
     </div>
 
-    <section id="executive" class="doc-section">
-      <h2>Executive Summary (1 Menit)</h2>
-      <p>Komponen Zero Trust untuk lalu lintas event IoT yang memutuskan otomatis apakah event diproses, dibatasi, atau ditolak. Keputusan berbasis trust + policy dan tercatat via reason code untuk audit.</p>
-      <p><a href="/palasik/executive-summary/">Buka halaman executive summary</a></p>
+    <section id="arsitektur" class="doc-section">
+      <h2>Arsitektur Ringkas</h2>
+      <div class="inline-note">Flow inti: Adapter/Event Source → DEMIT Router → PALASIK app → Trust Engine &amp; Policy Engine → Enforcement/Output.</div>
+      <table>
+        <thead><tr><th>Komponen</th><th>Peran</th><th>Catatan</th></tr></thead>
+        <tbody>
+          <tr><td>DEMIT Runtime</td><td>Host dan routing multi-app</td><td>Konfigurasi dari <code>demit.yaml</code>.</td></tr>
+          <tr><td>Trust Engine</td><td>Skoring kepercayaan event/device</td><td>Skor mempengaruhi keputusan kebijakan.</td></tr>
+          <tr><td>Policy Engine</td><td>Menilai rule dan menghasilkan keputusan</td><td>Decision actions: ALLOW/RESTRICT/QUARANTINE/DENY/CHALLENGE.</td></tr>
+          <tr><td>Plugins</td><td>Ekstensi aksi dan integrasi observability</td><td>Logger dan audit plugin siap dipasang.</td></tr>
+          <tr><td>Runtime Action</td><td>Output keputusan</td><td>Route, blok, alert, dan logging.</td></tr>
+        </tbody>
+      </table>
     </section>
 
-    <section id="non-teknis" class="doc-section">
-      <h2>Versi Non-Teknis</h2>
-      <p>Ringkasan operasional untuk staf yang tidak fokus technical deep dive: cara kerja, indikator awal, dan daftar command harian.</p>
-      <p><a href="/palasik/non-teknis/">Buka versi non-teknis</a></p>
-    </section>
-
-    <section id="stakeholder" class="doc-section">
-      <h2>Versi Stakeholder</h2>
-      <p>Ringkas untuk pimpinan: dampak risiko, kontrol operasional, dan prinsip keamanan yang tetap menjaga ketersediaan layanan.</p>
-      <p><a href="/palasik/stakeholder/">Buka versi stakeholder</a></p>
-    </section>
-
-    <section id="teknis" class="doc-section">
-      <h2>Dokumentasi Teknis</h2>
-      <p>Ringkas arsitektur, cara pakai, checklist verifikasi, dan SOP siap deploy.</p>
-      <p><a href="/palasik/teknis/">Buka dokumentasi teknis</a></p>
-    </section>
-
-    <section id="quick" class="doc-section">
+    <section id="cara-pakai" class="doc-section">
       <h2>Cara Pakai Nyata (3 Menit)</h2>
       <ol>
-        <li><code>palasik init</code></li>
-        <li><code>palasik check --config config.yaml</code></li>
-        <li><code>palasik simulate sample-event.json --config config.yaml</code></li>
-        <li><code>palasik run --config config.yaml</code></li>
-        <li><code>palasik status --config config.yaml</code></li>
+        <li><strong>Bikin setup</strong><pre><code>palasik init</code></pre><p>Hasil: <code>config.yaml</code> + policy baseline.</p></li>
+        <li><strong>Cek sehat</strong><pre><code>palasik check --config config.yaml</code></pre><p>Jika PASS: trust + policy siap dipakai.</p></li>
+        <li><strong>Simulasi event</strong><pre><code>palasik simulate sample-event.json --config config.yaml</code></pre></li>
+        <li><strong>Jalankan gateway</strong><pre><code>palasik run --config config.yaml</code></pre></li>
+        <li><strong>Monitoring</strong><pre><code>palasik status --config config.yaml</code></pre><p>Pantau <code>events_allowed</code>, <code>events_denied</code>, <code>alerts</code>.</p></li>
       </ol>
-      <p>Untuk deploy aman: jalankan <code>policy-snapshot</code> lalu <code>policy-deploy-check --require-allow</code>, dan rollback jika gagal.</p>
     </section>
 
-    <section id="operasional" class="doc-section">
-      <h2>Dokumen teknis referensi</h2>
+    <section id="deploy" class="doc-section">
+      <h2>Deployment Aman</h2>
+      <pre><code>python3 -m palasik.cli.main policy-snapshot --config config.yaml
+python3 -m palasik.cli.main policy-deploy-check --config config.yaml --require-allow</code></pre>
+      <p>Jika status check PASS, lanjut deploy. Jika tidak PASS, stop dan investigasi perubahan policy.</p>
+    </section>
+
+    <section id="rollback" class="doc-section">
+      <h2>Rollback Cepat</h2>
+      <pre><code>python3 -m palasik.cli.main policy-rollback --config config.yaml --snapshot runs/policy_snapshots/&lt;snapshot&gt;</code></pre>
+      <p>Langkah pemulihan standar saat KPI anomali: rollback, <code>check</code>, <code>status</code>, lalu evaluasi.</p>
+    </section>
+
+    <section id="sop" class="doc-section">
+      <h2>SOP Harian + Siap Deploy</h2>
+      <div class="docs-grid">
+        <article class="doc-card">
+          <h3>Shift dimulai</h3>
+          <ul>
+            <li>1. <code>palasik check</code></li>
+            <li>2. <code>palasik status</code></li>
+            <li>3. Verifikasi metrik deny, alert, latency</li>
+          </ul>
+        </article>
+        <article class="doc-card">
+          <h3>Sebelum deploy</h3>
+          <ul>
+            <li>1. <code>policy-snapshot</code></li>
+            <li>2. <code>policy-deploy-check --require-allow</code></li>
+            <li>3. Simpan hasil untuk audit</li>
+          </ul>
+        </article>
+        <article class="doc-card">
+          <h3>Waktu insiden</h3>
+          <ul>
+            <li>1. Cari deny spike dan alert berulang</li>
+            <li>2. Rollback ke snapshot aman</li>
+            <li>3. Lanjutkan pengecekan rutin</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="indikator" class="doc-section">
+      <h2>Indikator Kesehatan</h2>
       <ul>
+        <li>events_denied_per_min mendadak naik tajam</li>
+        <li>events_allowed_per_min turun drastis tanpa kenaikan volume masuk</li>
+        <li>latency p95 naik di jam normal</li>
+        <li>alert trust mismatch berulang</li>
+      </ul>
+      <p>Jika >=2 indikator menetap >3 interval, jalankan rollback evaluasi.</p>
+    </section>
+
+    <section id="referensi" class="doc-section">
+      <h2>Referensi Teknis</h2>
+      <ul>
+        <li><a href="/palasik/">Dokumentasi Pusat</a></li>
         <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/GETTING_STARTED.md">GETTING_STARTED.md</a></li>
         <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/CONFIG.md">CONFIG.md</a></li>
         <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/ARCHITECTURE.md">ARCHITECTURE.md</a></li>
-        <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/TRUST_ENGINE.md">TRUST_ENGINE.md</a></li>
-        <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/POLICY_ENGINE.md">POLICY_ENGINE.md</a></li>
         <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/OPERATIONAL_RUNBOOK.md">OPERATIONAL_RUNBOOK.md</a></li>
         <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/MIGRATION_GATE.md">MIGRATION_GATE.md</a></li>
       </ul>

@@ -1,0 +1,129 @@
+<!doctype html><html lang="en" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>PALASIK Executive Summary | David Rinaldi</title>
+  <meta name="description" content="PALASIK Executive Summary 1 Menit: Zero Trust untuk lalu lintas event IoT dan kontrol operasional terukur.">
+  <meta name="author" content="David Rinaldi">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/palasik/executive-summary/">
+  <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>
+    localStorage.getItem("pref-theme") === "dark"
+      ? document.querySelector("html").dataset.theme = "dark"
+      : localStorage.getItem("pref-theme") === "light"
+        ? document.querySelector("html").dataset.theme = "light"
+        : window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? document.querySelector("html").dataset.theme = "dark"
+          : document.querySelector("html").dataset.theme = "light"
+  </script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
+</head>
+<body class="single docs-shell" id="top">
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+      <div class="logo-switches">
+        <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+          <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+      </div>
+    </div>
+    <ul id="menu">
+      <li><a href="/" title="Home">Home</a></li>
+      <li><a href="/palasik/" title="PALASIK Docs">PALASIK Docs</a></li>
+      <li><a href="/palasik/executive-summary/" title="Executive Summary"><span class="active">Executive Summary</span></a></li>
+      <li><a href="/palasik/non-teknis/" title="Non Teknik">Non-Teknis</a></li>
+      <li><a href="/palasik/stakeholder/" title="Stakeholder">Stakeholder</a></li>
+      <li><a href="/palasik/teknis/" title="Teknis">Teknis</a></li>
+      <li><a href="/demit/" title="DEMIT Runtime">DEMIT Runtime</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main docs-shell">
+  <article class="post-single">
+    <header class="post-header">
+      <div class="breadcrumbs"><a href="/">Home</a> &raquo; <a href="/palasik/">PALASIK</a></div>
+      <h1 class="page-title">PALASIK Executive Summary (1 Menit)</h1>
+      <div class="doc-subtitle">Versi ringkas untuk eksekutif dan keputusan strategis</div>
+    </header>
+
+    <div class="doc-tags"><span class="tag">Executive</span><span class="tag">1-minute read</span><span class="tag">Risk Control</span><span class="tag">Zero Trust</span></div>
+
+    <section class="doc-section">
+      <h2>Inti Narasi</h2>
+      <p><strong>PALASIK</strong> adalah komponen Zero Trust untuk lalu lintas event IoT yang memutuskan otomatis apakah setiap event harus diproses, ditunda verifikasi, atau ditolak.</p>
+      <p>Keputusan didasarkan pada <strong>trust score</strong> dan <strong>policy</strong> yang tervalidasi, lalu dipadankan dengan reason code sehingga jejak audit dapat ditelusuri lengkap.</p>
+      <p>Dari sisi operasi, PALASIK dirancang untuk meminimalkan outage saat perubahan kebijakan karena menyediakan mekanisme deployment yang aman: snapshot policy, smoke-check, dan rollback cepat.</p>
+    </section>
+
+    <section class="doc-section">
+      <h2>Value Proposition untuk Bisnis</h2>
+      <ul>
+        <li><strong>Keamanan konsisten:</strong> event tidak langsung dianggap terpercaya.</li>
+        <li><strong>Pengelolaan risiko:</strong> pembatasan dilakukan dengan aturan yang terukur, bukan inspeksi ad-hoc.</li>
+        <li><strong>Auditability:</strong> reason code, logs, dan metrik event membuat keputusan bisa ditelusuri.</li>
+        <li><strong>Operasi aman:</strong> setiap perubahan policy melalui guard &amp; rollback path.</li>
+      </ul>
+    </section>
+
+    <section class="doc-section">
+      <h2>Indikator Kesehatan Strategis</h2>
+      <ul>
+        <li><code>check</code> startup: validasi awal runtime dan konfigurasi</li>
+        <li><code>status</code> runtime: event allowed/denied, latency, alert</li>
+        <li>perubahan deny rate mendadak (indikasi policy over-restrictive)</li>
+        <li>penurunan trust score yang tak sesuai ekspektasi operasi</li>
+      </ul>
+    </section>
+
+    <section class="doc-section">
+      <h2>Link Cepat</h2>
+      <div class="docs-grid">
+        <article class="doc-card"><h3><a href="/palasik/non-teknis/">Versi Operasional</a></h3><p>Panduan pendek untuk tim shift dan staf operasi.</p></article>
+        <article class="doc-card"><h3><a href="/palasik/stakeholder/">Versi Stakeholder</a></h3><p>Ringkasan kebijakan dan dampak risiko untuk pemangku kepentingan.</p></article>
+        <article class="doc-card"><h3><a href="/palasik/teknis/">Teknis &amp; SOP</a></h3><p>Checklist teknis, cara pakai 3 menit, dan alur rollback.</p></article>
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>Sumber Dokumen</h2>
+      <p><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/README_EXECUTIVE_SUMMARY.md">Buka versi markdown di GitHub</a></p>
+    </section>
+  </article>
+</main>
+
+<footer class="footer"><span>&copy; 2026 <a href="https://notedavidrinaldi.github.io/">David Rinaldi</a></span> · <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &amp; <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener noreferrer" target="_blank">PaperMod</a></span></footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g"><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a>
+
+<script>
+  const themeButton = document.getElementById("theme-toggle");
+  const html = document.documentElement;
+  themeButton.addEventListener("click", () => {
+    if (html.dataset.theme === "dark") {
+      html.dataset.theme = "light";
+      localStorage.setItem("pref-theme", "light");
+    } else {
+      html.dataset.theme = "dark";
+      localStorage.setItem("pref-theme", "dark");
+    }
+  });
+
+  const topButton = document.getElementById("top-link");
+  window.onscroll = function() {
+    if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+      topButton.style.visibility = "visible";
+      topButton.style.opacity = "1";
+    } else {
+      topButton.style.visibility = "hidden";
+      topButton.style.opacity = "0";
+    }
+  };
+</script>
+</body>
+</html>

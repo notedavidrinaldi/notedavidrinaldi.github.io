@@ -1,0 +1,124 @@
+<!doctype html><html lang="en" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>PALASIK untuk Stakeholder | David Rinaldi</title>
+  <meta name="description" content="Dokumentasi PALASIK untuk stakeholder: dampak bisnis, kontrol risiko, dan governance operasional.">
+  <meta name="author" content="David Rinaldi">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/palasik/stakeholder/">
+  <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>
+    localStorage.getItem("pref-theme") === "dark"
+      ? document.querySelector("html").dataset.theme = "dark"
+      : localStorage.getItem("pref-theme") === "light"
+        ? document.querySelector("html").dataset.theme = "light"
+        : window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? document.querySelector("html").dataset.theme = "dark"
+          : document.querySelector("html").dataset.theme = "light"
+  </script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
+</head>
+<body class="single docs-shell" id="top">
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+      <div class="logo-switches">
+        <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+          <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+      </div>
+    </div>
+    <ul id="menu">
+      <li><a href="/" title="Home">Home</a></li>
+      <li><a href="/palasik/" title="PALASIK Docs">PALASIK Docs</a></li>
+      <li><a href="/palasik/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+      <li><a href="/palasik/non-teknis/" title="Non Teknik">Non-Teknis</a></li>
+      <li><a href="/palasik/stakeholder/" title="Stakeholder"><span class="active">Stakeholder</span></a></li>
+      <li><a href="/palasik/teknis/" title="Teknis">Teknis</a></li>
+      <li><a href="/demit/" title="DEMIT Runtime">DEMIT Runtime</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main docs-shell">
+  <article class="post-single">
+    <header class="post-header">
+      <div class="breadcrumbs"><a href="/">Home</a> &raquo; <a href="/palasik/">PALASIK</a> &raquo; <a href="/palasik/stakeholder/">Stakeholder</a></div>
+      <h1 class="page-title">PALASIK untuk Stakeholder</h1>
+      <div class="doc-subtitle">Versi singkat untuk pimpinan dan pemangku kepentingan</div>
+    </header>
+
+    <section class="doc-section">
+      <h2>Tujuan Bisnis</h2>
+      <p>PALASIK adalah lapisan keputusan keamanan yang menilai event IoT sebelum masuk proses bisnis utama. Ini mengurangi risiko pelanggaran kebijakan dan memperketat kontrol tanpa membebani operasi.</p>
+      <p>Setiap keputusan (ALLOW, DENY, monitor khusus) dilakukan secara konsisten, bukan manual ad hoc, sehingga dapat direplikasikan lintas jam operasional dan tim.</p>
+    </section>
+
+    <section class="doc-section">
+      <h2>Nilai Operasional</h2>
+      <div class="docs-grid">
+        <article class="doc-card"><h3>Keamanan Terkendali</h3><p>Policy dan trust score memprioritaskan pencegahan insiden di edge layer sebelum berdampak ke sistem inti.</p></article>
+        <article class="doc-card"><h3>Audit &amp; Kepatuhan</h3><p>Reason code + logs menciptakan jejak keputusan yang bisa diaudit.</p></article>
+        <article class="doc-card"><h3>Respon Cepat</h3><p>Rollback policy path memungkinkan pemulihan cepat ketika deployment baru tidak stabil.</p></article>
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>Rantai Kendali Risiko</h2>
+      <ol>
+        <li>Quality gate sebelum deploy: <strong>policy-snapshot</strong> + <strong>policy-deploy-check</strong>.</li>
+        <li>Validasi jalan/produksi: <strong>check</strong> dan <strong>status</strong>.</li>
+        <li>Respon insiden: rollback ke snapshot valid jika terjadi deny spike abnormal.</li>
+      </ol>
+    </section>
+
+    <section class="doc-section">
+      <h2>Ringkasan KPI yang dipantau</h2>
+      <ul>
+        <li><strong>Risk events</strong> (DENY/ALERT)</li>
+        <li><strong>Availability</strong> (ketersediaan pipeline event)</li>
+        <li><strong>Mean time to recover</strong> via rollback</li>
+        <li><strong>Compliance readiness</strong> (reason code &amp; evidensi logs)</li>
+      </ul>
+    </section>
+
+    <section class="doc-section">
+      <h2>Keputusan yang disarankan</h2>
+      <p>Integrasikan monitoring metrik PALASIK ke proses operasi rutin dan minta tim melakukan snapshot + deploy-check untuk setiap perubahan policy penting.</p>
+      <p><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/README_BUSINESS.md">Lihat versi markdown stakeholder lengkap</a></p>
+    </section>
+  </article>
+</main>
+
+<footer class="footer"><span>&copy; 2026 <a href="https://notedavidrinaldi.github.io/">David Rinaldi</a></span> · <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &amp; <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener noreferrer" target="_blank">PaperMod</a></span></footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g"><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a>
+<script>
+  const themeButton = document.getElementById("theme-toggle");
+  const html = document.documentElement;
+  themeButton.addEventListener("click", () => {
+    if (html.dataset.theme === "dark") {
+      html.dataset.theme = "light";
+      localStorage.setItem("pref-theme", "light");
+    } else {
+      html.dataset.theme = "dark";
+      localStorage.setItem("pref-theme", "dark");
+    }
+  });
+  const topButton = document.getElementById("top-link");
+  window.onscroll = function() {
+    if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+      topButton.style.visibility = "visible";
+      topButton.style.opacity = "1";
+    } else {
+      topButton.style.visibility = "hidden";
+      topButton.style.opacity = "0";
+    }
+  };
+</script>
+</body>
+</html>
