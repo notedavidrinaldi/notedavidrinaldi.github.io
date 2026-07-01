@@ -56,30 +56,30 @@
     <section class="doc-section">
       <h2>PALASIK itu apa?</h2>
       <p>PALASIK adalah <strong>petugas gerbang keamanan</strong> untuk data sensor/IoT.</p>
-      <p>Setiap data yang masuk ke gateway tidak langsung dianggap aman. Data masuk ke aturan yang sudah kita tentukan, lalu diputuskan:</p>
+      <p>Setiap data yang masuk ke gateway tidak langsung dianggap aman. Setiap event ditentukan aksinya:</p>
       <ul>
-        <li><strong>ALLOW</strong> (dilewati)</li>
-        <li><strong>DENY</strong> (ditolak)</li>
-        <li><strong>MONITOR/RESTRICT/CHALLENGE</strong> (dipantau khusus)</li>
+        <li><strong>ALLOW</strong>: diproses</li>
+        <li><strong>DENY</strong>: ditolak</li>
+        <li><strong>MONITOR / RESTRICT / CHALLENGE</strong>: dipantau khusus</li>
       </ul>
     </section>
 
     <section class="doc-section">
       <h2>Kenapa penting untuk operasi</h2>
       <ul>
-        <li>Keputusan konsisten karena berbasis aturan, bukan intuisi ad-hoc.</li>
-        <li>Setiap keputusan punya alasan (reason code) dan log.</li>
-        <li>Rollback cepat jika kebijakan baru bermasalah.</li>
-        <li>Monitoring sederhana: deny spike, alert, trust score.</li>
+        <li>Keputusan konsisten karena berbasis aturan, bukan ad hoc.</li>
+        <li>Ada bukti keputusan berupa reason code dan log audit.</li>
+        <li>Bisa rollback cepat jika policy baru membuat sistem tidak stabil.</li>
+        <li>Indikator harian tersedia: deny spike, trust turun, dan status pipeline.</li>
       </ul>
     </section>
 
     <section class="doc-section">
-      <h2>Peta mental kerja harian</h2>
+      <h2>Peta mental kerja</h2>
       <ol>
         <li>Event masuk dari sensor/gateway.</li>
-        <li>System menilai tingkat trust.</li>
-        <li>Policy engine memutuskan tindakan.</li>
+        <li>Sistem menilai tingkat trust.</li>
+        <li>Policy engine memilih keputusan.</li>
         <li>Keputusan dieksekusi + tercatat.</li>
       </ol>
     </section>
@@ -87,45 +87,55 @@
     <section class="doc-section">
       <h2>Cara kerja tim harian</h2>
       <ul>
-        <li><strong>Mulai shift:</strong> cek <code>palasik check --config config.yaml</code> lalu <code>palasik status --config config.yaml</code>.</li>
-        <li><strong>Sebelum deploy policy:</strong> ambil snapshot lalu <code>policy-deploy-check</code>.</li>
-        <li><strong>Jika ada anomali:</strong> rollback ke snapshot terbaru yang valid.</li>
-        <li><strong>Setelah normal:</strong> kembalikan monitoring rutin.</li>
+        <li><strong>Mulai shift</strong>: jalankan <code>palasik check --config config.yaml</code> lalu <code>palasik status --config config.yaml</code>.</li>
+        <li><strong>Sebelum deploy policy baru</strong>: ambil snapshot + smoke gate policy.</li>
+        <li><strong>Jika ada anomali</strong>: rollback cepat ke snapshot terakhir yang valid.</li>
+        <li><strong>Setelah normal</strong>: lanjut monitoring rutin dan pencatatan evidence.</li>
       </ul>
     </section>
 
     <section class="doc-section">
-      <h2>Command Kunci Tim Operasi</h2>
+      <h2>Command kunci (tim operasi)</h2>
       <div class="docs-grid">
-        <div class="doc-card">
-          <h3>Validasi</h3>
+        <article class="doc-card">
+          <h3>Validasi sehat</h3>
           <pre><code>palasik check --config config.yaml</code></pre>
-          <p>Pastikan startup pipeline trust + policy valid.</p>
-        </div>
-        <div class="doc-card">
-          <h3>Pantau</h3>
+          <p>Menguji startup pipeline trust dan policy.</p>
+        </article>
+        <article class="doc-card">
+          <h3>Pemantauan 5 menit</h3>
           <pre><code>palasik status --config config.yaml</code></pre>
-          <p>Pantau events_allowed, events_denied, alerts.</p>
-        </div>
-        <div class="doc-card">
-          <h3>Kontrol perubahan</h3>
-          <pre><code>python3 -m palasik.cli.main policy-snapshot --config config.yaml
-python3 -m palasik.cli.main policy-deploy-check --config config.yaml --require-allow</code></pre>
-          <p>Wajib sebelum deploy policy baru.</p>
-        </div>
-        <div class="doc-card">
-          <h3>Darurat</h3>
-          <pre><code>python3 -m palasik.cli.main policy-rollback --config config.yaml --snapshot runs/policy_snapshots/&lt;file&gt;</code></pre>
-          <p>Rollback cepat jika deny spike tidak normal.</p>
-        </div>
+          <p>Melihat metrik dan alert terkini.</p>
+        </article>
+        <article class="doc-card">
+          <h3>Guard pre-deploy</h3>
+          <pre><code>palasik policy-snapshot --config config.yaml
+palasik policy-deploy-check --config config.yaml --require-allow</code></pre>
+          <p>Wajib sebelum perubahan policy ke produksi.</p>
+        </article>
+        <article class="doc-card">
+          <h3>Rollback cepat</h3>
+<pre><code>palasik policy-rollback \
+  --config config.yaml \
+  --snapshot runs/policy_snapshots/&lt;file&gt;.snapshot.yaml</code></pre>
+          <p>Dipakai jika terjadi deny spike / latensi anomali.</p>
+        </article>
       </div>
     </section>
 
     <section class="doc-section">
+      <h2>Kapan rollback dilakukan</h2>
+      <ul>
+        <li>Penalty DENY melonjak tajam dan tidak wajar.</li>
+        <li>Latency naik drastis setelah perubahan policy.</li>
+        <li>Keputusan tidak sesuai kondisi bisnis saat ini.</li>
+      </ul>
+      <p>Prosesnya cepat: ambil status saat ini, rollback ke snapshot valid, lalu jalankan <code>check</code> ulang.</p>
+    </section>
+
+    <section class="doc-section">
       <h2>Catatan akhir</h2>
-      <div class="inline-note">
-        Baseline PALASIK disetel <strong>zero trust by default</strong> untuk menurunkan risiko event berbahaya masuk ke proses utama.
-      </div>
+      <div class="inline-note">Baseline PALASIK disetel <strong>zero trust by default</strong>. Keamanan diprioritaskan dulu, lalu menjaga layanan tetap jalan.</div>
     </section>
   </article>
 </main>

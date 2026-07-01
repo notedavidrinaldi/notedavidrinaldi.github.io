@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <meta name="robots" content="index, follow">
   <title>PALASIK Teknis | David Rinaldi</title>
-  <meta name="description" content="Dokumentasi teknis PALASIK: arsitektur, alur event, 3-minute quickstart, SOP deploy, dan indikator kesehatan.">
+  <meta name="description" content="Dokumentasi teknis PALASIK: arsitektur, alur event, quickstart, SOP deploy, dan rollback.">
   <meta name="author" content="David Rinaldi">
   <link rel="canonical" href="https://notedavidrinaldi.github.io/palasik/teknis/">
   <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
@@ -50,7 +50,7 @@
     <header class="post-header">
       <div class="breadcrumbs"><a href="/">Home</a> &raquo; <a href="/palasik/">PALASIK</a> &raquo; <a href="/palasik/teknis/">Teknis</a></div>
       <h1 class="page-title">Dokumentasi Teknis PALASIK</h1>
-      <div class="doc-subtitle">Panduan praktik dan operasional teknis untuk implementasi cepat</div>
+      <div class="doc-subtitle">Panduan implementasi praktis berdasarkan source code dan dokumentasi resmi</div>
     </header>
 
     <div class="toc">
@@ -58,12 +58,14 @@
         <summary accesskey="c" title="(Alt + C)"><span class="details">Table of Contents</span></summary>
         <div class="inner">
           <ul>
-            <li><a href="#arsitektur">Arsitektur Ringkas</a></li>
-            <li><a href="#cara-pakai">Cara Pakai Nyata (3 Menit)</a></li>
-            <li><a href="#deploy">Deployment Aman</a></li>
+            <li><a href="#arsitektur">Arsitektur</a></li>
+            <li><a href="#alur">Alur Event</a></li>
+            <li><a href="#quick">Quick Start</a></li>
+            <li><a href="#config">Konfigurasi Dasar</a></li>
+            <li><a href="#policy">Policy &amp; Trust</a></li>
+            <li><a href="#deploy">Deploy Aman</a></li>
             <li><a href="#rollback">Rollback</a></li>
-            <li><a href="#sop">SOP Harian</a></li>
-            <li><a href="#indikator">Indikator Kesehatan</a></li>
+            <li><a href="#runbook">Runbook Operasional</a></li>
             <li><a href="#referensi">Referensi</a></li>
           </ul>
         </div>
@@ -71,94 +73,151 @@
     </div>
 
     <section id="arsitektur" class="doc-section">
-      <h2>Arsitektur Ringkas</h2>
-      <div class="inline-note">Flow inti: Adapter/Event Source → DEMIT Router → PALASIK app → Trust Engine &amp; Policy Engine → Enforcement/Output.</div>
+      <h2>Arsitektur</h2>
+      <div class="inline-note">Palasik bekerja di edge gateway: adapter/event source → Agent → Trust Engine → Policy Engine → Plugin System → backend/service.</div>
       <table>
         <thead><tr><th>Komponen</th><th>Peran</th><th>Catatan</th></tr></thead>
         <tbody>
-          <tr><td>DEMIT Runtime</td><td>Host dan routing multi-app</td><td>Konfigurasi dari <code>demit.yaml</code>.</td></tr>
-          <tr><td>Trust Engine</td><td>Skoring kepercayaan event/device</td><td>Skor mempengaruhi keputusan kebijakan.</td></tr>
-          <tr><td>Policy Engine</td><td>Menilai rule dan menghasilkan keputusan</td><td>Decision actions: ALLOW/RESTRICT/QUARANTINE/DENY/CHALLENGE.</td></tr>
-          <tr><td>Plugins</td><td>Ekstensi aksi dan integrasi observability</td><td>Logger dan audit plugin siap dipasang.</td></tr>
-          <tr><td>Runtime Action</td><td>Output keputusan</td><td>Route, blok, alert, dan logging.</td></tr>
+          <tr><td>Adapter</td><td>Terima event</td><td>MQTT/HTTP/Webhook (berbasis plugin adapter).</td></tr>
+          <tr><td>Agent</td><td>Lifecycle runtime PALASIK</td><td>Menjalankan trust, policy, plugins, metrik.</td></tr>
+          <tr><td>Trust Engine</td><td>Skor 0.0–1.0</td><td>Hanya menilai, tidak mengambil keputusan akhir.</td></tr>
+          <tr><td>Policy Engine</td><td>Keputusan</td><td>Allow/deny/restrict/challenge/quarantine/monitor.</td></tr>
+          <tr><td>Plugins</td><td>Eksekusi tindakan</td><td>Logger, audit, forwarding, alert.</td></tr>
         </tbody>
       </table>
     </section>
 
-    <section id="cara-pakai" class="doc-section">
-      <h2>Cara Pakai Nyata (3 Menit)</h2>
+    <section id="alur" class="doc-section">
+      <h2>Alur Event</h2>
+      <pre><code>Event masuk → TrustEngine.evaluate(event, context)
+             → PolicyEngine.decide()
+             → Plugin.on_event()
+             → Emit decision + reason_code</code></pre>
+      <p>Pipeline <strong>single direction</strong> menjaga jejak observability dan memudahkan audit.</p>
+    </section>
+
+    <section id="quick" class="doc-section">
+      <h2>Quick Start (5 menit)</h2>
       <ol>
-        <li><strong>Bikin setup</strong><pre><code>palasik init</code></pre><p>Hasil: <code>config.yaml</code> + policy baseline.</p></li>
-        <li><strong>Cek sehat</strong><pre><code>palasik check --config config.yaml</code></pre><p>Jika PASS: trust + policy siap dipakai.</p></li>
-        <li><strong>Simulasi event</strong><pre><code>palasik simulate sample-event.json --config config.yaml</code></pre></li>
-        <li><strong>Jalankan gateway</strong><pre><code>palasik run --config config.yaml</code></pre></li>
-        <li><strong>Monitoring</strong><pre><code>palasik status --config config.yaml</code></pre><p>Pantau <code>events_allowed</code>, <code>events_denied</code>, <code>alerts</code>.</p></li>
+        <li><strong>Install</strong><pre><code>pip install palasik</code></pre></li>
+        <li><strong>Init proyek</strong><pre><code>palasik init</code></pre><p>membuat <code>config.yaml</code> baseline.</p></li>
+        <li><strong>Health check</strong><pre><code>palasik check --config config.yaml</code></pre><p>Jika PASS berarti pipeline trust + policy valid.</p></li>
+        <li><strong>Simulasi event</strong><pre><code>cat > sample-event.json &lt;&lt;'EOF_JSON'
+{ "version": "1", "event_id": "evt-startup-01", "type": "sensor.sample", "source": { "device_id": "edge-sensor-01", "ip": "192.168.1.10" }, "value": 42 }
+EOF_JSON
+
+palasik simulate sample-event.json --config config.yaml</code></pre></li>
+        <li><strong>Jalankan agent</strong><pre><code>palasik run --config config.yaml</code></pre></li>
+        <li><strong>Monitoring status</strong><pre><code>palasik status --config config.yaml</code></pre><p>Output berisi <code>events_allowed</code>, <code>events_denied</code>, <code>avg_latency_ms</code>, <code>alerts</code>.</p></li>
       </ol>
     </section>
 
+    <section id="config" class="doc-section">
+      <h2>Konfigurasi dasar</h2>
+      <pre><code>palasik:
+  broker:
+    host: localhost
+    port: 1883
+    topic: palasik/sensor/#
+
+  policy:
+    version: "1"
+    default_deny: true
+    default_action: DENY
+    policy_id: palasik-baseline
+    type: rule
+    rules:
+      - id: deny_unknown_device
+        action: DENY
+        reason_code: UNKNOWN_DEVICE
+        condition:
+          op: eq
+          key: source.device_id
+          value: unknown
+      - id: allow_trusted_device
+        action: ALLOW
+        reason_code: TRUSTED_DEVICE
+        condition:
+          op: gte
+          key: trust_score
+          value: 0.75</code></pre>
+      <p>Konfigurasi penuh ada di <a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/CONFIG.md">docs/CONFIG.md</a>.</p>
+    </section>
+
+    <section id="policy" class="doc-section">
+      <h2>Policy dan Trust</h2>
+      <h3>Decision actions yang didukung</h3>
+      <ul>
+        <li><strong>ALLOW</strong> / <strong>DENY</strong> / <strong>MONITOR</strong> / <strong>RESTRICT</strong> / <strong>CHALLENGE</strong> / <strong>QUARANTINE</strong></li>
+      </ul>
+      <p>Contoh rule penting untuk migration path saat ini: gunakan <code>condition</code> (bukan <code>when</code> legacy) dan untuk setiap <code>DENY</code> wajib punya <code>reason_code</code>.</p>
+      <h3>DEMIT integration</h3>
+      <pre><code>demit:
+  apps:
+    - palasik
+
+apps:
+  palasik:
+    type: palasik
+    config_file: "config.yaml"
+    plugins_path: "plugins"
+    routes:
+      - palasik</code></pre>
+    </section>
+
     <section id="deploy" class="doc-section">
-      <h2>Deployment Aman</h2>
-      <pre><code>python3 -m palasik.cli.main policy-snapshot --config config.yaml
-python3 -m palasik.cli.main policy-deploy-check --config config.yaml --require-allow</code></pre>
-      <p>Jika status check PASS, lanjut deploy. Jika tidak PASS, stop dan investigasi perubahan policy.</p>
+      <h2>Deployment aman (gate)</h2>
+      <pre><code>palasik policy-snapshot --config config.yaml
+palasik policy-deploy-check --config config.yaml --require-allow --max-deny-ratio 0.95 --smoke-events docs/samples/policy-smoke-events.json</code></pre>
+      <p>Jika gagal (PASS tidak tercapai), hentikan rollout dan evaluasi ulang rule.</p>
     </section>
 
     <section id="rollback" class="doc-section">
-      <h2>Rollback Cepat</h2>
-      <pre><code>python3 -m palasik.cli.main policy-rollback --config config.yaml --snapshot runs/policy_snapshots/&lt;snapshot&gt;</code></pre>
-      <p>Langkah pemulihan standar saat KPI anomali: rollback, <code>check</code>, <code>status</code>, lalu evaluasi.</p>
+      <h2>Rollback</h2>
+      <pre><code>palasik policy-rollback --config config.yaml --snapshot runs/policy_snapshots/&lt;snapshot_file&gt;.snapshot.yaml</code></pre>
+      <p>Rollback menulis backup ke <code>runs/policy_backups/</code> lalu mengganti <code>palasik.policy</code> aktif.</p>
     </section>
 
-    <section id="sop" class="doc-section">
-      <h2>SOP Harian + Siap Deploy</h2>
+    <section id="runbook" class="doc-section">
+      <h2>Runbook operasional ringkas</h2>
       <div class="docs-grid">
         <article class="doc-card">
-          <h3>Shift dimulai</h3>
-          <ul>
-            <li>1. <code>palasik check</code></li>
-            <li>2. <code>palasik status</code></li>
-            <li>3. Verifikasi metrik deny, alert, latency</li>
-          </ul>
+          <h3>Start Shift</h3>
+          <ol>
+            <li><code>palasik check --config config.yaml</code></li>
+            <li><code>palasik status --config config.yaml</code></li>
+            <li>Validasi <code>events_denied</code> dan <code>alerts</code>.</li>
+          </ol>
         </article>
         <article class="doc-card">
-          <h3>Sebelum deploy</h3>
-          <ul>
-            <li>1. <code>policy-snapshot</code></li>
-            <li>2. <code>policy-deploy-check --require-allow</code></li>
-            <li>3. Simpan hasil untuk audit</li>
-          </ul>
+          <h3>Deploy Policy</h3>
+          <ol>
+            <li>snapshot</li>
+            <li>policy-deploy-check</li>
+            <li>deploy</li>
+            <li>2 menit pertama: check + status</li>
+          </ol>
         </article>
         <article class="doc-card">
-          <h3>Waktu insiden</h3>
-          <ul>
-            <li>1. Cari deny spike dan alert berulang</li>
-            <li>2. Rollback ke snapshot aman</li>
-            <li>3. Lanjutkan pengecekan rutin</li>
-          </ul>
+          <h3>Incident</h3>
+          <ol>
+            <li>backup status saat ini</li>
+            <li>rollback cepat</li>
+            <li>check ulang dan catat evidence</li>
+          </ol>
         </article>
       </div>
     </section>
 
-    <section id="indikator" class="doc-section">
-      <h2>Indikator Kesehatan</h2>
-      <ul>
-        <li>events_denied_per_min mendadak naik tajam</li>
-        <li>events_allowed_per_min turun drastis tanpa kenaikan volume masuk</li>
-        <li>latency p95 naik di jam normal</li>
-        <li>alert trust mismatch berulang</li>
-      </ul>
-      <p>Jika >=2 indikator menetap >3 interval, jalankan rollback evaluasi.</p>
-    </section>
-
     <section id="referensi" class="doc-section">
-      <h2>Referensi Teknis</h2>
+      <h2>Referensi</h2>
       <ul>
-        <li><a href="/palasik/">Dokumentasi Pusat</a></li>
         <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/GETTING_STARTED.md">GETTING_STARTED.md</a></li>
         <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/CONFIG.md">CONFIG.md</a></li>
         <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/ARCHITECTURE.md">ARCHITECTURE.md</a></li>
+        <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/TRUST_ENGINE.md">TRUST_ENGINE.md</a></li>
+        <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/POLICY_ENGINE.md">POLICY_ENGINE.md</a></li>
         <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/OPERATIONAL_RUNBOOK.md">OPERATIONAL_RUNBOOK.md</a></li>
-        <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/MIGRATION_GATE.md">MIGRATION_GATE.md</a></li>
       </ul>
     </section>
   </article>

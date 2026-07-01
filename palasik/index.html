@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <meta name="robots" content="index, follow">
   <title>PALASIK Documentation Center | David Rinaldi</title>
-  <meta name="description" content="Portal dokumentasi PALASIK: ringkas eksekutif, operasional non-teknis, stakeholder, dan teknis lengkap.">
+  <meta name="description" content="Portal dokumentasi PALASIK: Executive Summary, versi operasional non-teknis, stakeholder, dan teknis.">
   <meta name="author" content="David Rinaldi">
   <link rel="canonical" href="https://notedavidrinaldi.github.io/palasik/">
   <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
@@ -50,14 +50,14 @@
     <header class="post-header">
       <div class="breadcrumbs"><a href="/">Home</a></div>
       <h1 class="page-title">PALASIK Documentation Center</h1>
-      <div class="doc-subtitle">Pusat akses dokumentasi terstruktur untuk eksekutif, non-teknis, stakeholder, dan teknis.</div>
+      <div class="doc-subtitle">Pusat akses dokumentasi resmi untuk eksekutif, non-teknis, stakeholder, dan teknis.</div>
     </header>
 
     <div class="doc-tags">
       <span class="tag">Zero Trust</span><span class="tag">Edge Security</span><span class="tag">Policy Engine</span><span class="tag">Trust Engine</span><span class="tag">DEMIT</span>
     </div>
 
-    <div class="inline-note"><strong>Versi portal:</strong> 1 Jul 2026. Semua versi dokumentasi terhubung dari halaman ini.</div>
+    <div class="inline-note"><strong>Ter-update dari:</strong> <a href="https://github.com/notedavidrinaldi/palasik-iot-framework">palasik-iot-framework</a>.</div>
 
     <div class="toc">
       <details open>
@@ -65,62 +65,60 @@
         <div class="inner">
           <ul>
             <li><a href="#executive">Executive Summary</a></li>
-            <li><a href="#non-teknis">Tim Non-Teknis</a></li>
+            <li><a href="#non-teknis">Versi Non-Teknis</a></li>
             <li><a href="#stakeholder">Versi Stakeholder</a></li>
             <li><a href="#teknis">Dokumentasi Teknis</a></li>
-            <li><a href="#quick">Quick Start 3 Menit</a></li>
-            <li><a href="#operasional">Operasional &amp; Deployment</a></li>
+            <li><a href="#alur">Alur implementasi</a></li>
+            <li><a href="#operasional">Referensi Operasional</a></li>
           </ul>
         </div>
       </details>
     </div>
 
     <section id="executive" class="doc-section">
-      <h2>Executive Summary (1 Menit)</h2>
-      <p>Komponen Zero Trust untuk lalu lintas event IoT yang memutuskan otomatis apakah event diproses, dibatasi, atau ditolak. Keputusan berbasis trust + policy dan tercatat via reason code untuk audit.</p>
+      <h2>Executive Summary</h2>
+      <p>PALASIK menilai event IoT berdasarkan trust score dan policy, lalu memutuskan: <strong>proses, monitor, atau tolak</strong>.</p>
       <p><a href="/palasik/executive-summary/">Buka halaman executive summary</a></p>
     </section>
 
     <section id="non-teknis" class="doc-section">
       <h2>Versi Non-Teknis</h2>
-      <p>Ringkasan operasional untuk staf yang tidak fokus technical deep dive: cara kerja, indikator awal, dan daftar command harian.</p>
+      <p>Ringkas operasional harian untuk tim shift: checklist harian, indikator cepat, dan alur rollback.</p>
       <p><a href="/palasik/non-teknis/">Buka versi non-teknis</a></p>
     </section>
 
     <section id="stakeholder" class="doc-section">
       <h2>Versi Stakeholder</h2>
-      <p>Ringkas untuk pimpinan: dampak risiko, kontrol operasional, dan prinsip keamanan yang tetap menjaga ketersediaan layanan.</p>
+      <p>Ringkas dampak risiko, kontrol operasional, dan governance untuk pemangku kepentingan.</p>
       <p><a href="/palasik/stakeholder/">Buka versi stakeholder</a></p>
     </section>
 
     <section id="teknis" class="doc-section">
       <h2>Dokumentasi Teknis</h2>
-      <p>Ringkas arsitektur, cara pakai, checklist verifikasi, dan SOP siap deploy.</p>
+      <p>Arsitektur, quickstart, CLI, alur deploy aman, rollback, dan indikator kesehatan runtime.</p>
       <p><a href="/palasik/teknis/">Buka dokumentasi teknis</a></p>
     </section>
 
-    <section id="quick" class="doc-section">
-      <h2>Cara Pakai Nyata (3 Menit)</h2>
+    <section id="alur" class="doc-section">
+      <h2>Alur implementasi</h2>
       <ol>
         <li><code>palasik init</code></li>
         <li><code>palasik check --config config.yaml</code></li>
-        <li><code>palasik simulate sample-event.json --config config.yaml</code></li>
-        <li><code>palasik run --config config.yaml</code></li>
         <li><code>palasik status --config config.yaml</code></li>
+        <li><code>policy-snapshot + policy-deploy-check</code> sebelum perubahan kebijakan</li>
+        <li><code>policy-rollback</code> jika terjadi degradasi</li>
       </ol>
-      <p>Untuk deploy aman: jalankan <code>policy-snapshot</code> lalu <code>policy-deploy-check --require-allow</code>, dan rollback jika gagal.</p>
     </section>
 
     <section id="operasional" class="doc-section">
-      <h2>Dokumen teknis referensi</h2>
+      <h2>Dokumen referensi</h2>
       <ul>
         <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/GETTING_STARTED.md">GETTING_STARTED.md</a></li>
         <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/CONFIG.md">CONFIG.md</a></li>
         <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/ARCHITECTURE.md">ARCHITECTURE.md</a></li>
-        <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/TRUST_ENGINE.md">TRUST_ENGINE.md</a></li>
         <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/POLICY_ENGINE.md">POLICY_ENGINE.md</a></li>
+        <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/TRUST_ENGINE.md">TRUST_ENGINE.md</a></li>
         <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/OPERATIONAL_RUNBOOK.md">OPERATIONAL_RUNBOOK.md</a></li>
-        <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/MIGRATION_GATE.md">MIGRATION_GATE.md</a></li>
       </ul>
     </section>
   </article>

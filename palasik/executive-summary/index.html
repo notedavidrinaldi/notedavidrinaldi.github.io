@@ -50,44 +50,44 @@
     <header class="post-header">
       <div class="breadcrumbs"><a href="/">Home</a> &raquo; <a href="/palasik/">PALASIK</a></div>
       <h1 class="page-title">PALASIK Executive Summary (1 Menit)</h1>
-      <div class="doc-subtitle">Versi ringkas untuk eksekutif dan keputusan strategis</div>
+      <div class="doc-subtitle">Ringkasan keputusan strategis untuk eksekutif dan leadership</div>
     </header>
 
-    <div class="doc-tags"><span class="tag">Executive</span><span class="tag">1-minute read</span><span class="tag">Risk Control</span><span class="tag">Zero Trust</span></div>
+    <div class="doc-tags"><span class="tag">Executive</span><span class="tag">1-minute read</span><span class="tag">Zero Trust</span><span class="tag">Risk Control</span></div>
 
     <section class="doc-section">
       <h2>Inti Narasi</h2>
-      <p><strong>PALASIK</strong> adalah komponen Zero Trust untuk lalu lintas event IoT yang memutuskan otomatis apakah setiap event harus diproses, ditunda verifikasi, atau ditolak.</p>
-      <p>Keputusan didasarkan pada <strong>trust score</strong> dan <strong>policy</strong> yang tervalidasi, lalu dipadankan dengan reason code sehingga jejak audit dapat ditelusuri lengkap.</p>
-      <p>Dari sisi operasi, PALASIK dirancang untuk meminimalkan outage saat perubahan kebijakan karena menyediakan mekanisme deployment yang aman: snapshot policy, smoke-check, dan rollback cepat.</p>
+      <p><strong>PALASIK</strong> adalah komponen Zero Trust untuk lalu lintas event IoT yang menentukan apakah event boleh diproses, dibatasi, atau ditolak.</p>
+      <p>Keputusan dihasilkan dari kombinasi <strong>trust score</strong> dan <strong>policy</strong> yang tervalidasi, lalu disimpan sebagai <strong>reason code</strong> agar hasil keputusan bisa diaudit.</p>
+      <p>Model operasionalnya: <strong>policy snapshot</strong> → <strong>policy-deploy-check</strong> → <strong>rollback cepat</strong> jika terjadi degradasi.</p>
     </section>
 
     <section class="doc-section">
-      <h2>Value Proposition untuk Bisnis</h2>
+      <h2>Value Proposition</h2>
       <ul>
-        <li><strong>Keamanan konsisten:</strong> event tidak langsung dianggap terpercaya.</li>
-        <li><strong>Pengelolaan risiko:</strong> pembatasan dilakukan dengan aturan yang terukur, bukan inspeksi ad-hoc.</li>
-        <li><strong>Auditability:</strong> reason code, logs, dan metrik event membuat keputusan bisa ditelusuri.</li>
-        <li><strong>Operasi aman:</strong> setiap perubahan policy melalui guard &amp; rollback path.</li>
+        <li><strong>Keputusan konsisten:</strong> ALLOW / DENY / RESTRICT / CHALLENGE diterapkan lewat aturan, bukan keputusan ad hoc.</li>
+        <li><strong>Risiko terukur:</strong> guard gate deployment menekan potensi outage saat perubahan policy.</li>
+        <li><strong>Auditability:</strong> reason code, logs, dan metrik memberikan bukti perilaku keputusan.</li>
+        <li><strong>Recovery cepat:</strong> jalur snapshot+rollback memungkinkan pemulihan cepat.</li>
       </ul>
     </section>
 
     <section class="doc-section">
       <h2>Indikator Kesehatan Strategis</h2>
       <ul>
-        <li><code>check</code> startup: validasi awal runtime dan konfigurasi</li>
-        <li><code>status</code> runtime: event allowed/denied, latency, alert</li>
-        <li>perubahan deny rate mendadak (indikasi policy over-restrictive)</li>
-        <li>penurunan trust score yang tak sesuai ekspektasi operasi</li>
+        <li><code>check</code> startup untuk memastikan pipeline trust/policy aktif.</li>
+        <li><code>status</code> runtime untuk memantau <code>events_allowed</code>, <code>events_denied</code>, latency, dan <code>alerts</code>.</li>
+        <li>Deny spike mendadak atau penurunan trust yang tidak wajar.</li>
+        <li>Penurunan <code>allow_count</code> saat lalu lintas normal.</li>
       </ul>
     </section>
 
     <section class="doc-section">
       <h2>Link Cepat</h2>
       <div class="docs-grid">
-        <article class="doc-card"><h3><a href="/palasik/non-teknis/">Versi Operasional</a></h3><p>Panduan pendek untuk tim shift dan staf operasi.</p></article>
-        <article class="doc-card"><h3><a href="/palasik/stakeholder/">Versi Stakeholder</a></h3><p>Ringkasan kebijakan dan dampak risiko untuk pemangku kepentingan.</p></article>
-        <article class="doc-card"><h3><a href="/palasik/teknis/">Teknis &amp; SOP</a></h3><p>Checklist teknis, cara pakai 3 menit, dan alur rollback.</p></article>
+        <article class="doc-card"><h3><a href="/palasik/non-teknis/">Versi Operasional</a></h3><p>Ringkas cara kerja harian dan prosedur shift.</p></article>
+        <article class="doc-card"><h3><a href="/palasik/stakeholder/">Versi Stakeholder</a></h3><p>Ringkas dampak risiko dan governance untuk pemangku kepentingan.</p></article>
+        <article class="doc-card"><h3><a href="/palasik/teknis/">Teknis &amp; SOP</a></h3><p>Alur arsitektur, quickstart, deployment, dan rollback.</p></article>
       </div>
     </section>
 

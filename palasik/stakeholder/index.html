@@ -54,42 +54,44 @@
     </header>
 
     <section class="doc-section">
-      <h2>Tujuan Bisnis</h2>
-      <p>PALASIK adalah lapisan keputusan keamanan yang menilai event IoT sebelum masuk proses bisnis utama. Ini mengurangi risiko pelanggaran kebijakan dan memperketat kontrol tanpa membebani operasi.</p>
-      <p>Setiap keputusan (ALLOW, DENY, monitor khusus) dilakukan secara konsisten, bukan manual ad hoc, sehingga dapat direplikasikan lintas jam operasional dan tim.</p>
+      <h2>Ringkasan untuk keputusan bisnis</h2>
+      <p><strong>PALASIK</strong> adalah lapisan keputusan keamanan yang memproses setiap event IoT sebelum masuk sistem inti.</p>
+      <p>Keputusan bukan berdasarkan kepercayaan implisit, melainkan <strong>trust score</strong> dan <strong>policy</strong> yang terukur. Hasil keputusan dapat ditelusuri untuk audit dan compliance.</p>
     </section>
 
     <section class="doc-section">
       <h2>Nilai Operasional</h2>
       <div class="docs-grid">
-        <article class="doc-card"><h3>Keamanan Terkendali</h3><p>Policy dan trust score memprioritaskan pencegahan insiden di edge layer sebelum berdampak ke sistem inti.</p></article>
-        <article class="doc-card"><h3>Audit &amp; Kepatuhan</h3><p>Reason code + logs menciptakan jejak keputusan yang bisa diaudit.</p></article>
-        <article class="doc-card"><h3>Respon Cepat</h3><p>Rollback policy path memungkinkan pemulihan cepat ketika deployment baru tidak stabil.</p></article>
+        <article class="doc-card"><h3>Keamanan yang terkendali</h3><p>Policy &amp; trust score mengurangi risiko insiden tanpa menambah kompleksitas manual.</p></article>
+        <article class="doc-card"><h3>Audit yang jelas</h3><p>Reason code dan log menekan gap bukti operasional.</p></article>
+        <article class="doc-card"><h3>Respon cepat</h3><p>Rollback path menjaga ketersediaan layanan jika deployment policy gagal.</p></article>
       </div>
     </section>
 
     <section class="doc-section">
-      <h2>Rantai Kendali Risiko</h2>
+      <h2>Rantai kendali risiko</h2>
       <ol>
-        <li>Quality gate sebelum deploy: <strong>policy-snapshot</strong> + <strong>policy-deploy-check</strong>.</li>
-        <li>Validasi jalan/produksi: <strong>check</strong> dan <strong>status</strong>.</li>
-        <li>Respon insiden: rollback ke snapshot valid jika terjadi deny spike abnormal.</li>
+        <li>Jalankan <strong>policy-snapshot</strong> sebelum perubahan policy.</li>
+        <li>Validasi dengan <strong>policy-deploy-check --require-allow</strong>.</li>
+        <li>Deploy hanya jika <strong>PASS</strong>.</li>
+        <li>Lakukan <strong>check</strong> dan <strong>status</strong> untuk verifikasi awal produksi.</li>
+        <li>Jika ada degradasi, rollback dengan <strong>policy-rollback</strong>.</li>
       </ol>
     </section>
 
     <section class="doc-section">
-      <h2>Ringkasan KPI yang dipantau</h2>
+      <h2>Indikator yang dipantau</h2>
       <ul>
-        <li><strong>Risk events</strong> (DENY/ALERT)</li>
-        <li><strong>Availability</strong> (ketersediaan pipeline event)</li>
-        <li><strong>Mean time to recover</strong> via rollback</li>
-        <li><strong>Compliance readiness</strong> (reason code &amp; evidensi logs)</li>
+        <li><code>events_denied</code> vs <code>events_allowed</code> secara relasional.</li>
+        <li>ketersediaan pipeline event (availability).</li>
+        <li>alert deny spike dan trust drop.</li>
+        <li>Waktu pemulihan (MTTR) pasca rollback.</li>
       </ul>
     </section>
 
     <section class="doc-section">
-      <h2>Keputusan yang disarankan</h2>
-      <p>Integrasikan monitoring metrik PALASIK ke proses operasi rutin dan minta tim melakukan snapshot + deploy-check untuk setiap perubahan policy penting.</p>
+      <h2>Keputusan dan governance</h2>
+      <p>Integrasikan metrik PALASIK ke operasi rutin, dan wajibkan snapshot+deploy-check untuk setiap perubahan policy penting agar risiko rollback bisa diprediksi.</p>
       <p><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/README_BUSINESS.md">Lihat versi markdown stakeholder lengkap</a></p>
     </section>
   </article>
