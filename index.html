@@ -1,264 +1,57 @@
-<!doctype html><html lang="en" dir="auto" data-theme="auto">
+<!doctype html>
+<html lang="en" dir="auto" data-theme="auto">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <meta name="robots" content="index, follow">
-  <title>DEMIT Documentation | David Rinaldi</title>
-  <meta name="description" content="DEMIT Super App documentation and structured feature roadmap for PALASIK and its modules.">
-  <meta name="author" content="halotec">
+  <title>PALASIK Documentation | David Rinaldi</title>
+  <meta name="description" content="Dokumentasi teknis PALASIK: arsitektur, alur event, konfigurasi, dan roadmap edge security untuk Raspberry Pi.">
+  <meta name="author" content="David Rinaldi">
   <link rel="canonical" href="https://notedavidrinaldi.github.io/">
   <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
   <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
-  <script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script>
-  <style>
-    :root {
-      --horror-bg: #0d0502;
-      --horror-ink: #f6d7d2;
-      --horror-accent: #e62e2e;
-      --horror-ember: #3b0f0f;
-      --horror-panel: rgba(18, 7, 7, 0.84);
-      --horror-line: #6a2a2a;
-    }
-
-    body {
-      color: var(--horror-ink);
-      background:
-        radial-gradient(circle at 20% 10%, rgba(128, 27, 27, 0.12), transparent 35%),
-        radial-gradient(circle at 80% 30%, rgba(128, 27, 27, 0.16), transparent 32%),
-        linear-gradient(180deg, #160a06 0%, var(--horror-bg) 44%, #0f0604 100%);
-      text-shadow: 0 0 6px rgba(230, 46, 46, 0.15);
-    }
-
-    .horror-noise {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 20;
-      background-image: repeating-linear-gradient(
-        0deg,
-        rgba(255, 255, 255, 0.03),
-        rgba(255, 255, 255, 0.03) 1px,
-        transparent 2px,
-        transparent 3px
-      );
-      mix-blend-mode: overlay;
-      opacity: 0.06;
-      animation: driftFog 7s linear infinite;
-    }
-
-    .horror-glow {
-      position: fixed;
-      inset: auto 0 0;
-      height: 90px;
-      pointer-events: none;
-      background: radial-gradient(circle at 50% 100%, rgba(230, 46, 46, 0.28), transparent 72%);
-      animation: glowPulse 2.3s ease-in-out infinite alternate;
-      z-index: 10;
-    }
-
-    .horror-mantle {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      background: linear-gradient(180deg, rgba(230, 46, 46, 0.05), rgba(0, 0, 0, 0.25));
-    }
-
-    .docs-shell .page-title,
-    .post-header h1 {
-      color: #ffb0b0;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      animation: ghostFlicker 5.5s infinite;
-    }
-
-    .docs-shell .doc-subtitle,
-    .doc-subtitle {
-      color: #d79a95;
-      font-style: italic;
-      letter-spacing: 0.015em;
-    }
-
-    .docs-shell .doc-card,
-    .doc-faq details,
-    .docs-shell table,
-    .inline-note {
-      background: linear-gradient(180deg, rgba(53, 16, 16, 0.9), rgba(35, 9, 8, 0.9));
-      border-color: var(--horror-line);
-      color: #ecd0cc;
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
-    }
-
-    .docs-shell a,
-    .toc a,
-    .nav a {
-      color: #ff6c6c;
-      text-shadow: 0 0 8px rgba(255, 108, 108, 0.55);
-    }
-
-    .docs-shell a:hover,
-    .nav a:hover,
-    .toc a:hover {
-      color: #ffe2ca;
-      text-shadow: 0 0 10px rgba(255, 226, 202, 0.6);
-    }
-
-    .nav,
-    .post-single,
-    .header,
-    .footer {
-      position: relative;
-      z-index: 30;
-    }
-
-    .doc-section h2 {
-      color: #ffb0b0;
-      border-left-color: var(--horror-accent);
-    }
-
-    .doc-section h2,
-    .post-content h2,
-    .post-content h3,
-    .post-content h4 {
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .docs-shell .doc-tags .tag {
-      border-color: #7e3b3b;
-      color: #ffd0cd;
-      background: #260f10;
-      box-shadow: inset 0 0 0 1px rgba(255, 108, 108, 0.22);
-      text-shadow: 0 0 8px rgba(255, 108, 108, 0.25);
-    }
-
-    .horror-banner {
-      border: 1px solid #7a2b2b;
-      background: linear-gradient(90deg, rgba(53, 10, 10, 0.65), rgba(17, 6, 6, 0.92));
-      padding: .9rem 1rem;
-      border-radius: 12px;
-      margin-top: 0.9rem;
-      color: #ffd6d0;
-      box-shadow: inset 0 0 0 1px rgba(255, 108, 108, 0.2);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .horror-banner::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 80% 20%, rgba(255, 108, 108, 0.15), transparent 45%);
-      pointer-events: none;
-      animation: pulseBreath 3.2s ease-in-out infinite;
-    }
-
-    .horror-demon {
-      position: relative;
-      width: 190px;
-      height: 190px;
-      margin: .2rem auto 1rem;
-      filter: drop-shadow(0 0 12px rgba(255, 80, 80, 0.4));
-      animation: demonFloat 7s ease-in-out infinite;
-    }
-
-    .horror-demon svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    .horror-demon-caption {
-      text-align: center;
-      margin-top: .4rem;
-      color: #ffc2bc;
-      font-size: 0.9rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      text-shadow: 0 0 12px rgba(255, 108, 108, 0.65);
-    }
-
-    .horror-demon-caption strong {
-      color: #ffd4c6;
-    }
-
-    .post-header {
-      position: relative;
-    }
-
-    .post-header::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 -2px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent 0%, var(--horror-accent), transparent 100%);
-    }
-
-    .docs-shell .page-title { margin: 0 0 .75rem; font-size: 2.1rem; letter-spacing: -0.015em; }
-    .docs-shell .doc-subtitle { margin-bottom: 1.25rem; color: var(--secondary); }
-    .docs-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-    .docs-grid .doc-card { border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; background: var(--entry); }
-    .docs-grid .doc-card h3 { margin-top: 0; margin-bottom: .4rem; }
-    .doc-section { margin: 1.25rem 0; }
-    .doc-section h2 { margin-bottom: .6rem; border-left: 4px solid var(--primary); padding-left: .65rem; }
-    .doc-tags { display: flex; flex-wrap: wrap; gap: .45rem; margin: .4rem 0 1rem; }
-    .doc-tags .tag { border: 1px solid var(--border); border-radius: 999px; padding: .22rem .55rem; color: var(--content); font-size: .78rem; background: var(--theme); }
-    .inline-note { border-left: 4px solid var(--tertiary); padding: .8rem .9rem; margin: 1rem 0; background: color-mix(in oklab, var(--entry) 90%, transparent); border-radius: 6px; }
-    .doc-faq details { margin: .6rem 0; padding: .6rem .8rem; border: 1px dashed var(--border); border-radius: 8px; background: var(--entry); }
-    .docs-shell table { width: 100%; border-collapse: collapse; }
-    .docs-shell th,.docs-shell td { border: 1px solid var(--border); padding: .55rem; vertical-align: top; }
-    .docs-shell th { text-align: left; background: color-mix(in oklab, var(--theme) 75%, var(--entry)); }
-
-    @keyframes ghostFlicker {
-      0%, 18%, 22%, 45%, 56%, 100% { opacity: 1; }
-      20%, 25%, 55% { opacity: 0.82; }
-      57%, 60% { opacity: 0.55; }
-      61%, 65% { opacity: 0.93; }
-    }
-
-    @keyframes demonFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px) rotate(-1.5deg); }
-    }
-
-    @keyframes glowPulse {
-      from { opacity: 0.35; }
-      to { opacity: 0.74; }
-    }
-
-    @keyframes driftFog {
-      from { transform: translateY(0); }
-      to { transform: translateY(9px); }
-    }
-
-    @keyframes pulseBreath {
-      0%, 100% { opacity: 0.2; }
-      50% { opacity: 0.55; }
-    }
-  </style>
+  <script>
+    localStorage.getItem("pref-theme") === "dark"
+      ? document.querySelector("html").dataset.theme = "dark"
+      : localStorage.getItem("pref-theme") === "light"
+        ? document.querySelector("html").dataset.theme = "light"
+        : window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? document.querySelector("html").dataset.theme = "dark"
+          : document.querySelector("html").dataset.theme = "light"
+  </script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
 </head>
-<body class="single horror-shell" id="top">
-<div class="horror-noise"></div>
-<div class="horror-glow"></div>
-<div class="horror-mantle"></div>
+<body class="single docs-shell" id="top">
 <header class="header">
   <nav class="nav">
     <div class="logo">
       <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
       <div class="logo-switches">
         <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-          <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-          <svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+          </svg>
+          <svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
         </button>
       </div>
     </div>
     <ul id="menu">
-      <li><a href="/" title="Home"><span>Documentation</span></a></li>
-      <li><a href="/demit/" title="DEMIT Docs"><span>DEMIT</span></a></li>
-      <li><a href="/palasik/" title="PALASIK"><span>PALASIK</span></a></li>
-      <li><a href="/posts/" title="Posts"><span>Posts</span></a></li>
-      <li><a href="/about/" title="About"><span>About</span></a></li>
+      <li><a href="/" title="Home" class="active">Home</a></li>
+      <li><a href="/palasik/" title="PALASIK">PALASIK Docs</a></li>
+      <li><a href="/demit/" title="DEMIT">DEMIT Runtime</a></li>
+      <li><a href="/posts/" title="Posts">Posts</a></li>
+      <li><a href="/about/" title="About">About</a></li>
     </ul>
   </nav>
 </header>
@@ -266,108 +59,93 @@
 <main class="main docs-shell">
   <article class="post-single">
     <header class="post-header">
-      <h1 class="page-title">DEMIT Documentation</h1>
-      <div class="doc-subtitle">Dokumentasi terstruktur untuk super-app runtime DEMIT dan aplikasi di dalamnya, dengan PALASIK sebagai app keamanan default.</div>
+      <h1 class="page-title">PALASIK Documentation</h1>
+      <div class="doc-subtitle">Dokumentasi teknis untuk runtime keamanan berbasis <strong>Zero Trust</strong> di level edge.</div>
     </header>
 
-    <section class="horror-banner">
-      <div class="horror-demon" aria-label="Setan PALASIK">
-        <svg viewBox="0 0 220 220" role="img">
-          <defs>
-            <radialGradient id="core" cx="50%" cy="25%" r="75%">
-              <stop offset="0%" stop-color="#ff8b8b" stop-opacity="0.95"/>
-              <stop offset="45%" stop-color="#9a1e1e" stop-opacity="0.9"/>
-              <stop offset="100%" stop-color="#1a0505" stop-opacity="1"/>
-            </radialGradient>
-          </defs>
-          <ellipse cx="110" cy="122" rx="84" ry="88" fill="url(#core)"/>
-          <ellipse cx="72" cy="70" rx="12" ry="16" fill="#180404"/>
-          <ellipse cx="148" cy="70" rx="12" ry="16" fill="#180404"/>
-          <path d="M72 76 L78 68 L88 76 L80 82 Z" fill="#f9d6d6"/>
-          <path d="M148 76 L154 68 L164 76 L156 82 Z" fill="#f9d6d6"/>
-          <path d="M86 104 C88 116, 98 122, 110 122 C122 122, 132 116, 134 104" fill="none" stroke="#220707" stroke-width="4"/>
-          <path d="M64 48 C56 20, 86 10, 110 34 C128 4, 156 18, 158 48" fill="none" stroke="#2d0a0a" stroke-width="7" stroke-linecap="round"/>
-          <path d="M64 158 C64 186, 94 196, 110 196 C126 196, 156 186, 156 158" fill="none" stroke="#2b0a0a" stroke-width="8"/>
-          <path d="M52 130 C20 104, 22 166, 57 176 C46 168, 57 154, 76 149" fill="#120404"/>
-          <path d="M168 130 C200 104, 198 166, 163 176 C174 168, 163 154, 144 149" fill="#120404"/>
-          <path d="M34 88 L56 110 L44 108 Z" fill="#3d1818"/>
-          <path d="M186 88 L164 110 L176 108 Z" fill="#3d1818"/>
-          <line x1="88" y1="110" x2="132" y2="110" stroke="#330c0c" stroke-width="9" stroke-linecap="round"/>
-          <line x1="110" y1="110" x2="110" y2="145" stroke="#330c0c" stroke-width="9" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div class="horror-demon-caption">🩸 <strong>Setan PALASIK</strong> menjaga gerbang event.</div>
-    </section>
-
     <div class="doc-tags">
-      <span class="tag">Super App</span><span class="tag">Python</span><span class="tag">IoT</span><span class="tag">Zero Trust</span><span class="tag">Edge</span>
+      <span class="tag">Edge Security</span>
+      <span class="tag">Raspberry Pi</span>
+      <span class="tag">Trust Engine</span>
+      <span class="tag">Policy Engine</span>
+      <span class="tag">DEMIT</span>
     </div>
 
     <div class="toc">
-      <details open><summary accesskey="c" title="(Alt + C)"><span class="details">Table of Contents</span></summary><div class="inner">
-        <ul>
-          <li><a href="#overview">Overview</a></li>
-          <li><a href="#apps">Aplikasi</a></li>
-          <li><a href="#features">Fitur Core</a></li>
-          <li><a href="#palasik">Fitur PALASIK</a></li>
-          <li><a href="#quick-start">Quick Start</a></li>
-          <li><a href="#roadmap">Roadmap</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-      </div></details>
+      <details open>
+        <summary accesskey="c" title="(Alt + C)"><span class="details">Quick Guide</span></summary>
+        <div class="inner">
+          <ul>
+            <li><a href="#overview">Apa itu PALASIK</a></li>
+            <li><a href="#architecture">Arsitektur</a></li>
+            <li><a href="#runtime">Alur Runtime</a></li>
+            <li><a href="#quick-start">Quick Start</a></li>
+            <li><a href="#deployment">Deployment</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+      </details>
     </div>
 
-    <section id="overview" class="post-content doc-section">
-      <h2>Overview</h2>
-      <p><strong>DEMIT</strong> adalah runtime super-app untuk orkestrasi beberapa aplikasi digital dalam satu host tunggal.</p>
-      <div class="inline-note">Fokus saat ini: <strong>PALASIK</strong> sebagai aplikasi pertama untuk decision layer keamanan IoT.</div>
+    <section id="overview" class="doc-section">
+      <h2>Apa itu PALASIK</h2>
+      <p><strong>PALASIK</strong> adalah <em>framework keputusan keamanan</em> untuk node IoT yang dijalankan di gateway (umumnya Raspberry Pi). Framework ini memeriksa perilaku device secara real-time lalu menentukan tindakan pengamanan secara adaptif.</p>
+      <p class="inline-note"><strong>Poin inti:</strong> tidak semua data langsung dipercaya. Setiap device dinilai dulu lewat mekanisme trust score, lalu diputuskan aksinya.</p>
     </section>
 
-    <section id="apps" class="doc-section">
-      <h2>Aplikasi di dalam DEMIT</h2>
+    <section id="architecture" class="doc-section">
+      <h2>Arsitektur Dasar</h2>
       <div class="docs-grid">
         <article class="doc-card">
-          <h3>PALASIK</h3>
-          <p>Security app yang mengevaluasi event melalui Trust & Policy Engine, lalu menentukan aksi allowance/restriksi/isolasi.</p>
-          <ul><li>Event trust decision</li><li>Plugin action</li><li>Adapter MQTT/HTTP</li></ul>
+          <h3>Edge Gateway Layer</h3>
+          <p>Layer pertama di sisi perangkat fisik:</p>
+          <ul>
+            <li>MQTT / HTTP listener</li>
+            <li>Pengumpulan event + metadata perangkat</li>
+            <li>Routing ke aplikasi sesuai route</li>
+          </ul>
         </article>
         <article class="doc-card">
-          <h3>Future App Slots</h3>
-          <p>Skema yang sama disiapkan untuk menambah app lainnya tanpa mengubah core runtime.</p>
-          <ul><li>Monitoring app</li><li>Inventory app</li><li>Dashboard app</li></ul>
+          <h3>Trust Engine</h3>
+          <p>Mesin penilai trust:</p>
+          <ul>
+            <li>Reputasi device</li>
+            <li>Polanya perilaku traffic</li>
+            <li>Skor kepercayaan dinamis</li>
+          </ul>
+        </article>
+        <article class="doc-card">
+          <h3>Policy Engine</h3>
+          <p>Lapisan keputusan keamanan:</p>
+          <ul>
+            <li>Allow / restrict / isolate / deny</li>
+            <li>Policy by device, route, dan kondisi sistem</li>
+            <li>Integrasi log dan alert</li>
+          </ul>
         </article>
       </div>
     </section>
 
-    <section id="features" class="doc-section">
-      <h2>Fitur Core DEMIT</h2>
+    <section id="runtime" class="doc-section">
+      <h2>Alur Runtime</h2>
       <table>
-        <thead><tr><th>Fitur</th><th>Deskripsi</th></tr></thead>
+        <thead>
+          <tr><th>Langkah</th><th>Fungsi</th><th>Output</th></tr>
+        </thead>
         <tbody>
-          <tr><td>Multi-app runtime</td><td>Memuat beberapa aplikasi sekaligus dengan lifecycle yang konsisten.</td></tr>
-          <tr><td>Route-driven event dispatch</td><td>Mengarahkan event ke target app tertentu melalui <code>route</code> atau auto-default.</td></tr>
-          <tr><td>Declarative config</td><td>Semua apps didefinisikan di <code>demit.yaml</code>.</td></tr>
-          <tr><td>Separation of concerns</td><td>Core runtime tetap ringan, logika bisnis berada di app layer.</td></tr>
+          <tr><td>1</td><td>Event masuk dari transport layer</td><td>Dipetakan ke aplikasi target oleh DEMIT</td></tr>
+          <tr><td>2</td><td>Trust Engine mengevaluasi perilaku</td><td>Nilai trust <code>0.0 - 1.0</code></td></tr>
+          <tr><td>3</td><td>Policy Engine mengeksekusi keputusan</td><td>Allow / Restrict / Quarantine / Alert</td></tr>
+          <tr><td>4</td><td>Eksekusi aksi dipublikasikan</td><td>Log, webhook, forwarding, atau isolasi</td></tr>
         </tbody>
       </table>
     </section>
 
-    <section id="palasik" class="doc-section">
-      <h2>Fitur Utama PALASIK</h2>
-      <ul>
-        <li>Trust Engine untuk pengukuran trust dinamis.</li>
-        <li>Policy Engine untuk aksi ALLOW / RESTRICT / QUARANTINE / DENY.</li>
-        <li>Plugin model untuk ekstensi log/alert/forwarding.</li>
-        <li>Integrasi ke adapter event (MQTT/HTTP) dan CLI run pipeline.</li>
-      </ul>
-      <p>Detail teknis lebih dalam: <a href="/palasik/">halaman dokumentasi PALASIK</a>.</p>
-    </section>
-
     <section id="quick-start" class="doc-section">
       <h2>Quick Start</h2>
+      <p>Konfigurasi minimal untuk mencoba PALASIK secara lokal:</p>
       <pre><code>pip install palasik
-
-demit --config demit.yaml</code></pre>
+python -m palasik --config ./demit.yaml</code></pre>
       <p>Contoh <code>demit.yaml</code>:</p>
       <pre><code>demit:
   apps:
@@ -379,24 +157,34 @@ apps:
     config_file: "config.yaml"
     plugins_path: "plugins"
     routes:
-      - palasik</code></pre>
+      - name: palasik
+        path: "palasik.events"</code></pre>
     </section>
 
-    <section id="roadmap" class="doc-section">
-      <h2>Roadmap</h2>
-      <ul>
-        <li><strong>Phase 1:</strong> runtime DEMIT + satu app PALASIK stabil.</li>
-        <li><strong>Phase 2:</strong> command tooling untuk manajemen lifecycle multi-app.</li>
-        <li><strong>Phase 3:</strong> UI monitor super-app dan plugin ecosystem.</li>
-      </ul>
+    <section id="deployment" class="doc-section">
+      <h2>Deployment</h2>
+      <div class="docs-grid">
+        <article class="doc-card">
+          <h3>Tahap 1</h3>
+          <p>Siapkan Raspberry Pi + Node-RED (opsional) + MQTT broker internal.</p>
+        </article>
+        <article class="doc-card">
+          <h3>Tahap 2</h3>
+          <p>Aktifkan event source dan route ke app PALASIK sesuai kebutuhan pilot.</p>
+        </article>
+        <article class="doc-card">
+          <h3>Tahap 3</h3>
+          <p>Atur policy, aktifkan log, dan verifikasi tindakan pada skenario abnormal.</p>
+        </article>
+      </div>
     </section>
 
     <section id="faq" class="doc-section">
       <h2>FAQ</h2>
       <div class="doc-faq">
-        <details><summary>Apa itu route?</summary><p>Field routing menentukan app tujuan event agar tidak diproses oleh app yang tidak relevan.</p></details>
-        <details><summary>Bisa menambah app lain?</summary><p>Ya, hanya tambah entry di <code>demit.yaml</code> dan registrasi lifecycle app.</p></details>
-        <details><summary>Apakah ini production-ready?</summary><p>Fokus awal adalah riset/prototype yang stabil; production hardening masih dapat dilanjutkan via roadmap phase berikutnya.</p></details>
+        <details><summary>Perlu DEMIT agar PALASIK berjalan?</summary><p>Ya. DEMIT bertugas sebagai runtime super-app yang memproses route event ke PALASIK.</p></details>
+        <details><summary>Bisa pakai tanpa plugin tambahan?</summary><p>Bisa. PALASIK bisa berjalan dengan logger dasar, lalu plugin opsional ditambahkan sesuai kebutuhan observability.</p></details>
+        <details><summary>Apakah project ini production-ready?</summary><p>Fokus saat ini pada dokumentasi riset-prototype yang stabil. Tahapan hardening production sudah dimasukkan ke roadmap berikutnya.</p></details>
       </div>
     </section>
   </article>
