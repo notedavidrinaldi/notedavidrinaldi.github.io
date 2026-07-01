@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="id" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>Dokumentasi DEMIT (ID) | David Rinaldi</title>
+  <meta name="description" content="Dokumentasi DEMIT dalam bahasa Indonesia dan kaitannya dengan PALASIK.">
+  <meta name="author" content="halotec">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/docs/id/demit/">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
+</head>
+<body class="single docs-shell" id="top">
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+      <div class="logo-switches"><button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">◐</button></div>
+    </div>
+    <div class="lang-switch" aria-label="Pilih bahasa">
+      <a href="/docs/id/demit/" aria-current="page">ID</a>
+      <a href="/docs/en/demit/">EN</a>
+    </div>
+    <ul id="menu">
+      <li><a href="/" title="Home">Home</a></li>
+      <li><a href="/palasik/" title="PALASIK Docs">PALASIK Docs</a></li>
+      <li><a href="/palasik/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+      <li><a href="/palasik/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
+      <li><a href="/palasik/stakeholder/" title="Stakeholder">Stakeholder</a></li>
+      <li><a href="/palasik/teknis/" title="Teknis">Teknis</a></li>
+      <li><a href="/demit/" title="DEMIT Runtime"><span class="active">DEMIT Runtime</span></a></li>
+      <li><a href="/docs/id/" title="Pusat Dokumentasi">Pusat Dokumentasi</a></li>
+      <li><a href="/docs/id/plan/" title="Rencana">Rencana</a></li>
+      <li><a href="/docs/id/history/" title="History">History</a></li>
+      <li><a href="/posts/" title="Posts">Posts</a></li>
+      <li><a href="/about/" title="About">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main docs-shell">
+  <article class="post-single">
+    <header class="post-header">
+      <div class="breadcrumbs"><a href="/docs/id/">Pusat Dokumentasi</a> » <a href="/docs/id/demit/">DEMIT</a></div>
+      <h1 class="page-title">Dokumentasi DEMIT</h1>
+      <div class="doc-subtitle">Runtime super-app yang menjadi host untuk PALASIK.</div>
+    </header>
+
+    <section class="doc-section">
+      <h2>Ringkas</h2>
+      <p>DEMIT menjalankan beberapa aplikasi dari satu proses, dengan routing event yang fleksibel dan lifecycle yang konsisten.</p>
+      <ul>
+        <li>Start/Stop lifecycle aplikasi</li>
+        <li>Routing event via route dan nama aplikasi</li>
+        <li>Konfigurasi deklaratif melalui <code>demit.yaml</code></li>
+      </ul>
+    </section>
+
+    <section class="doc-section">
+      <h2>Kaitan dengan PALASIK</h2>
+      <p>PALASIK adalah aplikasi default yang di-load oleh DEMIT untuk enforcement keamanan.</p>
+      <div class="inline-note">DEMIT mengatur orkestrasi, PALASIK menjalankan keputusan.</div>
+    </section>
+
+    <section class="doc-section">
+      <h2>Contoh Konfigurasi Singkat</h2>
+      <pre><code>demit:
+  apps:
+    - palasik
+
+apps:
+  palasik:
+    type: palasik
+    config_file: config.yaml</code></pre>
+    </section>
+  </article>
+</main>
+
+<footer class="footer"><span>&copy; 2026 <a href="https://notedavidrinaldi.github.io/">David Rinaldi</a></span></footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g"><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a>
+<script>
+  let menu = document.getElementById("menu");
+  if (menu) { const e = localStorage.getItem("menu-scroll-position"); e && (menu.scrollLeft = parseInt(e, 10)); menu.onscroll = function(){localStorage.setItem("menu-scroll-position", menu.scrollLeft);} }
+  document.getElementById("theme-toggle").addEventListener("click", () => { const root = document.querySelector("html"); if (root.dataset.theme === "dark") {root.dataset.theme = "light"; localStorage.setItem("pref-theme", "light");} else {root.dataset.theme = "dark"; localStorage.setItem("pref-theme", "dark");} });
+</script>
+</body>
+</html>

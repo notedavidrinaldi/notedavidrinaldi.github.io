@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="id" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>Dokumentasi PALASIK (ID) | David Rinaldi</title>
+  <meta name="description" content="Dokumentasi PALASIK berbahasa Indonesia, terhubung dengan runtime DEMIT.">
+  <meta name="author" content="David Rinaldi">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/docs/id/palasik/">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
+</head>
+<body class="single docs-shell" id="top">
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+      <div class="logo-switches"><button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">◐</button></div>
+    </div>
+    <div class="lang-switch" aria-label="Pilih bahasa">
+      <a href="/docs/id/palasik/" aria-current="page">ID</a>
+      <a href="/docs/en/palasik/">EN</a>
+    </div>
+    <ul id="menu">
+      <li><a href="/" title="Home">Home</a></li>
+      <li><a href="/palasik/" title="PALASIK Docs"><span class="active">PALASIK Docs</span></a></li>
+      <li><a href="/palasik/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+      <li><a href="/palasik/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
+      <li><a href="/palasik/stakeholder/" title="Stakeholder">Stakeholder</a></li>
+      <li><a href="/palasik/teknis/" title="Teknis">Teknis</a></li>
+      <li><a href="/demit/" title="DEMIT Runtime">DEMIT Runtime</a></li>
+      <li><a href="/docs/id/" title="Pusat Dokumentasi">Pusat Dokumentasi</a></li>
+      <li><a href="/docs/id/plan/" title="Rencana">Rencana</a></li>
+      <li><a href="/docs/id/history/" title="History">History</a></li>
+      <li><a href="/posts/" title="Posts">Posts</a></li>
+      <li><a href="/about/" title="About">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main docs-shell">
+  <article class="post-single">
+    <header class="post-header">
+      <div class="breadcrumbs"><a href="/docs/id/">Pusat Dokumentasi</a> » <a href="/docs/id/palasik/">PALASIK</a></div>
+      <h1 class="page-title">Dokumentasi PALASIK</h1>
+      <div class="doc-subtitle">Mesin keputusan keamanan untuk event IoT di sisi edge.</div>
+    </header>
+
+    <section class="doc-section">
+      <h2>Konsep Inti</h2>
+      <p>PALASIK mengevaluasi setiap event masuk lalu menetapkan keputusan security secara real-time.</p>
+      <ul>
+        <li>Trust Engine menilai perilaku perangkat.</li>
+        <li>Policy Engine menjalankan keputusan ALLOW / RESTRICT / DENY.</li>
+        <li>Semua keputusan tercatat sebagai evidence.</li>
+      </ul>
+    </section>
+
+    <section class="doc-section">
+      <h2>Kaitan dengan DEMIT</h2>
+      <p>DEMIT adalah super app runtime; PALASIK adalah aplikasi keamanan yang dijalankan melalui routing DEMIT.</p>
+      <div class="docs-grid">
+        <article class="doc-card"><h3>DEMIT</h3><p>Menangani lifecycle dan routing antar aplikasi.</p></article>
+        <article class="doc-card"><h3>PALASIK</h3><p>Menentukan apakah event diproses, dibatasi, atau ditolak.</p></article>
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>Quick Start Singkat</h2>
+      <pre><code>demit.yaml
+
+demit:
+  apps:
+    - palasik</code></pre>
+    </section>
+  </article>
+</main>
+
+<footer class="footer"><span>&copy; 2026 <a href="https://notedavidrinaldi.github.io/">David Rinaldi</a></span></footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g"><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a>
+<script>
+  let menu = document.getElementById("menu");
+  if (menu) { const e = localStorage.getItem("menu-scroll-position"); e && (menu.scrollLeft = parseInt(e, 10)); menu.onscroll = function(){localStorage.setItem("menu-scroll-position", menu.scrollLeft);} }
+  document.getElementById("theme-toggle").addEventListener("click", () => { const root = document.querySelector("html"); if (root.dataset.theme === "dark") {root.dataset.theme = "light"; localStorage.setItem("pref-theme", "light");} else {root.dataset.theme = "dark"; localStorage.setItem("pref-theme", "dark");} });
+</script>
+</body>
+</html>

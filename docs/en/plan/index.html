@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>DEMIT + PALASIK Development Plan | David Rinaldi</title>
+  <meta name="description" content="Development plan for DEMIT super-app runtime and PALASIK security modules.">
+  <meta name="author" content="David Rinaldi">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/docs/en/plan/">
+  <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" rel="preload stylesheet" as="style">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
+</head>
+<body class="single docs-shell" id="top">
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+      <div class="logo-switches">
+        <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+          <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/><line x1="12" y1="1" x2="12" y2="3"/></svg>
+          <svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="lang-switch" aria-label="Language chooser">
+      <a href="/docs/id/plan/">ID</a>
+      <a href="/docs/en/plan/" aria-current="page">EN</a>
+    </div>
+    <ul id="menu">
+      <li><a href="/" title="Home">Home</a></li>
+      <li><a href="/palasik/" title="PALASIK Docs">PALASIK Docs</a></li>
+      <li><a href="/palasik/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+      <li><a href="/palasik/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
+      <li><a href="/palasik/stakeholder/" title="Stakeholder">Stakeholder</a></li>
+      <li><a href="/palasik/teknis/" title="Teknis">Teknis</a></li>
+      <li><a href="/demit/" title="DEMIT Runtime">DEMIT Runtime</a></li>
+      <li><a href="/docs/en/" title="Documentation Center">Documentation Center</a></li>
+      <li><a href="/docs/en/plan/" title="Plan"><span class="active">Plan</span></a></li>
+      <li><a href="/docs/en/history/" title="History">History</a></li>
+      <li><a href="/posts/" title="Posts">Posts</a></li>
+      <li><a href="/about/" title="About">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main docs-shell">
+  <article class="post-single">
+    <header class="post-header">
+      <div class="breadcrumbs"><a href="/docs/en/">Documentation Center</a> » <a href="/docs/en/plan/">Plan</a></div>
+      <h1 class="page-title">DEMIT + PALASIK Development Plan</h1>
+      <div class="doc-subtitle">Roadmap by phase from prototype to production-ready architecture.</div>
+    </header>
+    <section class="doc-section" id="phases">
+      <h2>Plan Phases</h2>
+      <div class="docs-grid">
+        <article class="doc-card"><h3>Phase 1 - Foundation</h3><ul><li>Align DEMIT runtime bootstrap</li><li>Stabilize PALASIK event intake</li><li>Single source demo YAML</li></ul></article>
+        <article class="doc-card"><h3>Phase 2 - Hardening</h3><ul><li>Policy validation gates</li><li>Rollback and snapshot workflow</li><li>Observability hooks and logs</li></ul></article>
+        <article class="doc-card"><h3>Phase 3 - Scale</h3><ul><li>Multi-app expansion in DEMIT</li><li>Plugin architecture for new enforcement actions</li><li>Security audit evidence baseline</li></ul></article>
+        <article class="doc-card"><h3>Phase 4 - Operations</h3><ul><li>Release checklist</li><li>CI pipeline validation</li><li>Versioned documentation language parity</li></ul></article>
+      </div>
+    </section>
+
+    <section class="doc-section" id="milestones">
+      <h2>Near-term Milestones (12 weeks)</h2>
+      <table>
+        <thead><tr><th>Week</th><th>Target</th><th>Deliverable</th></tr></thead>
+        <tbody>
+          <tr><td>1-2</td><td>Core docs sync</td><td>Indonesian/English docs index + cross-link map</td></tr>
+          <tr><td>3-5</td><td>Runtime test plan</td><td>Integration test checklist and command cookbook</td></tr>
+          <tr><td>6-9</td><td>Feature parity</td><td>Shared policy semantics across PALASIK and DEMIT modules</td></tr>
+          <tr><td>10-12</td><td>Release readiness</td><td>History timeline + versioned changelog</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="doc-faq">
+      <details><summary>How does this plan stay updated?</summary><p>Each phase is updated after every merge milestone and tagged in history pages.</p></details>
+      <details><summary>Can I contribute?</summary><p>Yes. Update the relevant section and add references so both product docs stay synchronized.</p></details>
+    </div>
+  </article>
+</main>
+
+<footer class="footer"><span>&copy; 2026 <a href="https://notedavidrinaldi.github.io/">David Rinaldi</a></span></footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g"><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a>
+<script>
+  let menu = document.getElementById("menu");
+  if (menu) {
+    const e = localStorage.getItem("menu-scroll-position");
+    e && (menu.scrollLeft = parseInt(e, 10));
+    menu.onscroll = function() { localStorage.setItem("menu-scroll-position", menu.scrollLeft); };
+  }
+  document.getElementById("theme-toggle").addEventListener("click", () => {
+    const root = document.querySelector("html");
+    if (root.dataset.theme === "dark") {
+      root.dataset.theme = "light";
+      localStorage.setItem("pref-theme", "light");
+    } else {
+      root.dataset.theme = "dark";
+      localStorage.setItem("pref-theme", "dark");
+    }
+  });
+</script>
+</body>
+</html>

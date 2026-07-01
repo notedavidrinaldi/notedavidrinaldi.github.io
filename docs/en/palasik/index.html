@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>PALASIK Documentation (EN) | David Rinaldi</title>
+  <meta name="description" content="PALASIK English documentation and relation with DEMIT runtime.">
+  <meta name="author" content="David Rinaldi">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/docs/en/palasik/">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
+</head>
+<body class="single docs-shell" id="top">
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+      <div class="logo-switches"><button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">◐</button></div>
+    </div>
+    <div class="lang-switch" aria-label="Language chooser">
+      <a href="/docs/id/palasik/">ID</a>
+      <a href="/docs/en/palasik/" aria-current="page">EN</a>
+    </div>
+    <ul id="menu">
+      <li><a href="/" title="Home">Home</a></li>
+      <li><a href="/palasik/" title="PALASIK Docs"><span class="active">PALASIK Docs</span></a></li>
+      <li><a href="/palasik/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+      <li><a href="/palasik/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
+      <li><a href="/palasik/stakeholder/" title="Stakeholder">Stakeholder</a></li>
+      <li><a href="/palasik/teknis/" title="Teknis">Teknis</a></li>
+      <li><a href="/demit/" title="DEMIT Runtime">DEMIT Runtime</a></li>
+      <li><a href="/docs/en/" title="Documentation Center">Documentation Center</a></li>
+      <li><a href="/docs/en/plan/" title="Plan">Plan</a></li>
+      <li><a href="/docs/en/history/" title="History">History</a></li>
+      <li><a href="/posts/" title="Posts">Posts</a></li>
+      <li><a href="/about/" title="About">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main docs-shell">
+  <article class="post-single">
+    <header class="post-header">
+      <div class="breadcrumbs"><a href="/docs/en/">Documentation Center</a> » <a href="/docs/en/palasik/">PALASIK</a></div>
+      <h1 class="page-title">PALASIK Documentation (English)</h1>
+      <div class="doc-subtitle">Security decision engine for IoT events in DEMIT super-app runtime.</div>
+    </header>
+
+    <section class="doc-section">
+      <h2>Core Concept</h2>
+      <p>PALASIK evaluates every event from edge devices and produces decision outcomes (ALLOW, RESTRICT, DENY, etc.) through trust and policy layers.</p>
+      <ul>
+        <li>Trust Engine computes dynamic trust score.</li>
+        <li>Policy Engine selects enforcement action.</li>
+        <li>Decision reasons are logged for auditability.</li>
+      </ul>
+    </section>
+
+    <section class="doc-section">
+      <h2>Relation with DEMIT</h2>
+      <p>DEMIT acts as the app runtime host, and PALASIK is the default security application registered in <code>demit.yaml</code>.</p>
+      <div class="docs-grid">
+        <article class="doc-card"><h3>DEMIT Role</h3><p>Router and lifecycle orchestration for security applications.</p></article>
+        <article class="doc-card"><h3>PALASIK Role</h3><p>Per-event decision logic and action execution.</p></article>
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>Quick Start</h2>
+      <pre><code>demit.yaml
+
+demit:
+  apps:
+    - palasik
+
+apps:
+  palasik:
+    type: palasik</code></pre>
+    </section>
+  </article>
+</main>
+
+<footer class="footer"><span>&copy; 2026 <a href="https://notedavidrinaldi.github.io/">David Rinaldi</a></span></footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g"><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a>
+<script>
+  let menu = document.getElementById("menu");
+  if (menu) { const e = localStorage.getItem("menu-scroll-position"); e && (menu.scrollLeft = parseInt(e, 10)); menu.onscroll = function(){localStorage.setItem("menu-scroll-position", menu.scrollLeft);} }
+  document.getElementById("theme-toggle").addEventListener("click", () => { const root = document.querySelector("html"); if (root.dataset.theme === "dark") {root.dataset.theme = "light"; localStorage.setItem("pref-theme", "light");} else {root.dataset.theme = "dark"; localStorage.setItem("pref-theme", "dark");} });
+</script>
+</body>
+</html>

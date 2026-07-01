@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>DEMIT Documentation (EN) | David Rinaldi</title>
+  <meta name="description" content="DEMIT super-app documentation in English, including integration with PALASIK.">
+  <meta name="author" content="halotec">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/docs/en/demit/">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
+</head>
+<body class="single docs-shell" id="top">
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+      <div class="logo-switches"><button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">◐</button></div>
+    </div>
+    <div class="lang-switch" aria-label="Language chooser">
+      <a href="/docs/id/demit/">ID</a>
+      <a href="/docs/en/demit/" aria-current="page">EN</a>
+    </div>
+    <ul id="menu">
+      <li><a href="/" title="Home">Home</a></li>
+      <li><a href="/palasik/" title="PALASIK Docs">PALASIK Docs</a></li>
+      <li><a href="/palasik/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+      <li><a href="/palasik/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
+      <li><a href="/palasik/stakeholder/" title="Stakeholder">Stakeholder</a></li>
+      <li><a href="/palasik/teknis/" title="Teknis">Teknis</a></li>
+      <li><a href="/demit/" title="DEMIT Runtime"><span class="active">DEMIT Runtime</span></a></li>
+      <li><a href="/docs/en/" title="Documentation Center">Documentation Center</a></li>
+      <li><a href="/docs/en/plan/" title="Plan">Plan</a></li>
+      <li><a href="/docs/en/history/" title="History">History</a></li>
+      <li><a href="/posts/" title="Posts">Posts</a></li>
+      <li><a href="/about/" title="About">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main docs-shell">
+  <article class="post-single">
+    <header class="post-header">
+      <div class="breadcrumbs"><a href="/docs/en/">Documentation Center</a> » <a href="/docs/en/demit/">DEMIT</a></div>
+      <h1 class="page-title">DEMIT Documentation (English)</h1>
+      <div class="doc-subtitle">Super app runtime host where PALASIK runs as a security module.</div>
+    </header>
+
+    <section class="doc-section">
+      <h2>What is DEMIT</h2>
+      <p>DEMIT (Digital Monitoring Super App) provides app lifecycle and routing while keeping the core lightweight and extensible.</p>
+      <ul>
+        <li>Single-process modular runtime</li>
+        <li>Declarative configuration via <code>demit.yaml</code></li>
+        <li>Event routing to specific modules</li>
+      </ul>
+    </section>
+
+    <section class="doc-section">
+      <h2>Relation with PALASIK</h2>
+      <p>Current default application inside DEMIT is PALASIK, responsible for security decisions and policy enforcement.</p>
+      <div class="inline-note"><strong>Key relation:</strong> DEMIT routes, PALASIK decides and enforces.</div>
+    </section>
+
+    <section class="doc-section">
+      <h2>Example Configuration</h2>
+      <pre><code>demit:
+  apps:
+    - palasik
+
+apps:
+  palasik:
+    type: palasik
+    config_file: config.yaml</code></pre>
+    </section>
+  </article>
+</main>
+
+<footer class="footer"><span>&copy; 2026 <a href="https://notedavidrinaldi.github.io/">David Rinaldi</a></span></footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g"><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a>
+<script>
+  let menu = document.getElementById("menu");
+  if (menu) { const e = localStorage.getItem("menu-scroll-position"); e && (menu.scrollLeft = parseInt(e, 10)); menu.onscroll = function(){localStorage.setItem("menu-scroll-position", menu.scrollLeft);} }
+  document.getElementById("theme-toggle").addEventListener("click", () => { const root = document.querySelector("html"); if (root.dataset.theme === "dark") {root.dataset.theme = "light"; localStorage.setItem("pref-theme", "light");} else {root.dataset.theme = "dark"; localStorage.setItem("pref-theme", "dark");} });
+</script>
+</body>
+</html>

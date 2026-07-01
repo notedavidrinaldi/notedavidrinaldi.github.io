@@ -94,6 +94,34 @@ body {
   border-color: color-mix(in srgb, var(--docs-accent) 60%, var(--docs-border));
 }
 
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: 0.45rem;
+}
+
+.lang-switch a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.2rem;
+  height: 2rem;
+  border: 1px solid var(--docs-border);
+  border-radius: 999px;
+  color: var(--docs-text);
+  text-decoration: none;
+  padding: 0 0.6rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.lang-switch a[aria-current="page"] {
+  border-color: color-mix(in srgb, var(--docs-accent) 35%, var(--docs-border));
+  background: color-mix(in srgb, var(--docs-accent) 14%, transparent);
+  color: var(--docs-link);
+}
+
 #menu {
   display: flex;
   align-items: center;

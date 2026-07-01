@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="id" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>Documentation Center | David Rinaldi</title>
+  <meta name="description" content="Pusat dokumentasi, rencana pengembangan, dan history perkembangan DEMIT dan PALASIK dalam bahasa Indonesia.">
+  <meta name="author" content="David Rinaldi">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/docs/id/">
+  <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" rel="preload stylesheet" as="style">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>
+    localStorage.getItem("pref-theme") === "dark"
+      ? document.querySelector("html").dataset.theme = "dark"
+      : localStorage.getItem("pref-theme") === "light"
+        ? document.querySelector("html").dataset.theme = "light"
+        : window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? document.querySelector("html").dataset.theme = "dark"
+          : document.querySelector("html").dataset.theme = "light"
+  </script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
+</head>
+<body class="single docs-shell" id="top">
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+      <div class="logo-switches">
+        <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+          <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/><path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+          <svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="lang-switch" aria-label="Pilih bahasa">
+      <a href="/docs/id/" aria-current="page">ID</a>
+      <a href="/docs/en/">EN</a>
+    </div>
+    <ul id="menu">
+      <li><a href="/" title="Home">Home</a></li>
+      <li><a href="/palasik/" title="PALASIK Docs">PALASIK Docs</a></li>
+      <li><a href="/palasik/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+      <li><a href="/palasik/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
+      <li><a href="/palasik/stakeholder/" title="Stakeholder">Stakeholder</a></li>
+      <li><a href="/palasik/teknis/" title="Teknis">Teknis</a></li>
+      <li><a href="/demit/" title="DEMIT Runtime">DEMIT Runtime</a></li>
+      <li><a href="/docs/" title="Pusat Dokumentasi"><span class="active">Pusat Dokumentasi</span></a></li>
+      <li><a href="/posts/" title="Posts">Posts</a></li>
+      <li><a href="/about/" title="About">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main docs-shell">
+  <article class="post-single">
+    <header class="post-header">
+      <h1 class="page-title">Pusat Dokumentasi</h1>
+      <div class="doc-subtitle">Dokumentasi terpadu DEMIT + PALASIK, rencana pengembangan, dan history pengembangan.</div>
+    </header>
+
+    <div class="docs-grid" style="margin-top: 1rem">
+      <article class="doc-card">
+        <h3><a href="/docs/id/palasik/">Dokumentasi PALASIK</a></h3>
+        <p>Ringkasan arsitektur, alur runtime, dan hubungan dengan DEMIT.</p>
+      </article>
+      <article class="doc-card">
+        <h3><a href="/docs/id/demit/">Dokumentasi DEMIT</a></h3>
+        <p>Ruang lingkup runtime super-app, registrasi aplikasi, dan eksekusi policy.</p>
+      </article>
+      <article class="doc-card">
+        <h3><a href="/docs/id/plan/">Plan Pengembangan</a></h3>
+        <p>Roadmap dan target milestone yang disusun per tahap.</p>
+      </article>
+      <article class="doc-card">
+        <h3><a href="/docs/id/history/">History Pengembangan</a></h3>
+        <p>Urutan pencapaian dan perubahan arsitektur dari tahap awal hingga kini.</p>
+      </article>
+    </div>
+  </article>
+</main>
+
+<footer class="footer"><span>&copy; 2026 <a href="https://notedavidrinaldi.github.io/">David Rinaldi</a></span></footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g"><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a>
+<script>
+  let menu = document.getElementById("menu");
+  if (menu) {
+    const e = localStorage.getItem("menu-scroll-position");
+    e && (menu.scrollLeft = parseInt(e, 10));
+    menu.onscroll = function() {
+      localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    };
+  }
+
+  document.getElementById("theme-toggle").addEventListener("click", () => {
+    const root = document.querySelector("html");
+    if (root.dataset.theme === "dark") {
+      root.dataset.theme = "light";
+      localStorage.setItem("pref-theme", "light");
+    } else {
+      root.dataset.theme = "dark";
+      localStorage.setItem("pref-theme", "dark");
+    }
+  });
+</script>
+</body>
+</html>

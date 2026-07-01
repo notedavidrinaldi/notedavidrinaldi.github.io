@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>Documentation Center | David Rinaldi</title>
+  <meta name="description" content="DEMIT and PALASIK documentation, development plan, and development history in Indonesian and English.">
+  <meta name="author" content="David Rinaldi">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/docs/">
+  <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" rel="preload stylesheet" as="style">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>
+    localStorage.getItem("pref-theme") === "dark"
+      ? document.querySelector("html").dataset.theme = "dark"
+      : localStorage.getItem("pref-theme") === "light"
+        ? document.querySelector("html").dataset.theme = "light"
+        : window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? document.querySelector("html").dataset.theme = "dark"
+          : document.querySelector("html").dataset.theme = "light"
+  </script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
+</head>
+<body class="single docs-shell" id="top">
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+      <div class="logo-switches">
+        <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+          <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+          </svg>
+          <svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <ul id="menu">
+      <li><a href="/" title="Home">Home</a></li>
+      <li><a href="/palasik/" title="PALASIK Docs">PALASIK Docs</a></li>
+      <li><a href="/palasik/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+      <li><a href="/palasik/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
+      <li><a href="/palasik/stakeholder/" title="Stakeholder">Stakeholder</a></li>
+      <li><a href="/palasik/teknis/" title="Teknis">Teknis</a></li>
+      <li><a href="/demit/" title="DEMIT Runtime">DEMIT Runtime</a></li>
+      <li><a href="/docs/" title="Documentation Center"><span class="active">Documentation Center</span></a></li>
+      <li><a href="/posts/" title="Posts">Posts</a></li>
+      <li><a href="/about/" title="About">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main docs-shell">
+  <article class="post-single">
+    <header class="post-header">
+      <h1 class="page-title">Documentation Center</h1>
+      <div class="doc-subtitle">Choose language first, then jump to PALASIK, DEMIT, Plan, or Development History.</div>
+    </header>
+
+    <div class="lang-switch" aria-label="Language chooser">
+      <a href="/docs/id/">ID</a>
+      <a href="/docs/en/">EN</a>
+    </div>
+
+    <div class="docs-grid" style="margin-top: 1rem">
+      <article class="doc-card">
+        <h3><a href="/docs/en/">English Docs</a></h3>
+        <p>Read consolidated documentation and roadmap context for both PALASIK and DEMIT in English.</p>
+      </article>
+      <article class="doc-card">
+        <h3><a href="/docs/id/">Bahasa Indonesia</a></h3>
+        <p>Baca dokumentasi terpusat PALASIK dan DEMIT dalam bahasa Indonesia.</p>
+      </article>
+      <article class="doc-card">
+        <h3><a href="/docs/en/plan/">Development Plan</a></h3>
+        <p>Roadmap for architecture, release stages, and validation checkpoints.</p>
+      </article>
+      <article class="doc-card">
+        <h3><a href="/docs/en/history/">Development History</a></h3>
+        <p>Timeline of milestones and architectural decisions across both systems.</p>
+      </article>
+    </div>
+  </article>
+</main>
+
+<footer class="footer"><span>&copy; 2026 <a href="https://notedavidrinaldi.github.io/">David Rinaldi</a></span></footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g"><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a>
+
+<script>
+  let menu = document.getElementById("menu");
+  if (menu) {
+    const e = localStorage.getItem("menu-scroll-position");
+    e && (menu.scrollLeft = parseInt(e, 10));
+    menu.onscroll = function() {
+      localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    };
+  }
+
+  document.getElementById("theme-toggle").addEventListener("click", () => {
+    const root = document.querySelector("html");
+    if (root.dataset.theme === "dark") {
+      root.dataset.theme = "light";
+      localStorage.setItem("pref-theme", "light");
+    } else {
+      root.dataset.theme = "dark";
+      localStorage.setItem("pref-theme", "dark");
+    }
+  });
+</script>
+</body>
+</html>

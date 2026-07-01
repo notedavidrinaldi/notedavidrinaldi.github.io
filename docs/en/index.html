@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>Documentation Center | David Rinaldi</title>
+  <meta name="description" content="DEMIT and PALASIK documentation hub, development plan, and development history in English.">
+  <meta name="author" content="David Rinaldi">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/docs/en/">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
+</head>
+<body class="single docs-shell" id="top">
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+      <div class="logo-switches"><button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">◐</button></div>
+    </div>
+    <div class="lang-switch" aria-label="Language chooser">
+      <a href="/docs/id/">ID</a>
+      <a href="/docs/en/" aria-current="page">EN</a>
+    </div>
+    <ul id="menu">
+      <li><a href="/" title="Home">Home</a></li>
+      <li><a href="/palasik/" title="PALASIK Docs">PALASIK Docs</a></li>
+      <li><a href="/palasik/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+      <li><a href="/palasik/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
+      <li><a href="/palasik/stakeholder/" title="Stakeholder">Stakeholder</a></li>
+      <li><a href="/palasik/teknis/" title="Teknis">Teknis</a></li>
+      <li><a href="/demit/" title="DEMIT Runtime">DEMIT Runtime</a></li>
+      <li><a href="/docs/en/" title="Documentation Center"><span class="active">Documentation Center</span></a></li>
+      <li><a href="/docs/en/plan/" title="Plan">Plan</a></li>
+      <li><a href="/docs/en/history/" title="History">History</a></li>
+      <li><a href="/posts/" title="Posts">Posts</a></li>
+      <li><a href="/about/" title="About">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main docs-shell">
+  <article class="post-single">
+    <header class="post-header">
+      <h1 class="page-title">Documentation Center</h1>
+      <div class="doc-subtitle">A shared entrypoint for PALASIK and DEMIT in English.</div>
+    </header>
+
+    <div class="docs-grid" style="margin-top: 1rem">
+      <article class="doc-card">
+        <h3><a href="/docs/en/palasik/">PALASIK Docs</a></h3>
+        <p>Runtime decision layer on edge events, trust policy, and action enforcement.</p>
+      </article>
+      <article class="doc-card">
+        <h3><a href="/docs/en/demit/">DEMIT Docs</a></h3>
+        <p>Super-app runtime host where PALASIK is registered as a security module.</p>
+      </article>
+      <article class="doc-card">
+        <h3><a href="/docs/en/plan/">Development Plan</a></h3>
+        <p>Roadmap and milestone list across both projects.</p>
+      </article>
+      <article class="doc-card">
+        <h3><a href="/docs/en/history/">Development History</a></h3>
+        <p>Chronological log of key architecture and documentation updates.</p>
+      </article>
+    </div>
+  </article>
+</main>
+
+<footer class="footer"><span>&copy; 2026 <a href="https://notedavidrinaldi.github.io/">David Rinaldi</a></span></footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g"><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a>
+<script>
+  let menu = document.getElementById("menu");
+  if (menu) { const e = localStorage.getItem("menu-scroll-position"); e && (menu.scrollLeft = parseInt(e, 10)); menu.onscroll = function(){localStorage.setItem("menu-scroll-position", menu.scrollLeft);} }
+  document.getElementById("theme-toggle").addEventListener("click", () => { const root = document.querySelector("html"); if (root.dataset.theme === "dark") {root.dataset.theme = "light"; localStorage.setItem("pref-theme", "light");} else {root.dataset.theme = "dark"; localStorage.setItem("pref-theme", "dark");} });
+</script>
+</body>
+</html>

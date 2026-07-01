@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="id" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>Rencana Pengembangan DEMIT + PALASIK | David Rinaldi</title>
+  <meta name="description" content="Rencana pengembangan DEMIT super app dan PALASIK, disusun berdasarkan milestone implementasi.">
+  <meta name="author" content="David Rinaldi">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/docs/id/plan/">
+  <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" rel="preload stylesheet" as="style">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
+</head>
+<body class="single docs-shell" id="top">
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+      <div class="logo-switches"><button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">🌙/☀️</button></div>
+    </div>
+    <div class="lang-switch" aria-label="Pilih bahasa">
+      <a href="/docs/id/plan/" aria-current="page">ID</a>
+      <a href="/docs/en/plan/">EN</a>
+    </div>
+    <ul id="menu">
+      <li><a href="/" title="Home">Home</a></li>
+      <li><a href="/palasik/" title="PALASIK Docs">PALASIK Docs</a></li>
+      <li><a href="/palasik/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+      <li><a href="/palasik/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
+      <li><a href="/palasik/stakeholder/" title="Stakeholder">Stakeholder</a></li>
+      <li><a href="/palasik/teknis/" title="Teknis">Teknis</a></li>
+      <li><a href="/demit/" title="DEMIT Runtime">DEMIT Runtime</a></li>
+      <li><a href="/docs/id/" title="Pusat Dokumentasi">Pusat Dokumentasi</a></li>
+      <li><a href="/docs/id/plan/" title="Plan"><span class="active">Rencana</span></a></li>
+      <li><a href="/docs/id/history/" title="History">History</a></li>
+      <li><a href="/posts/" title="Posts">Posts</a></li>
+      <li><a href="/about/" title="About">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main docs-shell">
+  <article class="post-single">
+    <header class="post-header">
+      <div class="breadcrumbs"><a href="/docs/id/">Pusat Dokumentasi</a> » <a href="/docs/id/plan/">Rencana</a></div>
+      <h1 class="page-title">Rencana Pengembangan DEMIT + PALASIK</h1>
+      <div class="doc-subtitle">Roadmap terarah dari fondasi hingga kesiapan produksi.</div>
+    </header>
+
+    <section class="doc-section">
+      <h2>Fase Pengembangan</h2>
+      <div class="docs-grid">
+        <article class="doc-card"><h3>Fase 1 - Dasar</h3><ul><li>Sinkronisasi runtimenya DEMIT</li><li>Stabilisasi alur event PALASIK</li><li>Contoh konfigurasi dan deployment dasar</li></ul></article>
+        <article class="doc-card"><h3>Fase 2 - Penguatan</h3><ul><li>Validasi policy sebelum deploy</li><li>Rollback cepat dan snapshot policy</li><li>Peningkatan observability</li></ul></article>
+        <article class="doc-card"><h3>Fase 3 - Ekspansi</h3><ul><li>Multi-app support di DEMIT</li><li>Ekstensi plugin decision/action</li><li>Integrasi monitoring enterprise</li></ul></article>
+        <article class="doc-card"><h3>Fase 4 - Operasional</h3><ul><li>Checklist release</li><li>CI untuk regression</li><li>Dokumentasi EN/ID yang sinkron</li></ul></article>
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>Target 12 Minggu</h2>
+      <table>
+        <thead><tr><th>Minggu</th><th>Sasaran</th><th>Output</th></tr></thead>
+        <tbody>
+          <tr><td>1-2</td><td>Dokumentasi dasar</td><td>Peta dokumentasi + keterkaitan DEMIT↔PALASIK</td></tr>
+          <tr><td>3-5</td><td>Penguatan runtime</td><td>Checklist pengujian integrasi dan fallback</td></tr>
+          <tr><td>6-9</td><td>Keselarasan fitur</td><td>Policy, trust scoring, dan enforcement parity</td></tr>
+          <tr><td>10-12</td><td>Kesiapan rilis</td><td>Changelog dan histori versi</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="doc-faq">
+      <details><summary>Bagaimana cara update rencana?</summary><p>Rencana diperbarui saat ada milestone baru lalu dicatat di halaman history.</p></details>
+      <details><summary>Siapa yang bisa ikut kontribusi?</summary><p>Semua update perubahan arsitektur dan dokumentasi tetap perlu ditautkan ke fitur terkait.</p></details>
+    </div>
+  </article>
+</main>
+
+<footer class="footer"><span>&copy; 2026 <a href="https://notedavidrinaldi.github.io/">David Rinaldi</a></span></footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g"><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a>
+<script>
+  let menu = document.getElementById("menu");
+  if (menu) {
+    const e = localStorage.getItem("menu-scroll-position");
+    e && (menu.scrollLeft = parseInt(e, 10));
+    menu.onscroll = function() { localStorage.setItem("menu-scroll-position", menu.scrollLeft); };
+  }
+  document.getElementById("theme-toggle").addEventListener("click", () => {
+    const root = document.querySelector("html");
+    if (root.dataset.theme === "dark") {root.dataset.theme = "light";localStorage.setItem("pref-theme","light");}
+    else {root.dataset.theme = "dark";localStorage.setItem("pref-theme","dark");}
+  });
+</script>
+</body>
+</html>
