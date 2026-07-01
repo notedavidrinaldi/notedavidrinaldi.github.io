@@ -1,0 +1,402 @@
+<!doctype html><html lang="en" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>DEMIT Documentation | David Rinaldi</title>
+  <meta name="description" content="DEMIT Super App Documentation for PALASIK and its applications.">
+  <meta name="author" content="halotec">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/demit/">
+  <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script>
+  <style>
+    .docs-shell .page-title {
+      margin: 0 0 .75rem;
+      font-size: 2.1rem;
+      letter-spacing: -0.015em;
+    }
+    .docs-shell .doc-subtitle {
+      margin-bottom: 1.25rem;
+      color: var(--secondary);
+    }
+    .docs-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    .docs-grid .doc-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+      background: var(--entry);
+    }
+    .docs-grid .doc-card h3 {
+      margin-top: 0;
+      margin-bottom: .4rem;
+    }
+    .doc-section {
+      margin: 1.25rem 0;
+    }
+    .doc-section h2 {
+      margin-bottom: .6rem;
+      border-left: 4px solid var(--primary);
+      padding-left: .65rem;
+    }
+    .doc-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+      margin: .4rem 0 1rem;
+    }
+    .doc-tags .tag {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: .22rem .55rem;
+      color: var(--content);
+      font-size: .78rem;
+      background: var(--theme);
+    }
+    .inline-note {
+      border-left: 4px solid var(--tertiary);
+      padding: .8rem .9rem;
+      margin: 1rem 0;
+      background: color-mix(in oklab, var(--entry) 90%, transparent);
+      border-radius: 6px;
+    }
+    .doc-faq details {
+      margin: .6rem 0;
+      padding: .6rem .8rem;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      background: var(--entry);
+    }
+    .docs-shell table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .docs-shell th,
+    .docs-shell td {
+      border: 1px solid var(--border);
+      padding: .55rem;
+      vertical-align: top;
+    }
+    .docs-shell th {
+      text-align: left;
+      background: color-mix(in oklab, var(--theme) 75%, var(--entry));
+    }
+  </style>
+</head>
+<body class="single" id="top">
+  <header class="header">
+    <nav class="nav">
+      <div class="logo">
+        <a href="https://notedavidrinaldi.github.io/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+        <div class="logo-switches">
+          <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+            <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+            <svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <ul id="menu">
+        <li><a href="/demit/" title="DEMIT Docs"><span>DEMIT Docs</span></a></li>
+        <li><a href="/palasik/" title="PALASIK"><span>PALASIK</span></a></li>
+        <li><a href="/posts/" title="Posts"><span>Posts</span></a></li>
+        <li><a href="/tags/" title="Tags"><span>Tags</span></a></li>
+        <li><a href="/about/" title="About"><span>About</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main docs-shell">
+    <article class="post-single">
+      <header class="post-header">
+        <div class="breadcrumbs"><a href="/">Home</a></div>
+        <h1 class="page-title">DEMIT Documentation</h1>
+        <div class="doc-subtitle">Super App Runtime untuk orchestration aplikasi, dengan PALASIK sebagai aplikasi keamanan utama.</div>
+      </header>
+
+      <div class="toc">
+        <details open>
+          <summary accesskey="c" title="(Alt + C)"><span class="details">Table of Contents</span></summary>
+          <div class="inner">
+            <ul>
+              <li><a href="#overview">Overview</a></li>
+              <li><a href="#app-registry">Aplikasi di dalam DEMIT</a></li>
+              <li><a href="#features">Fitur Core DEMIT</a></li>
+              <li><a href="#palasik-feature">Fitur PALASIK</a></li>
+              <li><a href="#architecture">Arsitektur Runtime</a></li>
+              <li><a href="#quick-start">Quick Start</a></li>
+              <li><a href="#faq">FAQ</a></li>
+            </ul>
+          </div>
+        </details>
+      </div>
+
+      <section class="post-content" id="overview">
+        <h2>Overview</h2>
+        <p>
+          DEMIT (Digital Monitoring Super App) adalah kerangka runtime yang mengelola
+          beberapa <strong>application module</strong> dalam satu proses. Saat ini fokusnya adalah
+          integrasi aplikasi keamanan IoT <strong>PALASIK</strong>, dengan arah pengembangan
+          yang bisa ditambah aplikasi berikutnya tanpa merombak core runtime.
+        </p>
+
+        <div class="doc-tags">
+          <span class="tag">Edge</span>
+          <span class="tag">Zero Trust</span>
+          <span class="tag">Modular</span>
+          <span class="tag">Python 3.10+</span>
+          <span class="tag">Research Ready</span>
+        </div>
+
+        <div class="inline-note">
+          <strong>Status saat ini:</strong> DEMIT menampung minimal <strong>1 aplikasi aktif</strong> (PALASIK), dan sudah disiapkan untuk ekspansi multi-app.
+        </div>
+      </section>
+
+      <section id="app-registry" class="doc-section">
+        <h2>Aplikasi di dalam DEMIT</h2>
+        <div class="docs-grid">
+          <article class="doc-card">
+            <h3>1) PALASIK</h3>
+            <p>
+              Decision engine berbasis trust + policy. Bertugas memeriksa event
+              dan menentukan apakah event diproses, dibatasi, atau diblok.
+            </p>
+            <ul>
+              <li>Trust Engine (scoring dinamis)</li>
+              <li>Policy Engine (ALLOW / RESTRICT / DENY / QUARANTINE)</li>
+              <li>Plugin registry untuk action extensible</li>
+              <li>Adapter untuk MQTT/HTTP/REST (bergantung konfigurasi)</li>
+            </ul>
+          </article>
+          <article class="doc-card">
+            <h3>2) Aplikasi masa depan</h3>
+            <p>
+              DEMIT menyediakan struktur yang sama untuk menambahkan aplikasi lain.
+              Contoh: observability, gateway translasi protocol, dan integrasi enterprise.
+            </p>
+            <ul>
+              <li>Routing event berbasis <code>route</code> / <code>app</code></li>
+              <li>Lifecycle tunggal: <code>start</code>, <code>handle_event</code>, <code>stop</code></li>
+              <li>Konfigurasi independen per aplikasi</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="features" class="doc-section">
+        <h2>Fitur Core DEMIT</h2>
+        <table>
+          <thead>
+            <tr><th>Fitur</th><th>Penjelasan</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>App runtime</td>
+              <td>Menjalankan beberapa aplikasi dari satu entrypoint CLI.</td>
+            </tr>
+            <tr>
+              <td>Routing event</td>
+              <td>Event diarahkan berdasarkan route agar tepat ke aplikasi sasaran.</td>
+            </tr>
+            <tr>
+              <td>Isolasi domain aplikasi</td>
+              <td>Konfigurasi dan lifecycle tiap app tidak saling menimpa.</td>
+            </tr>
+            <tr>
+              <td>Konfigurasi deklaratif</td>
+              <td>Semua aplikasi didefinisikan dari <code>demit.yaml</code>.</td>
+            </tr>
+            <tr>
+              <td>Ekstensibilitas</td>
+              <td>App baru dapat ditambahkan tanpa memodifikasi PALASIK inti.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="palasik-feature" class="doc-section">
+        <h2>Fitur PALASIK (Aplikasi Default)</h2>
+        <div class="docs-grid">
+          <article class="doc-card">
+            <h3>Keamanan</h3>
+            <ul>
+              <li>Trust score dinamis pada setiap event/device</li>
+              <li>Decision engine untuk enforcement secara real-time</li>
+              <li>Logging keputusan + challenge handler</li>
+            </ul>
+          </article>
+          <article class="doc-card">
+            <h3>Operasional</h3>
+            <ul>
+              <li>Command run dari CLI</li>
+              <li>Support adapter dan plugin action</li>
+              <li>Struktur untuk observability dasar</li>
+            </ul>
+          </article>
+          <article class="doc-card">
+            <h3>Riset & Akademik</h3>
+            <ul>
+              <li>Output keputusan yang mudah ditelusuri</li>
+              <li>Parameter kebijakan bisa didokumentasikan per eksperimen</li>
+              <li>Ringan untuk prototyping dan skripsi/jurnal</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="architecture" class="doc-section">
+        <h2>Arsitektur Runtime</h2>
+        <div class="inline-note">
+          Konsep alur sederhana: <strong>Event → DEMIT Router → Aplikasi target → Enforcement/Output</strong>.
+        </div>
+        <pre><code>
++----------------------+      +----------------------+
+|  External Event      | ---> | DEMIT Runtime        |
+| (MQTT / HTTP / API)  |      | Router + Dispatcher  |
++----------------------+      +----------+-----------+
+                                        |
+                                        v
+                       +----------------+-----------+
+                       | PALASIK App            |
+                       | - Trust Engine         |
+                       | - Policy Engine        |
+                       | - Plugin/Adapter layer  |
+                       +------------------------+
+        </code></pre>
+        <p>
+          Runtime mengelola lifecycle aplikasi dan meminimalkan coupling antar modul.
+        </p>
+      </section>
+
+      <section id="quick-start" class="doc-section">
+        <h2>Quick Start</h2>
+        <p>Contoh minimal agar DEMIT bisa dijalankan lokal:</p>
+        <pre><code>pip install palasik
+
+demit --config demit.yaml</code></pre>
+        <p>Contoh <code>demit.yaml</code>:</p>
+        <pre><code>demit:
+  apps:
+    - palasik
+
+apps:
+  palasik:
+    type: palasik
+    config_file: "config.yaml"
+    plugins_path: "plugins"
+    routes:
+      - palasik</code></pre>
+      </section>
+
+      <section id="faq" class="doc-section">
+        <h2>FAQ Singkat</h2>
+        <div class="doc-faq">
+          <details>
+            <summary>Apa perbedaan DEMIT dengan PALASIK?</summary>
+            <p>
+              DEMIT adalah super-app runtime/host, sedangkan PALASIK adalah salah satu
+              aplikasi di dalamnya yang menjalankan keputusan keamanan.
+            </p>
+          </details>
+          <details>
+            <summary>Apakah event bisa masuk ke lebih dari satu app?</summary>
+            <p>
+              Ya, jika routing diatur. Jika hanya satu app aktif dan route tidak
+              ditentukan, event bisa diarahkan ke app default.
+            </p>
+          </details>
+          <details>
+            <summary>Apakah dokumentasi ini akan terus dikembangkan?</summary>
+            <p>
+              Ya. Tahap berikutnya adalah menambah halaman setup detail untuk adapter
+              MQTT/HTTP, plugin lifecycle, dan contoh deployment Raspberry Pi.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section>
+        <h2>Rujukan</h2>
+        <p>
+          Bahan baca teknis lebih detail ada di:
+        </p>
+        <ul>
+          <li><a href="/palasik/">Halaman PALASIK</a></li>
+          <li><a href="/edge-zero-trust-iot-raspberry/">Pengantar Zero Trust PALASIK</a></li>
+          <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework">Repository GitHub</a></li>
+          <li><a href="/palasik/">Halaman dokumentasi PALASIK</a></li>
+        </ul>
+      </section>
+
+    </article>
+  </main>
+
+  <footer class="footer"><span>&copy; 2026 <a href="https://notedavidrinaldi.github.io/">David Rinaldi</a></span> ·
+  <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &amp;
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener noreferrer" target="_blank">PaperMod</a></span>
+  </footer>
+
+  <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+  </a>
+
+  <script>
+    let menu = document.getElementById("menu");
+    if (menu) {
+      const e = localStorage.getItem("menu-scroll-position");
+      e && (menu.scrollLeft = parseInt(e, 10));
+      menu.onscroll = function() {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+      };
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+        const id = this.getAttribute("href").substr(1);
+        const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+        if (!target) return;
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? target.scrollIntoView()
+          : target.scrollIntoView({ behavior: "smooth" });
+        id === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${id}`);
+      })
+    });
+
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      const root = document.querySelector("html");
+      if (root.dataset.theme === "dark") {
+        root.dataset.theme = "light";
+        localStorage.setItem("pref-theme", "light");
+      } else {
+        root.dataset.theme = "dark";
+        localStorage.setItem("pref-theme", "dark");
+      }
+    });
+
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function() {
+      document.body.scrollTop > 800 || document.documentElement.scrollTop > 800
+        ? (mybutton.style.visibility = "visible", mybutton.style.opacity = "1")
+        : (mybutton.style.visibility = "hidden", mybutton.style.opacity = "0");
+    };
+  </script>
+</body>
+</html>

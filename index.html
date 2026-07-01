@@ -1,9 +1,210 @@
-<!doctype html><html lang=en dir=auto data-theme=auto><head><meta name=generator content="Hugo 0.146.0"><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>David Rinaldi</title>
-<meta name=description content="IoT, Raspberry Pi, Node-RED & RFID Research Notes"><meta name=author content="halotec"><link rel=canonical href=https://notedavidrinaldi.github.io/><link crossorigin=anonymous href=/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as=style><link rel=icon href=https://notedavidrinaldi.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://notedavidrinaldi.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://notedavidrinaldi.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://notedavidrinaldi.github.io/apple-touch-icon.png><link rel=mask-icon href=https://notedavidrinaldi.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://notedavidrinaldi.github.io/index.xml title=rss><link rel=alternate hreflang=en href=https://notedavidrinaldi.github.io/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}@media(prefers-color-scheme:light){.list::-webkit-scrollbar-thumb{border-color:var(--code-bg)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://notedavidrinaldi.github.io/"><meta property="og:site_name" content="David Rinaldi"><meta property="og:title" content="David Rinaldi"><meta property="og:description" content="IoT, Raspberry Pi, Node-RED & RFID Research Notes"><meta property="og:locale" content="en-us"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="David Rinaldi"><meta name=twitter:description content="IoT, Raspberry Pi, Node-RED & RFID Research Notes"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Organization","name":"David Rinaldi","url":"https://notedavidrinaldi.github.io/","description":"IoT, Raspberry Pi, Node-RED \u0026 RFID Research Notes","logo":"https://notedavidrinaldi.github.io/favicon.ico","sameAs":[]}</script></head><body class=list id=top><header class=header><nav class=nav><div class=logo><a href=https://notedavidrinaldi.github.io/ accesskey=h title="David Rinaldi (Alt + H)">David Rinaldi</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://notedavidrinaldi.github.io/posts/ title=Posts><span>Posts</span></a></li><li><a href=https://notedavidrinaldi.github.io/tags/rfid/ title=RFID><span>RFID</span></a></li><li><a href=https://notedavidrinaldi.github.io/tags/node-red/ title=Node-RED><span>Node-RED</span></a></li><li><a href=https://notedavidrinaldi.github.io/about/ title=About><span>About</span></a></li><li><a href=https://notedavidrinaldi.github.io/dasar-raspberry/ title="Dasar IoT Gateway: Raspberry Pi & Siemens IoT 2050"><span>Dasar IoT Gateway</span></a></li></ul></nav></header><main class=main><article class="first-entry home-info"><header class=entry-header><h1>IoT Lab Notes</h1></header><div class=entry-content><p>Research notes & experiments on:</p><ul><li>Raspberry Pi</li><li>Node-RED</li><li>RFID (Invengo XC-RF850)</li><li>IoT System Architecture</li></ul></div><footer class=entry-footer><div class=social-icons></div></footer></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Implementasi RFID pada Sistem IoT Menggunakan Node-RED</h2></header><div class=entry-content><p>Abstrak Penelitian ini membahas implementasi sistem Internet of Things (IoT) berbasis RFID dengan pemrosesan data menggunakan Node-RED untuk monitoring dan pencatatan data secara real-time.
-1. Pendahuluan Perkembangan IoT memungkinkan integrasi perangkat fisik dengan sistem digital. RFID digunakan untuk identifikasi objek secara otomatis tanpa kontak langsung.
-2. Arsitektur Sistem 3. Perangkat & Bahan RFID Reader UHF RFID Tag Raspberry Pi / Server Linux Node-RED Database (MySQL / PostgreSQL) 4. Metodologi Penelitian Pembacaan tag RFID Parsing data EPC dan TID Pengiriman data ke Node-RED Penyimpanan ke database Visualisasi dashboard 5. Implementasi Sistem 5.1 Pembacaan RFID Contoh data RFID:
-...</p></div><footer class=entry-footer><span title='2026-01-10 00:00:00 +0000 UTC'>January 10, 2026</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>164 words</span>&nbsp;·&nbsp;<span>halotec</span></footer><a class=entry-link aria-label="post link to Implementasi RFID pada Sistem IoT Menggunakan Node-RED" href=https://notedavidrinaldi.github.io/posts/integrasi-rfid-invengo-nodered/></a></article></main><footer class=footer><span>&copy; 2026 <a href=https://notedavidrinaldi.github.io/>David Rinaldi</a></span> ·
-<span>Powered by
-<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>
+<!doctype html><html lang="en" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>DEMIT Documentation | David Rinaldi</title>
+  <meta name="description" content="DEMIT Super App documentation and structured feature roadmap for PALASIK and its modules.">
+  <meta name="author" content="halotec">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/">
+  <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script>
+  <style>
+    .docs-shell .page-title { margin: 0 0 .75rem; font-size: 2.1rem; letter-spacing: -0.015em; }
+    .docs-shell .doc-subtitle { margin-bottom: 1.25rem; color: var(--secondary); }
+    .docs-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .docs-grid .doc-card { border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; background: var(--entry); }
+    .docs-grid .doc-card h3 { margin-top: 0; margin-bottom: .4rem; }
+    .doc-section { margin: 1.25rem 0; }
+    .doc-section h2 { margin-bottom: .6rem; border-left: 4px solid var(--primary); padding-left: .65rem; }
+    .doc-tags { display: flex; flex-wrap: wrap; gap: .45rem; margin: .4rem 0 1rem; }
+    .doc-tags .tag { border: 1px solid var(--border); border-radius: 999px; padding: .22rem .55rem; color: var(--content); font-size: .78rem; background: var(--theme); }
+    .inline-note { border-left: 4px solid var(--tertiary); padding: .8rem .9rem; margin: 1rem 0; background: color-mix(in oklab, var(--entry) 90%, transparent); border-radius: 6px; }
+    .doc-faq details { margin: .6rem 0; padding: .6rem .8rem; border: 1px dashed var(--border); border-radius: 8px; background: var(--entry); }
+    .docs-shell table { width: 100%; border-collapse: collapse; }
+    .docs-shell th,.docs-shell td { border: 1px solid var(--border); padding: .55rem; vertical-align: top; }
+    .docs-shell th { text-align: left; background: color-mix(in oklab, var(--theme) 75%, var(--entry)); }
+  </style>
+</head>
+<body class="single" id="top">
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+      <div class="logo-switches">
+        <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+          <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+      </div>
+    </div>
+    <ul id="menu">
+      <li><a href="/" title="Home"><span>Documentation</span></a></li>
+      <li><a href="/demit/" title="DEMIT Docs"><span>DEMIT</span></a></li>
+      <li><a href="/palasik/" title="PALASIK"><span>PALASIK</span></a></li>
+      <li><a href="/posts/" title="Posts"><span>Posts</span></a></li>
+      <li><a href="/about/" title="About"><span>About</span></a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main docs-shell">
+  <article class="post-single">
+    <header class="post-header">
+      <h1 class="page-title">DEMIT Documentation</h1>
+      <div class="doc-subtitle">Dokumentasi terstruktur untuk super-app runtime DEMIT dan aplikasi di dalamnya, dengan PALASIK sebagai app keamanan default.</div>
+    </header>
+
+    <div class="doc-tags">
+      <span class="tag">Super App</span><span class="tag">Python</span><span class="tag">IoT</span><span class="tag">Zero Trust</span><span class="tag">Edge</span>
+    </div>
+
+    <div class="toc">
+      <details open><summary accesskey="c" title="(Alt + C)"><span class="details">Table of Contents</span></summary><div class="inner">
+        <ul>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#apps">Aplikasi</a></li>
+          <li><a href="#features">Fitur Core</a></li>
+          <li><a href="#palasik">Fitur PALASIK</a></li>
+          <li><a href="#quick-start">Quick Start</a></li>
+          <li><a href="#roadmap">Roadmap</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div></details>
+    </div>
+
+    <section id="overview" class="post-content doc-section">
+      <h2>Overview</h2>
+      <p><strong>DEMIT</strong> adalah runtime super-app untuk orkestrasi beberapa aplikasi digital dalam satu host tunggal.</p>
+      <div class="inline-note">Fokus saat ini: <strong>PALASIK</strong> sebagai aplikasi pertama untuk decision layer keamanan IoT.</div>
+    </section>
+
+    <section id="apps" class="doc-section">
+      <h2>Aplikasi di dalam DEMIT</h2>
+      <div class="docs-grid">
+        <article class="doc-card">
+          <h3>PALASIK</h3>
+          <p>Security app yang mengevaluasi event melalui Trust & Policy Engine, lalu menentukan aksi allowance/restriksi/isolasi.</p>
+          <ul><li>Event trust decision</li><li>Plugin action</li><li>Adapter MQTT/HTTP</li></ul>
+        </article>
+        <article class="doc-card">
+          <h3>Future App Slots</h3>
+          <p>Skema yang sama disiapkan untuk menambah app lainnya tanpa mengubah core runtime.</p>
+          <ul><li>Monitoring app</li><li>Inventory app</li><li>Dashboard app</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="features" class="doc-section">
+      <h2>Fitur Core DEMIT</h2>
+      <table>
+        <thead><tr><th>Fitur</th><th>Deskripsi</th></tr></thead>
+        <tbody>
+          <tr><td>Multi-app runtime</td><td>Memuat beberapa aplikasi sekaligus dengan lifecycle yang konsisten.</td></tr>
+          <tr><td>Route-driven event dispatch</td><td>Mengarahkan event ke target app tertentu melalui <code>route</code> atau auto-default.</td></tr>
+          <tr><td>Declarative config</td><td>Semua apps didefinisikan di <code>demit.yaml</code>.</td></tr>
+          <tr><td>Separation of concerns</td><td>Core runtime tetap ringan, logika bisnis berada di app layer.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="palasik" class="doc-section">
+      <h2>Fitur Utama PALASIK</h2>
+      <ul>
+        <li>Trust Engine untuk pengukuran trust dinamis.</li>
+        <li>Policy Engine untuk aksi ALLOW / RESTRICT / QUARANTINE / DENY.</li>
+        <li>Plugin model untuk ekstensi log/alert/forwarding.</li>
+        <li>Integrasi ke adapter event (MQTT/HTTP) dan CLI run pipeline.</li>
+      </ul>
+      <p>Detail teknis lebih dalam: <a href="/palasik/">halaman dokumentasi PALASIK</a>.</p>
+    </section>
+
+    <section id="quick-start" class="doc-section">
+      <h2>Quick Start</h2>
+      <pre><code>pip install palasik
+
+demit --config demit.yaml</code></pre>
+      <p>Contoh <code>demit.yaml</code>:</p>
+      <pre><code>demit:
+  apps:
+    - palasik
+
+apps:
+  palasik:
+    type: palasik
+    config_file: "config.yaml"
+    plugins_path: "plugins"
+    routes:
+      - palasik</code></pre>
+    </section>
+
+    <section id="roadmap" class="doc-section">
+      <h2>Roadmap</h2>
+      <ul>
+        <li><strong>Phase 1:</strong> runtime DEMIT + satu app PALASIK stabil.</li>
+        <li><strong>Phase 2:</strong> command tooling untuk manajemen lifecycle multi-app.</li>
+        <li><strong>Phase 3:</strong> UI monitor super-app dan plugin ecosystem.</li>
+      </ul>
+    </section>
+
+    <section id="faq" class="doc-section">
+      <h2>FAQ</h2>
+      <div class="doc-faq">
+        <details><summary>Apa itu route?</summary><p>Field routing menentukan app tujuan event agar tidak diproses oleh app yang tidak relevan.</p></details>
+        <details><summary>Bisa menambah app lain?</summary><p>Ya, hanya tambah entry di <code>demit.yaml</code> dan registrasi lifecycle app.</p></details>
+        <details><summary>Apakah ini production-ready?</summary><p>Fokus awal adalah riset/prototype yang stabil; production hardening masih dapat dilanjutkan via roadmap phase berikutnya.</p></details>
+      </div>
+    </section>
+  </article>
+</main>
+
+<footer class="footer"><span>&copy; 2026 <a href="https://notedavidrinaldi.github.io/">David Rinaldi</a></span> ·
+<span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &amp;
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener noreferrer" target="_blank">PaperMod</a></span></footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g"><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a>
+
+<script>
+  let menu = document.getElementById("menu");
+  if (menu) {
+    const e = localStorage.getItem("menu-scroll-position");
+    e && (menu.scrollLeft = parseInt(e, 10));
+    menu.onscroll = function() {
+      localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    };
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function(e) {
+      e.preventDefault();
+      const id = this.getAttribute("href").substr(1);
+      const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+      if (!target) return;
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? target.scrollIntoView()
+        : target.scrollIntoView({ behavior: "smooth" });
+      id === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${id}`);
+    });
+  });
+
+  document.getElementById("theme-toggle").addEventListener("click", () => {
+    const root = document.querySelector("html");
+    if (root.dataset.theme === "dark") {
+      root.dataset.theme = "light";
+      localStorage.setItem("pref-theme", "light");
+    } else {
+      root.dataset.theme = "dark";
+      localStorage.setItem("pref-theme", "dark");
+    }
+  });
+
+  var mybutton = document.getElementById("top-link");
+  window.onscroll = function() {
+    document.body.scrollTop > 800 || document.documentElement.scrollTop > 800
+      ? (mybutton.style.visibility = "visible", mybutton.style.opacity = "1")
+      : (mybutton.style.visibility = "hidden", mybutton.style.opacity = "0");
+  };
+</script>
+</body>
+</html>
