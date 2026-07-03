@@ -5,8 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <meta name="robots" content="index, follow">
-  <title>Documentation Center | David Rinaldi</title>
-  <meta name="description" content="Pusat dokumentasi, rencana pengembangan, dan history perkembangan DEMIT dan PALASIK dalam bahasa Indonesia.">
+  <title>Pusat Dokumentasi | David Rinaldi</title>
+  <meta name="description" content="Pusat dokumentasi DEMIT dan PALASIK dalam bahasa Indonesia, termasuk akses cepat ke health contract, runbook operasional, dan deploy edge terbaru.">
   <meta name="author" content="David Rinaldi">
   <link rel="canonical" href="https://notedavidrinaldi.github.io/docs/id/">
   <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" rel="preload stylesheet" as="style">
@@ -56,28 +56,98 @@
 <main class="main docs-shell">
   <article class="post-single">
     <header class="post-header">
+      <div class="doc-kicker">Pusat Dokumentasi • Bahasa Indonesia</div>
       <h1 class="page-title">Pusat Dokumentasi</h1>
-      <div class="doc-subtitle">Dokumentasi terpadu DEMIT + PALASIK, rencana pengembangan, dan history pengembangan.</div>
+      <div class="doc-subtitle">Dokumentasi terpadu DEMIT + PALASIK, rencana pengembangan, history, dan jalur operasional terbaru.</div>
     </header>
+
+    <section class="hero-panel" aria-label="Pusat dokumentasi Indonesia">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p>Jika seseorang baru pertama kali membuka dokumentasi ini, halaman ini sekarang menjadi titik masuk yang paling menenangkan: arah baca jelas, istilah konsisten, dan akses operasional penting langsung terlihat.</p>
+          <div class="hero-actions">
+            <a class="hero-button hero-button-primary" href="/docs/id/palasik/">Mulai dari PALASIK</a>
+            <a class="hero-button" href="/docs/id/demit/">Buka DEMIT</a>
+            <a class="hero-button" href="/palasik/teknis/">Lihat shortcut operasional</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat"><strong>Dokumen inti terhubung</strong><span>PALASIK, DEMIT, plan, dan history bisa dijangkau dari satu pusat.</span></div>
+            <div class="hero-stat"><strong>Operasional mudah ditemukan</strong><span>Health contract, versi operasional, dan runtime host ditampilkan sebagai akses cepat.</span></div>
+            <div class="hero-stat"><strong>Nyaman untuk pembaca baru</strong><span>Landing ini mengurangi kebingungan saat memilih jalur baca pertama.</span></div>
+          </div>
+        </div>
+        <aside class="hero-aside">
+          <h3>Jalur baca yang disarankan</h3>
+          <ul class="hero-list">
+            <li><a href="/docs/id/palasik/">Memahami PALASIK<small>Mulai dari ringkasan arsitektur dan hubungan dengan DEMIT.</small></a></li>
+            <li><a href="/palasik/non-teknis/">Masuk ke operasi<small>Gunakan saat fokus Anda adalah tim shift dan langkah cepat.</small></a></li>
+            <li><a href="/docs/id/history/">Melihat perjalanan proyek<small>Cocok untuk memahami perubahan arah dan milestone.</small></a></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
 
     <div class="docs-grid" style="margin-top: 1rem">
       <article class="doc-card">
+        <div class="doc-card-eyebrow">Core docs</div>
         <h3><a href="/docs/id/palasik/">Dokumentasi PALASIK</a></h3>
         <p>Ringkasan arsitektur, alur runtime, dan hubungan dengan DEMIT.</p>
+        <div class="doc-card-cta">Buka dokumentasi PALASIK →</div>
       </article>
       <article class="doc-card">
+        <div class="doc-card-eyebrow">Runtime</div>
         <h3><a href="/docs/id/demit/">Dokumentasi DEMIT</a></h3>
         <p>Ruang lingkup runtime super-app, registrasi aplikasi, dan eksekusi policy.</p>
+        <div class="doc-card-cta">Lihat runtime host →</div>
       </article>
       <article class="doc-card">
+        <div class="doc-card-eyebrow">Roadmap</div>
         <h3><a href="/docs/id/plan/">Plan Pengembangan</a></h3>
         <p>Roadmap dan target milestone yang disusun per tahap.</p>
+        <div class="doc-card-cta">Baca roadmap →</div>
       </article>
       <article class="doc-card">
+        <div class="doc-card-eyebrow">History</div>
         <h3><a href="/docs/id/history/">History Pengembangan</a></h3>
         <p>Urutan pencapaian dan perubahan arsitektur dari tahap awal hingga kini.</p>
+        <div class="doc-card-cta">Lihat perjalanan proyek →</div>
       </article>
     </div>
+
+    <section class="doc-section" style="margin-top: 2rem">
+      <h2>Akses Operasional Cepat</h2>
+      <div class="spotlight-strip">
+        <div class="spotlight-item"><strong>Untuk health check</strong><span>Masuk ke kontrak health dan shortcut terbaru saat perlu validasi cepat.</span></div>
+        <div class="spotlight-item"><strong>Untuk komunikasi tim</strong><span>Versi operasional dan kontrol risiko memudahkan briefing lintas peran.</span></div>
+        <div class="spotlight-item"><strong>Untuk konteks runtime</strong><span>DEMIT menjelaskan host aplikasi yang menopang PALASIK di edge.</span></div>
+      </div>
+      <div class="docs-grid">
+        <article class="doc-card">
+          <div class="doc-card-eyebrow">Health</div>
+          <h3><a href="/palasik/teknis/">Kontrak Health &amp; Shortcut</a></h3>
+          <p>Lihat status <code>UP</code>, <code>DEGRADED</code>, <code>DOWN</code>, plus shortcut operasional PALASIK terbaru.</p>
+          <div class="doc-card-cta">Buka health contract →</div>
+        </article>
+        <article class="doc-card">
+          <div class="doc-card-eyebrow">Ops</div>
+          <h3><a href="/palasik/non-teknis/">Versi Operasional</a></h3>
+          <p>Checklist tim shift, rollback cepat, dan langkah pasca-restart tanpa detail implementasi.</p>
+          <div class="doc-card-cta">Buka panduan operator →</div>
+        </article>
+        <article class="doc-card">
+          <div class="doc-card-eyebrow">Governance</div>
+          <h3><a href="/palasik/stakeholder/">Kontrol Risiko</a></h3>
+          <p>Ringkasan governance, indikator health, dan kendali risiko untuk pemangku kepentingan.</p>
+          <div class="doc-card-cta">Lihat kontrol risiko →</div>
+        </article>
+        <article class="doc-card">
+          <div class="doc-card-eyebrow">Host runtime</div>
+          <h3><a href="/demit/">Runtime DEMIT</a></h3>
+          <p>Lihat peran DEMIT sebagai host runtime untuk PALASIK dan integrasi operasional di level edge.</p>
+          <div class="doc-card-cta">Buka dokumentasi DEMIT →</div>
+        </article>
+      </div>
+    </section>
   </article>
 </main>
 

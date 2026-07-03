@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <meta name="robots" content="index, follow">
   <title>PALASIK untuk Stakeholder | David Rinaldi</title>
-  <meta name="description" content="Dokumentasi PALASIK untuk stakeholder: dampak bisnis, kontrol risiko, dan governance operasional.">
+  <meta name="description" content="Dokumentasi PALASIK untuk stakeholder: dampak bisnis, kontrak health, kontrol risiko, dan governance operasional.">
   <meta name="author" content="David Rinaldi">
   <link rel="canonical" href="https://notedavidrinaldi.github.io/palasik/stakeholder/">
   <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
@@ -69,8 +69,18 @@
       <div class="docs-grid">
         <article class="doc-card"><h3>Keamanan yang terkendali</h3><p>Policy &amp; trust score mengurangi risiko insiden tanpa menambah kompleksitas manual.</p></article>
         <article class="doc-card"><h3>Audit yang jelas</h3><p>Reason code dan log menekan gap bukti operasional.</p></article>
-        <article class="doc-card"><h3>Respon cepat</h3><p>Rollback path menjaga ketersediaan layanan jika deployment policy gagal.</p></article>
+        <article class="doc-card"><h3>Respon cepat</h3><p>Rollback path dan post-restart check menjaga ketersediaan layanan jika deployment policy gagal.</p></article>
       </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>Kontrak health untuk governance</h2>
+      <ul>
+        <li><strong>UP</strong>: layanan sehat dan siap operasi.</li>
+        <li><strong>DEGRADED</strong>: layanan masih berjalan, namun ada risiko operasional yang harus ditindak.</li>
+        <li><strong>DOWN</strong>: layanan dianggap unavailable dan perlu eskalasi insiden.</li>
+        <li><strong>UNREACHABLE</strong>: endpoint tidak dapat dihubungi sama sekali, biasanya menandakan masalah konektivitas atau proses layanan.</li>
+      </ul>
     </section>
 
     <section class="doc-section">
@@ -80,6 +90,7 @@
         <li>Validasi dengan <strong>policy-deploy-check --require-allow</strong>.</li>
         <li>Deploy hanya jika <strong>PASS</strong>.</li>
         <li>Lakukan <strong>check</strong> dan <strong>status</strong> untuk verifikasi awal produksi.</li>
+        <li>Setelah restart atau deploy ringan, jalankan <strong>post-restart check</strong> untuk memastikan health kembali <strong>UP</strong>.</li>
         <li>Jika ada degradasi, rollback dengan <strong>policy-rollback</strong>.</li>
       </ol>
     </section>
@@ -89,14 +100,16 @@
       <ul>
         <li><code>events_denied</code> vs <code>events_allowed</code> secara relasional.</li>
         <li>ketersediaan pipeline event (availability).</li>
+        <li>status health: <code>UP</code>, <code>DEGRADED</code>, atau <code>DOWN</code>.</li>
         <li>alert deny spike dan trust drop.</li>
+        <li>durasi degradasi dan frekuensi transisi health.</li>
         <li>Waktu pemulihan (MTTR) pasca rollback.</li>
       </ul>
     </section>
 
     <section class="doc-section">
       <h2>Keputusan dan governance</h2>
-      <p>Integrasikan metrik PALASIK ke operasi rutin, dan wajibkan snapshot+deploy-check untuk setiap perubahan policy penting agar risiko rollback bisa diprediksi.</p>
+      <p>Integrasikan metrik PALASIK ke operasi rutin, wajibkan snapshot+deploy-check untuk setiap perubahan policy penting, dan gunakan post-restart check agar status layanan bisa diverifikasi cepat setelah perubahan.</p>
       <p><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/README_BUSINESS.md">Lihat versi markdown stakeholder lengkap</a></p>
     </section>
   </article>

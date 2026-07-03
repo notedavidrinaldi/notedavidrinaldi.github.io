@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <meta name="robots" content="index, follow">
   <title>PALASIK Executive Summary | David Rinaldi</title>
-  <meta name="description" content="PALASIK Executive Summary 1 Menit: Zero Trust untuk lalu lintas event IoT dan kontrol operasional terukur.">
+  <meta name="description" content="PALASIK Executive Summary 1 Menit: Zero Trust untuk lalu lintas event IoT, kontrak health yang jelas, dan kontrol operasional terukur.">
   <meta name="author" content="David Rinaldi">
   <link rel="canonical" href="https://notedavidrinaldi.github.io/palasik/executive-summary/">
   <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
@@ -64,7 +64,7 @@
       <h2>Inti Narasi</h2>
       <p><strong>PALASIK</strong> adalah komponen Zero Trust untuk lalu lintas event IoT yang menentukan apakah event boleh diproses, dibatasi, atau ditolak.</p>
       <p>Keputusan dihasilkan dari kombinasi <strong>trust score</strong> dan <strong>policy</strong> yang tervalidasi, lalu disimpan sebagai <strong>reason code</strong> agar hasil keputusan bisa diaudit.</p>
-      <p>Model operasionalnya: <strong>policy snapshot</strong> → <strong>policy-deploy-check</strong> → <strong>rollback cepat</strong> jika terjadi degradasi.</p>
+      <p>Model operasionalnya: <strong>policy snapshot</strong> → <strong>policy-deploy-check</strong> → <strong>post-restart check</strong> → <strong>rollback cepat</strong> jika terjadi degradasi.</p>
     </section>
 
     <section class="doc-section">
@@ -82,6 +82,7 @@
       <ul>
         <li><code>check</code> startup untuk memastikan pipeline trust/policy aktif.</li>
         <li><code>status</code> runtime untuk memantau <code>events_allowed</code>, <code>events_denied</code>, latency, dan <code>alerts</code>.</li>
+        <li>Kontrak health yang eksplisit: <code>UP</code>, <code>DEGRADED</code>, <code>DOWN</code>.</li>
         <li>Deny spike mendadak atau penurunan trust yang tidak wajar.</li>
         <li>Penurunan <code>allow_count</code> saat lalu lintas normal.</li>
       </ul>

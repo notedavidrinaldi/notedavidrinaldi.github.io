@@ -4,9 +4,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <meta name="robots" content="index, follow">
-  <title>DEMIT Documentation | David Rinaldi</title>
-  <meta name="description" content="DEMIT Super App Documentation for PALASIK and its applications.">
-  <meta name="author" content="halotec">
+  <title>Dokumentasi DEMIT | David Rinaldi</title>
+  <meta name="description" content="Dokumentasi DEMIT sebagai runtime super-app untuk PALASIK, dengan alur operasional edge dan integrasi modul yang terbaru.">
+  <meta name="author" content="David Rinaldi">
   <link rel="canonical" href="https://notedavidrinaldi.github.io/demit/">
   <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
   <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
@@ -58,7 +58,7 @@
     <article class="post-single">
       <header class="post-header">
         <div class="breadcrumbs"><a href="/">Home</a></div>
-        <h1 class="page-title">DEMIT Documentation</h1>
+        <h1 class="page-title">Dokumentasi DEMIT</h1>
         <div class="doc-subtitle">Super App Runtime untuk orchestration aplikasi, dengan PALASIK sebagai aplikasi keamanan utama.</div>
       </header>
 
@@ -67,15 +67,16 @@
 
       <div class="toc">
         <details open>
-          <summary accesskey="c" title="(Alt + C)"><span class="details">Table of Contents</span></summary>
+          <summary accesskey="c" title="(Alt + C)"><span class="details">Daftar Isi</span></summary>
           <div class="inner">
             <ul>
-              <li><a href="#overview">Overview</a></li>
+              <li><a href="#overview">Ringkasan</a></li>
               <li><a href="#app-registry">Aplikasi di dalam DEMIT</a></li>
               <li><a href="#features">Fitur Core DEMIT</a></li>
               <li><a href="#palasik-feature">Fitur PALASIK</a></li>
               <li><a href="#architecture">Arsitektur Runtime</a></li>
-              <li><a href="#quick-start">Quick Start</a></li>
+              <li><a href="#operational">Operasional PALASIK</a></li>
+              <li><a href="#quick-start">Mulai Cepat</a></li>
               <li><a href="#faq">FAQ</a></li>
             </ul>
           </div>
@@ -83,7 +84,7 @@
       </div>
 
       <section class="post-content" id="overview">
-        <h2>Overview</h2>
+        <h2>Ringkasan</h2>
         <p>
           DEMIT (Digital Monitoring Super App) adalah kerangka runtime yang mengelola
           beberapa <strong>application module</strong> dalam satu proses. Saat ini fokusnya adalah
@@ -183,6 +184,7 @@
               <li>Command run dari CLI</li>
               <li>Support adapter dan plugin action</li>
               <li>Struktur untuk observability dasar</li>
+              <li>Kontrak health runtime dan post-restart check</li>
             </ul>
           </article>
           <article class="doc-card">
@@ -220,8 +222,33 @@
         </p>
       </section>
 
+      <section id="operational" class="doc-section">
+        <h2>Operasional PALASIK di atas DEMIT</h2>
+        <div class="docs-grid">
+          <article class="doc-card">
+            <h3>Kontrak Health</h3>
+            <ul>
+              <li><code>UP</code> → HTTP <code>200</code></li>
+              <li><code>DEGRADED</code> → HTTP <code>200</code> atau <code>503</code> sesuai mode</li>
+              <li><code>DOWN</code> → HTTP <code>503</code></li>
+            </ul>
+          </article>
+          <article class="doc-card">
+            <h3>Shortcut Operasional</h3>
+            <pre><code>make edge-health
+make edge-health-wait
+make edge-health-strict</code></pre>
+          </article>
+          <article class="doc-card">
+            <h3>Post-Restart Gate</h3>
+            <pre><code>make edge-post-restart-check
+make edge-post-restart-check-strict</code></pre>
+          </article>
+        </div>
+      </section>
+
       <section id="quick-start" class="doc-section">
-        <h2>Quick Start</h2>
+        <h2>Mulai Cepat</h2>
         <p>Contoh minimal agar DEMIT bisa dijalankan lokal:</p>
         <pre><code>pip install palasik
 
@@ -277,6 +304,7 @@ apps:
           <li><a href="/edge-zero-trust-iot-raspberry/">Pengantar Zero Trust PALASIK</a></li>
           <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework">Repository GitHub</a></li>
           <li><a href="/palasik/">Halaman dokumentasi PALASIK</a></li>
+          <li><a href="/palasik/teknis/">Dokumentasi teknis PALASIK</a></li>
         </ul>
       </section>
 

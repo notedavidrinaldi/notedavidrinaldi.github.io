@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <meta name="robots" content="index, follow">
   <title>PALASIK Non-Teknis | David Rinaldi</title>
-  <meta name="description" content="Dokumentasi PALASIK untuk tim non-teknis: operasi harian, indikator cepat, dan langkah rollback.">
+  <meta name="description" content="Dokumentasi PALASIK untuk tim non-teknis: operasi harian, status health UP/DEGRADED/DOWN, shortcut operasional, dan langkah rollback.">
   <meta name="author" content="David Rinaldi">
   <link rel="canonical" href="https://notedavidrinaldi.github.io/palasik/non-teknis/">
   <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
@@ -75,7 +75,17 @@
         <li>Keputusan konsisten karena berbasis aturan, bukan ad hoc.</li>
         <li>Ada bukti keputusan berupa reason code dan log audit.</li>
         <li>Bisa rollback cepat jika policy baru membuat sistem tidak stabil.</li>
-        <li>Indikator harian tersedia: deny spike, trust turun, dan status pipeline.</li>
+        <li>Indikator harian tersedia: deny spike, trust turun, status health, dan status pipeline.</li>
+      </ul>
+    </section>
+
+    <section class="doc-section">
+      <h2>Status health yang perlu dipahami</h2>
+      <ul>
+        <li><strong>UP</strong>: sistem sehat dan endpoint berjalan normal.</li>
+        <li><strong>DEGRADED</strong>: sistem masih hidup, tetapi ada gangguan operasional yang perlu ditangani.</li>
+        <li><strong>DOWN</strong>: layanan dianggap tidak tersedia dan harus diperlakukan sebagai outage.</li>
+        <li><strong>UNREACHABLE</strong>: helper operasional tidak bisa menghubungi endpoint sama sekali.</li>
       </ul>
     </section>
 
@@ -94,6 +104,7 @@
       <ul>
         <li><strong>Mulai shift</strong>: jalankan <code>palasik check --config config.yaml</code> lalu <code>palasik status --config config.yaml</code>.</li>
         <li><strong>Sebelum deploy policy baru</strong>: ambil snapshot + smoke gate policy.</li>
+        <li><strong>Setelah restart service</strong>: jalankan <code>make edge-post-restart-check</code>.</li>
         <li><strong>Jika ada anomali</strong>: rollback cepat ke snapshot terakhir yang valid.</li>
         <li><strong>Setelah normal</strong>: lanjut monitoring rutin dan pencatatan evidence.</li>
       </ul>
@@ -113,10 +124,22 @@
           <p>Melihat metrik dan alert terkini.</p>
         </article>
         <article class="doc-card">
+          <h3>Cek health cepat</h3>
+          <pre><code>make edge-health
+make edge-health-wait</code></pre>
+          <p>Melihat status health dan alert penting tanpa membaca output panjang.</p>
+        </article>
+        <article class="doc-card">
           <h3>Guard pre-deploy</h3>
           <pre><code>palasik policy-snapshot --config config.yaml
 palasik policy-deploy-check --config config.yaml --require-allow</code></pre>
           <p>Wajib sebelum perubahan policy ke produksi.</p>
+        </article>
+        <article class="doc-card">
+          <h3>Gate pasca-restart</h3>
+          <pre><code>make edge-post-restart-check
+make edge-post-restart-check-strict</code></pre>
+          <p>Memastikan startup valid lalu health kembali normal setelah restart.</p>
         </article>
         <article class="doc-card">
           <h3>Rollback cepat</h3>
@@ -133,6 +156,8 @@ palasik policy-deploy-check --config config.yaml --require-allow</code></pre>
       <ul>
         <li>Penalty DENY melonjak tajam dan tidak wajar.</li>
         <li>Latency naik drastis setelah perubahan policy.</li>
+        <li>Status health bertahan di <strong>DEGRADED</strong> terlalu lama.</li>
+        <li>Helper operasional berulang kali menunjukkan <strong>UNREACHABLE</strong> atau <strong>DOWN</strong>.</li>
         <li>Keputusan tidak sesuai kondisi bisnis saat ini.</li>
       </ul>
       <p>Prosesnya cepat: ambil status saat ini, rollback ke snapshot valid, lalu jalankan <code>check</code> ulang.</p>

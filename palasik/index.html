@@ -4,8 +4,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <meta name="robots" content="index, follow">
-  <title>PALASIK Documentation Center | David Rinaldi</title>
-  <meta name="description" content="Portal dokumentasi PALASIK: Executive Summary, versi operasional non-teknis, stakeholder, dan teknis.">
+  <title>Pusat Dokumentasi PALASIK | David Rinaldi</title>
+  <meta name="description" content="Portal dokumentasi PALASIK terbaru: executive summary, versi non-teknis, stakeholder, teknis, kontrak health, dan referensi operasional.">
   <meta name="author" content="David Rinaldi">
   <link rel="canonical" href="https://notedavidrinaldi.github.io/palasik/">
   <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
@@ -54,7 +54,8 @@
   <article class="post-single">
     <header class="post-header">
       <div class="breadcrumbs"><a href="/">Home</a></div>
-      <h1 class="page-title">PALASIK Documentation Center</h1>
+      <div class="doc-kicker">PALASIK Portal • Role-based reading</div>
+      <h1 class="page-title">Pusat Dokumentasi PALASIK</h1>
       <div class="doc-subtitle">Pusat akses dokumentasi resmi untuk eksekutif, non-teknis, stakeholder, dan teknis.</div>
     </header>
 
@@ -63,6 +64,33 @@
     </div>
 
     <div class="inline-note"><strong>Ter-update dari:</strong> <a href="https://github.com/notedavidrinaldi/palasik-iot-framework">palasik-iot-framework</a>.</div>
+
+    <section class="hero-panel" aria-label="Portal PALASIK">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p>Portal ini dirancang supaya pembaca tidak harus menebak mulai dari mana. Tinggal pilih sudut pandang Anda: pengambil keputusan, operator, stakeholder, atau engineer.</p>
+          <div class="hero-actions">
+            <a class="hero-button hero-button-primary" href="/palasik/executive-summary/">Mulai dari Executive Summary</a>
+            <a class="hero-button" href="/palasik/non-teknis/">Jalur Non-Teknis</a>
+            <a class="hero-button" href="/palasik/teknis/">Jalur Teknis</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat"><strong>4 jalur pembaca</strong><span>Setiap halaman dibagi berdasarkan kebutuhan, bukan hanya berdasarkan topik teknis.</span></div>
+            <div class="hero-stat"><strong>Sinkron dengan repo utama</strong><span>Health contract, shortcut operasional, dan rollback terbaru sudah ditampilkan.</span></div>
+            <div class="hero-stat"><strong>Siap untuk edge ops</strong><span>Dokumen dirapikan agar cepat dibuka saat troubleshooting maupun briefing.</span></div>
+          </div>
+        </div>
+        <aside class="hero-aside">
+          <h3>Rute paling sering dipakai</h3>
+          <ul class="hero-list">
+            <li><a href="/palasik/executive-summary/">Brief 1 menit<small>Untuk menjelaskan PALASIK tanpa masuk ke implementasi.</small></a></li>
+            <li><a href="/palasik/non-teknis/">Runbook ringan<small>Untuk operator yang perlu langkah cepat dan status layanan.</small></a></li>
+            <li><a href="/palasik/stakeholder/">Kontrol risiko<small>Untuk governance, health, dan pengawasan perubahan policy.</small></a></li>
+            <li><a href="/palasik/teknis/">Deep dive teknis<small>Untuk route, deploy edge, CLI, dan integrasi runtime.</small></a></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
 
     <div class="toc">
       <details open>
@@ -75,6 +103,7 @@
             <li><a href="#teknis">Dokumentasi Teknis</a></li>
             <li><a href="#alur">Alur implementasi</a></li>
             <li><a href="#operasional">Referensi Operasional</a></li>
+            <li><a href="#health">Kontrak Health</a></li>
           </ul>
         </div>
       </details>
@@ -84,6 +113,32 @@
       <h2>Executive Summary</h2>
       <p>PALASIK menilai event IoT berdasarkan trust score dan policy, lalu memutuskan: <strong>proses, monitor, atau tolak</strong>.</p>
       <p><a href="/palasik/executive-summary/">Buka halaman executive summary</a></p>
+    </section>
+
+    <section class="doc-section">
+      <h2>Masuk Berdasarkan Peran</h2>
+      <div class="path-grid">
+        <article class="path-card">
+          <h3>Eksekutif</h3>
+          <p>Butuh gambaran dampak, nilai, dan risiko dalam waktu singkat tanpa membaca seluruh alur implementasi.</p>
+          <a href="/palasik/executive-summary/">Buka jalur eksekutif →</a>
+        </article>
+        <article class="path-card">
+          <h3>Operator</h3>
+          <p>Butuh checklist harian, tindakan saat status berubah, dan langkah singkat pasca-restart.</p>
+          <a href="/palasik/non-teknis/">Buka jalur operator →</a>
+        </article>
+        <article class="path-card">
+          <h3>Stakeholder</h3>
+          <p>Butuh pemahaman kontrol risiko, governance, dan hubungan indikator health dengan keputusan operasional.</p>
+          <a href="/palasik/stakeholder/">Buka jalur stakeholder →</a>
+        </article>
+        <article class="path-card">
+          <h3>Engineer</h3>
+          <p>Butuh arsitektur, trust engine, policy engine, health contract, serta deploy dan rollback di edge.</p>
+          <a href="/palasik/teknis/">Buka jalur engineer →</a>
+        </article>
+      </div>
     </section>
 
     <section id="non-teknis" class="doc-section">
@@ -100,7 +155,7 @@
 
     <section id="teknis" class="doc-section">
       <h2>Dokumentasi Teknis</h2>
-      <p>Arsitektur, quickstart, CLI, alur deploy aman, rollback, dan indikator kesehatan runtime.</p>
+      <p>Arsitektur, mulai cepat, CLI, alur deploy aman, rollback, indikator health runtime, dan shortcut operasional.</p>
       <p><a href="/palasik/teknis/">Buka dokumentasi teknis</a></p>
     </section>
 
@@ -117,6 +172,11 @@
 
     <section id="operasional" class="doc-section">
       <h2>Dokumen referensi</h2>
+      <div class="spotlight-strip">
+        <div class="spotlight-item"><strong>Untuk mulai cepat</strong><span>Gunakan <code>GETTING_STARTED.md</code> dan <code>CONFIG.md</code>.</span></div>
+        <div class="spotlight-item"><strong>Untuk operasional</strong><span>Runbook dan edge deployment sudah ditautkan langsung di bawah.</span></div>
+        <div class="spotlight-item"><strong>Untuk arsitektur</strong><span>Baca policy engine dan trust engine setelah memahami ringkasan portal.</span></div>
+      </div>
       <ul>
         <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/GETTING_STARTED.md">GETTING_STARTED.md</a></li>
         <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/CONFIG.md">CONFIG.md</a></li>
@@ -124,7 +184,25 @@
         <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/POLICY_ENGINE.md">POLICY_ENGINE.md</a></li>
         <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/TRUST_ENGINE.md">TRUST_ENGINE.md</a></li>
         <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/OPERATIONAL_RUNBOOK.md">OPERATIONAL_RUNBOOK.md</a></li>
+        <li><a href="https://github.com/notedavidrinaldi/palasik-iot-framework/blob/main/docs/EDGE_DEPLOYMENT.md">EDGE_DEPLOYMENT.md</a></li>
       </ul>
+    </section>
+
+    <section id="health" class="doc-section">
+      <h2>Kontrak Health</h2>
+      <p>Kontrak runtime terbaru yang dipakai PALASIK untuk health endpoint dan helper operasional:</p>
+      <ul>
+        <li><code>UP</code> → HTTP <code>200</code></li>
+        <li><code>DEGRADED</code> → HTTP <code>200</code> atau <code>503</code> sesuai mode <code>degraded_http_mode</code></li>
+        <li><code>DOWN</code> → HTTP <code>503</code></li>
+        <li><code>UNREACHABLE</code> → helper script exit code <code>4</code> saat endpoint sama sekali tidak bisa dihubungi</li>
+      </ul>
+      <p>Shortcut yang paling sering dipakai operator:</p>
+      <pre><code>make edge-health
+make edge-health-wait
+make edge-health-strict
+make edge-post-restart-check
+make edge-post-restart-check-strict</code></pre>
     </section>
   </article>
 </main>

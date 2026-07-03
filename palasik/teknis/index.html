@@ -4,8 +4,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <meta name="robots" content="index, follow">
-  <title>PALASIK Teknis | David Rinaldi</title>
-  <meta name="description" content="Dokumentasi teknis PALASIK: arsitektur, alur event, quickstart, SOP deploy, dan rollback.">
+  <title>Dokumentasi Teknis PALASIK | David Rinaldi</title>
+  <meta name="description" content="Dokumentasi teknis PALASIK terbaru: arsitektur, alur event, mulai cepat, kontrak health, shortcut operasional, deploy aman, dan rollback.">
   <meta name="author" content="David Rinaldi">
   <link rel="canonical" href="https://notedavidrinaldi.github.io/palasik/teknis/">
   <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
@@ -60,14 +60,16 @@
 
     <div class="toc">
       <details open>
-        <summary accesskey="c" title="(Alt + C)"><span class="details">Table of Contents</span></summary>
+        <summary accesskey="c" title="(Alt + C)"><span class="details">Daftar Isi</span></summary>
         <div class="inner">
           <ul>
             <li><a href="#arsitektur">Arsitektur</a></li>
             <li><a href="#alur">Alur Event</a></li>
-            <li><a href="#quick">Quick Start</a></li>
+            <li><a href="#quick">Mulai Cepat</a></li>
             <li><a href="#config">Konfigurasi Dasar</a></li>
             <li><a href="#policy">Policy &amp; Trust</a></li>
+            <li><a href="#health">Kontrak Health</a></li>
+            <li><a href="#shortcuts">Shortcut Operasional</a></li>
             <li><a href="#deploy">Deploy Aman</a></li>
             <li><a href="#rollback">Rollback</a></li>
             <li><a href="#runbook">Runbook Operasional</a></li>
@@ -102,11 +104,11 @@
     </section>
 
     <section id="quick" class="doc-section">
-      <h2>Quick Start (5 menit)</h2>
+      <h2>Mulai Cepat (5 menit)</h2>
       <ol>
         <li><strong>Install</strong><pre><code>pip install palasik</code></pre></li>
         <li><strong>Init proyek</strong><pre><code>palasik init</code></pre><p>membuat <code>config.yaml</code> baseline.</p></li>
-        <li><strong>Health check</strong><pre><code>palasik check --config config.yaml</code></pre><p>Jika PASS berarti pipeline trust + policy valid.</p></li>
+        <li><strong>Cek health</strong><pre><code>palasik check --config config.yaml</code></pre><p>Jika PASS berarti pipeline trust + policy valid.</p></li>
         <li><strong>Simulasi event</strong><pre><code>cat > sample-event.json &lt;&lt;'EOF_JSON'
 { "version": "1", "event_id": "evt-startup-01", "type": "sensor.sample", "source": { "device_id": "edge-sensor-01", "ip": "192.168.1.10" }, "value": 42 }
 EOF_JSON
@@ -170,11 +172,36 @@ apps:
       - palasik</code></pre>
     </section>
 
+    <section id="health" class="doc-section">
+      <h2>Kontrak Health</h2>
+      <ul>
+        <li><code>UP</code> → HTTP <code>200</code></li>
+        <li><code>DEGRADED</code> → HTTP <code>200</code> atau <code>503</code> sesuai mode <code>degraded_http_mode</code></li>
+        <li><code>DOWN</code> → HTTP <code>503</code></li>
+      </ul>
+      <p>Pemisahan failure yang dipakai sekarang:</p>
+      <ul>
+        <li><code>check-startup</code> dipakai untuk fail-fast sebelum service hidup</li>
+        <li><code>/health</code> dipakai untuk degradasi runtime setelah service hidup</li>
+      </ul>
+    </section>
+
+    <section id="shortcuts" class="doc-section">
+      <h2>Shortcut Operasional</h2>
+      <pre><code>make edge-health
+make edge-health-wait
+make edge-health-strict
+make edge-post-restart-check
+make edge-post-restart-check-strict</code></pre>
+      <p>Gunakan helper ini untuk cek health cepat, mode wait saat service baru start, atau gate ketat pasca-restart.</p>
+    </section>
+
     <section id="deploy" class="doc-section">
       <h2>Deployment aman (gate)</h2>
       <pre><code>palasik policy-snapshot --config config.yaml
 palasik policy-deploy-check --config config.yaml --require-allow --max-deny-ratio 0.95 --smoke-events docs/samples/policy-smoke-events.json</code></pre>
       <p>Jika gagal (PASS tidak tercapai), hentikan rollout dan evaluasi ulang rule.</p>
+      <p>Untuk verifikasi pasca-restart secara praktis, gunakan <code>make edge-post-restart-check</code> atau versi strict-nya.</p>
     </section>
 
     <section id="rollback" class="doc-section">
@@ -191,7 +218,7 @@ palasik policy-deploy-check --config config.yaml --require-allow --max-deny-rati
           <ol>
             <li><code>palasik check --config config.yaml</code></li>
             <li><code>palasik status --config config.yaml</code></li>
-            <li>Validasi <code>events_denied</code> dan <code>alerts</code>.</li>
+            <li>Validasi <code>events_denied</code>, <code>alerts</code>, dan status health.</li>
           </ol>
         </article>
         <article class="doc-card">
