@@ -129,7 +129,7 @@ palasik simulate sample-event.json --config config.yaml</code></pre></li>
 source .venv/bin/activate
 pip install --upgrade pip
 pip install palasik</code></pre>
-      <p>Jika mengembangkan langsung dari source repo, gunakan <code>pip install -e .[dev]</code> agar command, test, dan docs update ikut tersedia.</p>
+      <p>Jika mengembangkan langsung dari source repo, gunakan <code>pip install -e '.[dev]'</code> agar command, test, dan docs update ikut tersedia.</p>
 
       <h3>2. Init proyek dan cek health</h3>
       <pre><code>mkdir palasik-demo
@@ -257,6 +257,11 @@ make edge-post-restart-check-strict</code></pre>
       <pre><code>palasik policy-snapshot --config config.yaml
 palasik policy-deploy-check --config config.yaml --require-allow --max-deny-ratio 0.95 --smoke-events docs/samples/policy-smoke-events.json</code></pre>
       <p>Jika gagal (PASS tidak tercapai), hentikan rollout dan evaluasi ulang rule.</p>
+      <figure class="doc-figure">
+        <img src="/assets/images/palasik/readme-policy-ops.png" alt="PALASIK policy safety workflow">
+        <figcaption>Alur aman yang disarankan: ambil snapshot policy, jalankan deploy-check dengan smoke events, lalu siapkan rollback cepat jika health turun atau hasil gate memburuk.</figcaption>
+      </figure>
+      <p>Catatan penting: jika Anda menjalankan command dari folder kerja baru, jangan mengandalkan path default smoke events. Berikan <code>--smoke-events</code> secara eksplisit atau salin file sample ke workspace Anda sendiri.</p>
       <p>Untuk verifikasi pasca-restart secara praktis, gunakan <code>make edge-post-restart-check</code> atau versi strict-nya.</p>
     </section>
 

@@ -61,6 +61,7 @@
     <section class="doc-section">
       <h2>PALASIK itu apa?</h2>
       <p>PALASIK adalah <strong>petugas gerbang keamanan</strong> untuk data sensor/IoT.</p>
+      <p>PALASIK adalah <strong>software</strong>, bukan mikrokontroler. Ia berjalan di gateway atau host seperti Raspberry Pi, lalu mengawasi event dari perangkat seperti ESP32, STM32, Arduino, atau sensor lain.</p>
       <p>Setiap data yang masuk ke gateway tidak langsung dianggap aman. Setiap event ditentukan aksinya:</p>
       <ul>
         <li><strong>ALLOW</strong>: diproses</li>
@@ -133,7 +134,7 @@ make edge-health-wait</code></pre>
           <h3>Guard pre-deploy</h3>
           <pre><code>palasik policy-snapshot --config config.yaml
 palasik policy-deploy-check --config config.yaml --require-allow</code></pre>
-          <p>Wajib sebelum perubahan policy ke produksi.</p>
+          <p>Wajib sebelum perubahan policy ke produksi. Jika dijalankan di luar root repo, siapkan <code>--smoke-events</code> dengan path yang jelas.</p>
         </article>
         <article class="doc-card">
           <h3>Gate pasca-restart</h3>
