@@ -66,6 +66,7 @@
             <li><a href="#arsitektur">Arsitektur</a></li>
             <li><a href="#alur">Alur Event</a></li>
             <li><a href="#quick">Mulai Cepat</a></li>
+            <li><a href="#install-run">Instalasi &amp; Menjalankan</a></li>
             <li><a href="#config">Konfigurasi Dasar</a></li>
             <li><a href="#policy">Policy &amp; Trust</a></li>
             <li><a href="#health">Kontrak Health</a></li>
@@ -117,6 +118,61 @@ palasik simulate sample-event.json --config config.yaml</code></pre></li>
         <li><strong>Jalankan agent</strong><pre><code>palasik run --config config.yaml</code></pre></li>
         <li><strong>Monitoring status</strong><pre><code>palasik status --config config.yaml</code></pre><p>Output berisi <code>events_allowed</code>, <code>events_denied</code>, <code>avg_latency_ms</code>, <code>alerts</code>.</p></li>
       </ol>
+    </section>
+
+    <section id="install-run" class="doc-section">
+      <h2>Instalasi &amp; Menjalankan dengan Capture</h2>
+      <p>Bagian ini mengikuti panduan terbaru di repo PALASIK agar orang yang baru pertama kali mencoba bisa mengikuti alur tanpa menebak-nebak.</p>
+
+      <h3>1. Siapkan environment</h3>
+      <pre><code>python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install palasik</code></pre>
+      <p>Jika mengembangkan langsung dari source repo, gunakan <code>pip install -e .[dev]</code> agar command, test, dan docs update ikut tersedia.</p>
+
+      <h3>2. Init proyek dan cek health</h3>
+      <pre><code>mkdir palasik-demo
+cd palasik-demo
+palasik init
+palasik check --config config.yaml</code></pre>
+      <figure class="doc-figure">
+        <img src="/assets/images/palasik/readme-init-check.png" alt="PALASIK init dan health check">
+        <figcaption>Contoh hasil install awal, pembuatan <code>config.yaml</code>, lalu validasi startup pipeline hingga status <code>PASS</code>.</figcaption>
+      </figure>
+
+      <h3>3. Simulasikan satu event</h3>
+      <pre><code>cat &gt; sample-event.json &lt;&lt;'EOF_JSON'
+{
+  "version": "1",
+  "event_id": "evt-demo-01",
+  "timestamp": "2026-07-03T10:00:00Z",
+  "type": "sensor.temperature",
+  "source": {
+    "device_id": "edge-sensor-01",
+    "ip": "192.168.1.10"
+  },
+  "value": 42
+}
+EOF_JSON
+
+palasik simulate sample-event.json --config config.yaml</code></pre>
+      <figure class="doc-figure">
+        <img src="/assets/images/palasik/readme-simulate.png" alt="PALASIK simulate event">
+        <figcaption>Output simulasi menampilkan <code>decision</code>, <code>policy_name</code>, <code>reason_code</code>, dan <code>trust_score</code> agar keputusan mudah diaudit.</figcaption>
+      </figure>
+
+      <h3>4. Cek status runtime</h3>
+      <pre><code>palasik status --config config.yaml</code></pre>
+      <figure class="doc-figure">
+        <img src="/assets/images/palasik/readme-status.png" alt="PALASIK status dan metrics">
+        <figcaption>Operator biasanya melihat <code>status</code>, <code>events_total</code>, <code>events_allowed</code>, <code>events_denied</code>, dan <code>reason_code_breakdown</code> lebih dulu.</figcaption>
+      </figure>
+
+      <h3>5. Jalankan agent atau API</h3>
+      <pre><code>palasik run --config config.yaml
+palasik serve-api --config config.yaml</code></pre>
+      <p>Gunakan <code>run</code> saat PALASIK menerima event dari adapter aktif, dan <code>serve-api</code> saat ingin mengekspos PALASIK sebagai service HTTP ringan untuk integrasi lokal.</p>
     </section>
 
     <section id="config" class="doc-section">

@@ -75,6 +75,16 @@
 demit:
   apps:
     - palasik</code></pre>
+      <p>Untuk panduan instalasi penuh, health check, simulasi event, dan monitoring status, buka <a href="/palasik/teknis/#install-run">Dokumentasi Teknis PALASIK</a>.</p>
+      <figure class="doc-figure">
+        <img src="/assets/images/palasik/readme-init-check.png" alt="PALASIK init dan health check">
+        <figcaption>Capture ini menunjukkan alur paling awal yang sekarang dipakai sebagai panduan resmi: install, <code>palasik init</code>, lalu <code>palasik check</code>.</figcaption>
+      </figure>
+      <div class="spotlight-strip">
+        <div class="spotlight-item"><strong>Langkah 1</strong><span>Install package lalu buat <code>config.yaml</code> baseline dengan <code>palasik init</code>.</span></div>
+        <div class="spotlight-item"><strong>Langkah 2</strong><span>Validasi startup pipeline lewat <code>palasik check --config config.yaml</code>.</span></div>
+        <div class="spotlight-item"><strong>Langkah 3</strong><span>Simulasikan event dan cek status sebelum dipakai di runtime edge yang lebih lengkap.</span></div>
+      </div>
     </section>
   </article>
 </main>
