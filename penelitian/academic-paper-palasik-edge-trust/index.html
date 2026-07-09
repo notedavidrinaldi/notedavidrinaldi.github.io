@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>Adaptive Trust-Based Edge Decision: PALASIK Paper | David Rinaldi</title>
+  <meta name="description" content="Academic-style paper note on adaptive trust-score decision engines for PALASIK in industrial edge environments.">
+  <meta name="author" content="David Rinaldi">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/penelitian/academic-paper-palasik-edge-trust/">
+  <link rel="alternate" hreflang="en" href="https://notedavidrinaldi.github.io/penelitian/academic-paper-palasik-edge-trust/">
+  <link rel="alternate" hreflang="id" href="https://notedavidrinaldi.github.io/penelitian/academic-paper-palasik-edge-trust/id/">
+  <link rel="alternate" hreflang="x-default" href="https://notedavidrinaldi.github.io/penelitian/academic-paper-palasik-edge-trust/">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://notedavidrinaldi.github.io/penelitian/academic-paper-palasik-edge-trust/">
+  <meta property="og:site_name" content="David Rinaldi">
+  <meta property="og:title" content="Adaptive Trust-Based Edge Decision: PALASIK Paper | David Rinaldi">
+  <meta property="og:description" content="Academic-style paper note on adaptive trust-score decision engines for PALASIK in industrial edge environments.">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Adaptive Trust-Based Edge Decision: PALASIK Paper | David Rinaldi">
+  <meta name="twitter:description" content="Academic-style paper note on adaptive trust-score decision engines for PALASIK in industrial edge environments.">
+  <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>
+    localStorage.getItem("pref-theme") === "dark"
+      ? document.querySelector("html").dataset.theme = "dark"
+      : localStorage.getItem("pref-theme") === "light"
+        ? document.querySelector("html").dataset.theme = "light"
+        : window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? document.querySelector("html").dataset.theme = "dark"
+          : document.querySelector("html").dataset.theme = "light"
+  </script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
+</head>
+<body class="single docs-shell" id="top">
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+      <div class="logo-switches">
+        <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+          <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="lang-switch" aria-label="Language chooser">
+      <a href="/penelitian/academic-paper-palasik-edge-trust/id/">ID</a>
+      <a href="/penelitian/academic-paper-palasik-edge-trust/" aria-current="page">EN</a>
+    </div>
+    <ul id="menu">
+      <li><a href="/" title="Home">Home</a></li>
+      <li><a href="/palasik/" title="PALASIK Docs">PALASIK Docs</a></li>
+      <li><a href="/pitusk/" title="PiTUSK Docs">PiTUSK Docs</a></li>
+      <li><a href="/pitusk/executive-summary/" title="PiTUSK Executive">PiTUSK Executive</a></li>
+      <li><a href="/pitusk/teknis/" title="PiTUSK Teknis">PiTUSK Teknis</a></li>
+      <li><a href="/palasik/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+      <li><a href="/palasik/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
+      <li><a href="/palasik/stakeholder/" title="Stakeholder">Stakeholder</a></li>
+      <li><a href="/palasik/teknis/" title="Teknis">Teknis</a></li>
+      <li><a href="/demit/" title="DEMIT Runtime">DEMIT Runtime</a></li>
+      <li><a href="/docs/id/" title="Pusat Dokumentasi">Pusat Dokumentasi</a></li>
+      <li><a href="/docs/id/plan/" title="Rencana">Rencana</a></li>
+      <li><a href="/docs/id/history/" title="History">History</a></li>
+      <li><a href="/penelitian/" title="Penelitian"><span class="active">Penelitian</span></a></li>
+      <li><a href="/about/" title="About">About</a></li>
+      <li><a href="/program/" title="Program">Program</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main docs-shell">
+  <article class="post-single">
+    <header class="post-header">
+      <h1 class="page-title">Adaptive Trust-Based Edge Decision for IIoT Security: A PALASIK Case Paper</h1>
+      <p class="post-meta">Author: David Rinaldi · Working Paper (2026) · Category: Edge Security, IIoT, Trust-Aware Policy</p>
+    </header>
+
+    <div class="post-content">
+      <h2>Abstract</h2>
+      <p>This paper formalizes the PALASIK design as a reusable model for adaptive, low-latency security decisions in constrained edge environments. The core contribution is an operationally oriented framework that combines trust score inference, policy state machines, and audit-preserving execution, while maintaining local determinism under unstable network conditions. The practical result is a reduction in decision ambiguity and faster incident recoveries in edge nodes that are required to continue operating during partial failure conditions.</p>
+
+      <h2>Research Problem</h2>
+      <p>Many IIoT deployments are forced to choose between two risky extremes: strict cloud-dependent policy evaluation (high latency and fragile dependency) or permissive local fallback rules (security gap risk). PALASIK addresses this by enabling adaptive local enforcement that can degrade securely when confidence is uncertain.</p>
+
+      <h2>Research Questions</h2>
+      <ol>
+        <li>Can local trust scoring maintain acceptable security decision quality without constant full-cloud validation?</li>
+        <li>Can policy latency remain within practical edge constraints under traffic burst and unstable connectivity?</li>
+        <li>Do structured decision logs improve root-cause traceability for both operators and researchers?</li>
+      </ol>
+
+      <h2>Method</h2>
+      <p>This study adopts a case-study design with reproducible implementation traces:</p>
+      <ul>
+        <li><strong>System under study:</strong> PALASIK edge runtime integrated through DEMIT.</li>
+        <li><strong>Design pattern:</strong> trust score generation from multiple signals and policy state transition with ALLOW/RESTRICT/DENY/QUARANTINE actions.</li>
+        <li><strong>Evaluation approach:</strong> scenario-based comparison between fixed rule sets and adaptive score-based decisions.</li>
+        <li><strong>Data scope:</strong> event timing, decision distribution, fallback triggers, policy outcomes, and recovery intervals.</li>
+      </ul>
+
+      <h2>Measurement Framework</h2>
+      <p>For stronger repeatability this paper uses a minimal standardized log schema:</p>
+      <pre><code>{
+  "ts": "...",
+  "event_id": "uuid",
+  "node_id": "edge-node-01",
+  "signal": "trust_score|policy_state|network_signal",
+  "trust_score": 0.84,
+  "policy_action": "ALLOW",
+  "reason_code": "trusted_device_normalized",
+  "latency_ms": 118,
+  "recovery_time_ms": 220,
+  "resource_cpu": 0.39,
+  "resource_mem": 0.71
+}</code></pre>
+
+      <h2>Findings</h2>
+      <p>Based on operational records and iterative tests, three empirical outcomes are emphasized:</p>
+      <ul>
+        <li>Decision output becomes more stable during burst events when adaptive trust thresholds are applied instead of fixed static policy checks.</li>
+        <li>Fallback mode prevents full shutdown behavior in unstable conditions by preserving actionable decisions under constrained evidence.</li>
+        <li>Auditability improves through reason-coded logging that remains coherent across repeated policy evaluation cycles.</li>
+      </ul>
+
+      <h2>Discussion</h2>
+      <p>The contribution is not a generic theoretical model; it is an implementation-informed model. The practical implication for edge teams is that trust-aware decisions should be designed as a <strong>continuity mechanism</strong>, not only an optimization technique. This becomes especially relevant where intermittent links, noisy sensor states, and mixed protocol quality are common.</p>
+
+      <h2>Validity and Limitations</h2>
+      <p>The current evidence is strongest for early deployment conditions and moderate traffic load. External threats from large-scale adversarial simulation and long-horizon drift of trust signals need additional experiments. Replication in industrial partner environments is recommended before claiming universal thresholds.</p>
+
+      <h2>Research Contribution</h2>
+      <p>PALASIK case evidence can be reused as:</p>
+      <ul>
+        <li>Baseline for adaptive policy engines in IIoT edge controllers.</li>
+        <li>Comparative model for decision latency and recoverability in degraded network mode.</li>
+        <li>Template for audit-oriented security governance in low-latency environments.</li>
+      </ul>
+
+      <h2>Suggested Citation</h2>
+      <pre><code>@techreport{rinaldi2026palasik,
+  title     = {Adaptive Trust-Based Edge Decision for IIoT Security: A PALASIK Case Paper},
+  author    = {Rinaldi, David},
+  year      = {2026},
+  institution = {notedavidrinaldi.github.io},
+  url       = {https://notedavidrinaldi.github.io/penelitian/academic-paper-palasik-edge-trust/}
+}</code></pre>
+
+      <h2>Related Research Assets</h2>
+      <ul>
+        <li><a href="/penelitian/rancangan-keputusan-edge-palasik/">Rancangan Keputusan Edge untuk PALASIK</a></li>
+        <li><a href="/penelitian/kerangka-acuan-penelitian/">Kerangka Acuan Penelitian Lanjutan</a></li>
+        <li><a href="/palasik/teknis/">Dokumentasi Teknis PALASIK</a></li>
+      </ul>
+
+      <a class="hero-button hero-button-primary" href="/penelitian/">← Back to Penelitian</a>
+    </div>
+  </article>
+</main>
+
+<footer class="footer"><span>&copy; 2026 <a href="/">David Rinaldi</a></span> · <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> & <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener noreferrer" target="_blank">PaperMod</a></span></footer>
+
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+  <svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a>
+
+<script>
+  let menu = document.getElementById("menu");
+  if (menu) {
+    const e = localStorage.getItem("menu-scroll-position");
+    e && (menu.scrollLeft = parseInt(e, 10));
+    menu.onscroll = function () { localStorage.setItem("menu-scroll-position", menu.scrollLeft); };
+  }
+
+  var mybutton = document.getElementById("top-link");
+  window.onscroll = function () {
+    document.body.scrollTop > 800 || document.documentElement.scrollTop > 800
+      ? (mybutton.style.visibility = "visible", mybutton.style.opacity = "1")
+      : (mybutton.style.visibility = "hidden", mybutton.style.opacity = "0");
+  };
+
+  document.getElementById("theme-toggle").addEventListener("click", () => {
+    const e = document.querySelector("html");
+    if (e.dataset.theme === "dark") {
+      e.dataset.theme = "light";
+      localStorage.setItem("pref-theme", "light");
+    } else {
+      e.dataset.theme = "dark";
+      localStorage.setItem("pref-theme", "dark");
+    }
+  });
+</script>
+</body>
+</html>

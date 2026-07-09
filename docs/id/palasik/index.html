@@ -35,7 +35,7 @@
       <li><a href="/docs/id/" title="Pusat Dokumentasi">Pusat Dokumentasi</a></li>
       <li><a href="/docs/id/plan/" title="Rencana">Rencana</a></li>
       <li><a href="/docs/id/history/" title="History">History</a></li>
-      <li><a href="/posts/" title="Posts">Posts</a></li>
+      <li><a href="/posts/" title="Posts">Posts</a></li><li><a href="/penelitian/" title="Penelitian"><span>Penelitian</span></a></li>
       <li><a href="/about/" title="About">About</a></li>
       <li><a href="/program/" title="Program">Program</a></li>
     </ul>
@@ -50,9 +50,9 @@
       <div class="doc-subtitle">Mesin keputusan keamanan untuk event IoT di sisi edge.</div>
     </header>
 
-    <section class="doc-section">
-      <h2>Konsep Inti</h2>
-      <p>PALASIK mengevaluasi setiap event masuk lalu menetapkan keputusan security secara real-time.</p>
+      <section class="doc-section">
+        <h2>Konsep Inti</h2>
+        <p>PALASIK mengevaluasi setiap event masuk lalu menetapkan keputusan security secara real-time.</p>
       <ul>
         <li>Trust Engine menilai perilaku perangkat.</li>
         <li>Policy Engine menjalankan keputusan ALLOW / RESTRICT / DENY.</li>
@@ -77,10 +77,31 @@ demit:
   apps:
     - palasik</code></pre>
       <p>Untuk panduan instalasi penuh, health check, simulasi event, dan monitoring status, buka <a href="/palasik/teknis/#install-run">Dokumentasi Teknis PALASIK</a>.</p>
-      <figure class="doc-figure">
-        <img src="/assets/images/palasik/readme-init-check.png" alt="PALASIK init dan health check">
-        <figcaption>Capture ini menunjukkan alur paling awal yang sekarang dipakai sebagai panduan resmi: install, <code>palasik init</code>, lalu <code>palasik check</code>.</figcaption>
-      </figure>
+        <figure class="doc-figure">
+          <img src="/assets/images/palasik/readme-init-check.png" alt="PALASIK init dan health check">
+          <figcaption>Capture ini menunjukkan alur paling awal yang sekarang dipakai sebagai panduan resmi: install, <code>palasik init</code>, lalu <code>palasik check</code>.</figcaption>
+        </figure>
+      </section>
+
+      <section class="doc-section">
+        <h2>Rujukan Akademik</h2>
+        <p>Bila Anda menganggap dokumentasi ini sebagai bahan dasar riset:</p>
+        <ul>
+          <li><a href="/penelitian/academic-paper-palasik-edge-trust/">Adaptive Trust-Based Edge Decision for IIoT Security</a> (paper akademik).</li>
+          <li><a href="/penelitian/kerangka-acuan-penelitian/">Kerangka Acuan Penelitian Lanjutan</a> untuk desain eksperimen lanjutan.</li>
+          <li><a href="/docs/id/academic-center/">Pusat Pengembang Akademik</a> untuk referensi dan format sitasi.</li>
+        </ul>
+      </section>
+
+      <section class="doc-section">
+
+      <h2>Acuan Penelitian & Lanjutan</h2>
+      <p>Untuk riset lanjutan PALASIK dan PiTUSK, gunakan acuan metodologi dan indikator berikut:</p>
+      <ul>
+        <li><a href="/penelitian/kerangka-acuan-penelitian/">Kerangka Acuan Penelitian PALASIK-PiTUSK</a></li>
+      </ul>
+      <p>Dokumen ini berisi indikator reliability, variabel risiko, desain eksperimen, dan format data observasi agar hasil penelitian saling bisa dibandingkan.</p>
+
       <div class="spotlight-strip">
         <div class="spotlight-item"><strong>Langkah 1</strong><span>Install package lalu buat <code>config.yaml</code> baseline dengan <code>palasik init</code>.</span></div>
         <div class="spotlight-item"><strong>Langkah 2</strong><span>Validasi startup pipeline lewat <code>palasik check --config config.yaml</code>.</span></div>

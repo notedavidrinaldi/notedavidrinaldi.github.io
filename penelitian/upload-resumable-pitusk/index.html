@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="id" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>Upload Resumable PiTUSK | David Rinaldi</title>
+  <meta name="description" content="Catatan penelitian implementasi upload resumable untuk PiTUSK agar transfer data tetap aman saat koneksi edge tidak stabil.">
+  <meta name="author" content="David Rinaldi">
+  <meta name="keywords" content="PiTUSK, resumable upload, chunked upload, edge, Golang, Raspberry Pi">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/penelitian/upload-resumable-pitusk/">
+  <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>
+    localStorage.getItem("pref-theme") === "dark"
+      ? document.querySelector("html").dataset.theme = "dark"
+      : localStorage.getItem("pref-theme") === "light"
+        ? document.querySelector("html").dataset.theme = "light"
+        : window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? document.querySelector("html").dataset.theme = "dark"
+          : document.querySelector("html").dataset.theme = "light"
+  </script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
+</head>
+<body class="single docs-shell" id="top">
+  <header class="header">
+    <nav class="nav">
+      <div class="logo">
+        <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+        <div class="logo-switches">
+          <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+            <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+            <svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <ul id="menu">
+        <li><a href="/" title="Home">Home</a></li>
+        <li><a href="/palasik/" title="PALASIK Docs">PALASIK Docs</a></li>
+        <li><a href="/pitusk/" title="PiTUSK Docs">PiTUSK Docs</a></li>
+        <li><a href="/pitusk/executive-summary/" title="PiTUSK Executive">PiTUSK Executive</a></li>
+        <li><a href="/pitusk/teknis/" title="PiTUSK Teknis">PiTUSK Teknis</a></li>
+        <li><a href="/palasik/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+        <li><a href="/palasik/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
+        <li><a href="/palasik/stakeholder/" title="Stakeholder">Stakeholder</a></li>
+        <li><a href="/palasik/teknis/" title="Teknis">Teknis</a></li>
+        <li><a href="/demit/" title="DEMIT Runtime">DEMIT Runtime</a></li>
+        <li><a href="/docs/id/" title="Documentation Center">Documentation Center</a></li>
+        <li><a href="/docs/id/plan/" title="Plan">Plan</a></li>
+        <li><a href="/docs/id/history/" title="History">History</a></li>
+        <li><a href="/posts/" title="Posts">Posts</a></li>
+        <li><a href="/penelitian/" title="Penelitian"><span class="active">Penelitian</span></a></li>
+        <li><a href="/about/" title="About">About</a></li>
+        <li><a href="/program/" title="Program">Program</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main docs-shell">
+    <article class="post-single">
+      <header class="post-header">
+        <div class="doc-kicker">Karya Penelitian</div>
+        <h1 class="page-title">Resumable Upload PiTUSK untuk Koneksi Edge yang Sering Naik Turun</h1>
+        <p class="post-meta">Penulis: David Rinaldi · Februari 2026 · Fokus: keandalan upload</p>
+      </header>
+
+      <div class="post-content">
+        <h2>Latar Belakang</h2>
+        <p>PiTUSK dipakai untuk transfer file dari edge ke storage. Masalah yang sering muncul di lapangan: koneksi LTE/ISP suka drop saat malam hari, dan proses upload yang besar harus diulang dari nol. Itu membuang waktu dan mengganggu pipeline.
+        Tulisan ini berangkat dari permasalahan itu.</p>
+
+        <h2>Tujuan</h2>
+        <ul>
+          <li>Mengurangi pengulangan transfer penuh ketika koneksi terputus.</li>
+          <li>Menjaga integritas upload walau sesi upload pindah jaringan.</li>
+          <li>Menurunkan beban operator karena proses resume otomatis dan terukur.</li>
+        </ul>
+
+        <h2>Desain Teknis</h2>
+        <p>Model yang saya pakai memecah file menjadi chunk ukuran tetap lalu menyimpan progres upload lokal. Setelah drop, klien cukup mengirim ulang chunk yang belum lengkap. Server merekonstruksi berdasarkan state chunk-id yang tersimpan.
+        Kuncinya ada pada empat hal:</p>
+        <ol>
+          <li>Penentuan batas ukuran chunk agar overhead checksum tidak membengkak.</li>
+          <li>Retry berbasis jitter agar sesi berikutnya tidak menumpuk di menit yang sama.</li>
+          <li>Validasi checksum setiap chunk sebelum assembly akhir.</li>
+          <li>Idempotensi endpoint supaya pengiriman ulang tidak menghasilkan duplikasi.</li>
+        </ol>
+
+        <h2>Implementasi</h2>
+        <p>Saya membangun handler resume di PiTUSK untuk endpoint upload dengan checkpoint status. Pendekatan ini tidak menuntut arsitektur baru yang berat:</p>
+        <ul>
+          <li>State chunk disimpan terstruktur per <em>session upload</em>.</li>
+          <li>Progress ditampilkan di client agar operator bisa melihat sisa upload.</li>
+          <li>Jika sesi valid, pipeline melanjutkan dari offset terakhir; jika tidak valid, sesi di-reset aman.</li>
+        </ul>
+
+        <h2>Hasil Uji Singkat</h2>
+        <p>Dalam uji kecil dengan file 300 MB pada jaringan yang saya simulasi, durasi keseluruhan turun dibanding upload biasa karena restart total bisa dihindari. Dampak positifnya terasa saat cut-off terjadi di tengah transfer.</p>
+
+        <blockquote>
+          Dampak paling terasa bukan sekadar waktu, tapi kenapa operator jadi tenang: proses tidak memotong pekerjaan sendiri di tengah jalan.
+        </blockquote>
+
+        <h2>Kesimpulan</h2>
+        <p>Resumable upload memberi keuntungan nyata bila PiTUSK dipakai di lokasi dengan koneksi tidak stabil. Prinsip yang dipegang: <strong>jangan punah data karena gangguan jaringan</strong>, tetapi simpan progres dan lanjutkan dengan aman.</p>
+
+        <a class="hero-button hero-button-primary" href="/penelitian/">← Kembali ke daftar penelitian</a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <span>&copy; 2026 <a href="/">David Rinaldi</a></span> ·
+    <span>Powered by
+      <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+      <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener noreferrer" target="_blank">PaperMod</a>
+    </span>
+  </footer>
+
+  <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+  </a>
+
+  <script>
+    let menu = document.getElementById("menu");
+    if (menu) {
+      const e = localStorage.getItem("menu-scroll-position");
+      e && (menu.scrollLeft = parseInt(e, 10));
+      menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+      };
+    }
+
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+      document.body.scrollTop > 800 || document.documentElement.scrollTop > 800
+        ? (mybutton.style.visibility = "visible", mybutton.style.opacity = "1")
+        : (mybutton.style.visibility = "hidden", mybutton.style.opacity = "0");
+    };
+
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      const e = document.querySelector("html");
+      if (e.dataset.theme === "dark") {
+        e.dataset.theme = "light";
+        localStorage.setItem("pref-theme", "light");
+      } else {
+        e.dataset.theme = "dark";
+        localStorage.setItem("pref-theme", "dark");
+      }
+    });
+  </script>
+</body>
+</html>

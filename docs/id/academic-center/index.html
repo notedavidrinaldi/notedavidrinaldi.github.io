@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="id" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>Pusat Pengembang Akademik | David Rinaldi</title>
+  <meta name="description" content="Kumpulan dokumen rujukan akademik dari implementasi PALASIK dan PiTUSK yang siap dipakai untuk riset lanjut.">
+  <meta name="author" content="David Rinaldi">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/docs/id/academic-center/">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
+</head>
+<body class="single docs-shell" id="top">
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+      <div class="logo-switches"><button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">◐</button></div>
+    </div>
+    <div class="lang-switch" aria-label="Pilih bahasa">
+      <a href="/docs/id/academic-center/" aria-current="page">ID</a>
+      <a href="/docs/en/academic-center/">EN</a>
+    </div>
+    <ul id="menu">
+      <li><a href="/" title="Home">Home</a></li>
+      <li><a href="/palasik/" title="PALASIK Docs">PALASIK Docs</a></li>
+      <li><a href="/pitusk/" title="PiTUSK Docs">PiTUSK Docs</a></li>
+      <li><a href="/pitusk/executive-summary/" title="PiTUSK Executive">PiTUSK Executive</a></li>
+      <li><a href="/pitusk/teknis/" title="PiTUSK Teknis">PiTUSK Teknis</a></li>
+      <li><a href="/palasik/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+      <li><a href="/palasik/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
+      <li><a href="/palasik/stakeholder/" title="Stakeholder">Stakeholder</a></li>
+      <li><a href="/palasik/teknis/" title="Teknis">Teknis</a></li>
+      <li><a href="/demit/" title="DEMIT Runtime">DEMIT Runtime</a></li>
+      <li><a href="/docs/id/" title="Pusat Dokumentasi">Pusat Dokumentasi</a></li>
+      <li><a href="/docs/id/plan/" title="Rencana">Rencana</a></li>
+      <li><a href="/docs/id/history/" title="History">History</a></li>
+      <li><a href="/docs/id/academic-center/" class="active"><span class="active">Pengembang Akademik</span></a></li>
+      <li><a href="/penelitian/" title="Penelitian"><span>Penelitian</span></a></li>
+      <li><a href="/about/" title="About">About</a></li>
+      <li><a href="/program/" title="Program">Program</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main docs-shell">
+  <article class="post-single">
+    <header class="post-header">
+      <div class="doc-kicker">Pusat Akademik</div>
+      <h1 class="page-title">Pengembang Akademik untuk Riset PALASIK &amp; PiTUSK</h1>
+      <div class="doc-subtitle">Kumpulan karya tulis, kerangka metodologi, dan referensi yang dapat langsung dipakai untuk penelitian lanjutan.</div>
+    </header>
+
+    <section class="doc-section">
+      <h2>Konsep Pengembangan PALASIK → PiTUSK</h2>
+      <p>Konsep inti dari <strong>notedavidrinaldi</strong> adalah evolusi kemampuan edge dari fase keputusan ke fase ketahanan transfer data:</p>
+      <ol>
+        <li><strong>PALASIK</strong> membangun <em>decision engine</em> untuk keamanan real-time di edge.</li>
+        <li><strong>PiTUSK</strong> memperkuat sisi reliabilitas operasional dengan upload resumable dan resume-state yang dapat dipulihkan.</li>
+        <li>Hasilnya adalah arsitektur end-to-end: <strong>keputusan lebih cepat</strong> dan <strong>data tetap utuh</strong> saat koneksi tidak stabil.</li>
+      </ol>
+      <p>Tujuan ilmiah dari karya yang dirakit di sini adalah menempatkan perkembangan tersebut sebagai bukti metodologis yang terukur: bagaimana keahlian owner diterapkan sebagai sumbangan akademik untuk edge reliability di IIoT.</p>
+
+      <h3>Keahlian Kunci David Rinaldi sebagai Fokus Penelitian</h3>
+      <ul>
+        <li>Perancangan kebijakan keamanan berbasis <strong>trust-aware decision</strong> dan observabilitas audit.</li>
+        <li>Implementasi layanan <strong>Go</strong> untuk edge runtime dan data transfer industrial.</li>
+        <li>Integrasi sistem lintas platform: Raspberry Pi dan industrial gateway.</li>
+        <li>Operasionalisasi arsitektur dengan log schema, pengukuran metrik, dan validasi replikasi.</li>
+      </ul>
+
+      <p><strong>Fokus penulis/owner:</strong> membangun kontribusi akademik yang bisa dipakai ulang untuk mengevaluasi keputusan keamanan sekaligus reliabilitas transfer pada lingkungan edge nyata.</p>
+
+      <hr>
+
+      <h2>Tujuan Halaman</h2>
+      <p>Halaman ini dibuat agar tim pengembang, akademisi, dan kolaborator luar bisa memakai dokumentasi praktis dari PALASIK-PiTUSK sebagai sumber rujukan riset yang dapat dipertanggungjawabkan.</p>
+      <ul>
+        <li>Menstandarkan cara membaca bukti implementasi.</li>
+        <li>Membuka jalur referensi lintas karya (security, upload, dan edge reliability).</li>
+        <li>Menyediakan bahan kutipan awal untuk proposal, jurnal, atau tesis.</li>
+      </ul>
+    </section>
+
+    <section class="doc-section">
+      <h2>Arsip Karya Tulis</h2>
+      <div class="docs-grid">
+        <article class="doc-card">
+          <div class="doc-card-eyebrow">Paper 1</div>
+          <h3><a href="/penelitian/academic-paper-palasik-edge-trust/">Adaptive Trust-Based Edge Decision for IIoT Security</a></h3>
+          <p>Riset yang menempatkan trust score dan policy state machine PALASIK sebagai fondasi keputusan real-time di edge.</p>
+          <div class="doc-card-cta">Baca paper →</div>
+        </article>
+        <article class="doc-card">
+          <div class="doc-card-eyebrow">Paper 2</div>
+          <h3><a href="/penelitian/academic-paper-pitusk-resumable/">Resumable Edge Upload as Reliability Infrastructure</a></h3>
+          <p>Riset mengenai pengurangan kehilangan transfer saat koneksi tidak stabil melalui sesi resumable dan status-aware API.</p>
+          <div class="doc-card-cta">Baca paper →</div>
+        </article>
+        <article class="doc-card">
+          <div class="doc-card-eyebrow">Frame</div>
+          <h3><a href="/penelitian/kerangka-acuan-penelitian/">Kerangka Acuan Penelitian Lanjutan</a></h3>
+          <p>Template metodologi, variabel, log schema, dan indikator keberhasilan untuk riset lanjutan.</p>
+          <div class="doc-card-cta">Lihat framework →</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>Prasyarat untuk Sitasi Eksternal</h2>
+      <p>Untuk publikasi ilmiah, gunakan entri berikut dan tambahkan repository commit yang relevan:</p>
+      <pre><code>@techreport{rinaldi2026palasik,
+  title  = {Adaptive Trust-Based Edge Decision for IIoT Security: A PALASIK Case Paper},
+  author = {David Rinaldi},
+  year   = {2026},
+  url    = {https://notedavidrinaldi.github.io/penelitian/academic-paper-palasik-edge-trust/}
+}
+
+@techreport{rinaldi2026pitusk,
+  title  = {Resumable Edge Upload as Reliability Infrastructure: A PiTUSK Study},
+  author = {David Rinaldi},
+  year   = {2026},
+  url    = {https://notedavidrinaldi.github.io/penelitian/academic-paper-pitusk-resumable/}
+}</code></pre>
+    </section>
+
+    <section class="doc-section">
+      <h2>Rekomendasi Bagi Peneliti</h2>
+      <ol>
+        <li>Mulai dari karya PALASIK atau PiTUSK yang paling relevan dengan pertanyaan riset Anda.</li>
+        <li>Gunakan kerangka acuan penelitian untuk merancang hipotesis, metrik, dan protokol pengukuran yang konsisten.</li>
+        <li>Rekam dataset dengan field log baku agar dapat dibandingkan lintas eksperimen.</li>
+        <li>Lakukan replikasi lintas platform (contoh: Raspberry Pi dan Siemens) untuk menilai ketahanan solusi.</li>
+      </ol>
+    </section>
+  </article>
+</main>
+
+<footer class="footer"><span>&copy; 2026 <a href="https://notedavidrinaldi.github.io/">David Rinaldi</a></span></footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g"><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a>
+<script>
+  let menu = document.getElementById("menu");
+  if (menu) { const e = localStorage.getItem("menu-scroll-position"); e && (menu.scrollLeft = parseInt(e, 10)); menu.onscroll = function(){localStorage.setItem("menu-scroll-position", menu.scrollLeft);} }
+  document.getElementById("theme-toggle").addEventListener("click", () => { const root = document.querySelector("html"); if (root.dataset.theme === "dark") {root.dataset.theme = "light"; localStorage.setItem("pref-theme", "light");} else {root.dataset.theme = "dark"; localStorage.setItem("pref-theme", "dark");} });
+</script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="id" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>Rancangan Keputusan Edge untuk PALASIK | David Rinaldi</title>
+  <meta name="description" content="Karya tulis tentang rancangan trust score dan kebijakan real-time PALASIK untuk edge gateway pada lingkungan IIoT.">
+  <meta name="author" content="David Rinaldi">
+  <meta name="keywords" content="PALASIK, zero trust, edge computing, trust score, IIoT, Raspberry Pi">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/penelitian/rancangan-keputusan-edge-palasik/">
+  <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>
+    localStorage.getItem("pref-theme") === "dark"
+      ? document.querySelector("html").dataset.theme = "dark"
+      : localStorage.getItem("pref-theme") === "light"
+        ? document.querySelector("html").dataset.theme = "light"
+        : window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? document.querySelector("html").dataset.theme = "dark"
+          : document.querySelector("html").dataset.theme = "light"
+  </script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
+</head>
+<body class="single docs-shell" id="top">
+  <header class="header">
+    <nav class="nav">
+      <div class="logo">
+        <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+        <div class="logo-switches">
+          <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+            <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+            <svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <ul id="menu">
+        <li><a href="/" title="Home">Home</a></li>
+        <li><a href="/palasik/" title="PALASIK Docs">PALASIK Docs</a></li>
+        <li><a href="/pitusk/" title="PiTUSK Docs">PiTUSK Docs</a></li>
+        <li><a href="/pitusk/executive-summary/" title="PiTUSK Executive">PiTUSK Executive</a></li>
+        <li><a href="/pitusk/teknis/" title="PiTUSK Teknis">PiTUSK Teknis</a></li>
+        <li><a href="/palasik/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+        <li><a href="/palasik/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
+        <li><a href="/palasik/stakeholder/" title="Stakeholder">Stakeholder</a></li>
+        <li><a href="/palasik/teknis/" title="Teknis">Teknis</a></li>
+        <li><a href="/demit/" title="DEMIT Runtime">DEMIT Runtime</a></li>
+        <li><a href="/docs/id/" title="Documentation Center">Documentation Center</a></li>
+        <li><a href="/docs/id/plan/" title="Plan">Plan</a></li>
+        <li><a href="/docs/id/history/" title="History">History</a></li>
+        <li><a href="/posts/" title="Posts">Posts</a></li>
+        <li><a href="/penelitian/" title="Penelitian"><span class="active">Penelitian</span></a></li>
+        <li><a href="/about/" title="About">About</a></li>
+        <li><a href="/program/" title="Program">Program</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main docs-shell">
+    <article class="post-single">
+      <header class="post-header">
+        <div class="doc-kicker">Karya Penelitian</div>
+        <h1 class="page-title">Rancangan Keputusan Edge untuk Keamanan PALASIK</h1>
+        <p class="post-meta">Penulis: David Rinaldi · Oktober 2025 · Update pendekatan risiko real-time</p>
+      </header>
+
+      <div class="post-content">
+        <h2>Abstrak</h2>
+        <p>Pada proyek PALASIK, tantangan utama bukan hanya mendeteksi event, tapi menentukan keputusan cepat saat kondisi perangkat dan link jaringan berubah dalam hitungan detik. Tulisan ini memetakan model <em>trust score</em> yang dipakai di edge agar keputusan bisa diambil tanpa menunggu seluruh pipeline cloud.</p>
+
+        <h2>Permasalahan</h2>
+        <p>Pengamanan IoT di pabrik sering dibangun dengan pola: data selalu masuk, kemudian dinilai secara reaktif. Saat koneksi terputus, sistem cenderung berhenti bereaksi atau malah mengizinkan event yang belum tervalidasi. Kita butuh model yang menjaga kesinambungan keputusan sambil tetap disiplin terhadap risiko.</p>
+
+        <h2>Rancangan Model</h2>
+        <ol>
+          <li><strong>Trust score</strong> dipetakan dari empat sinyal: <em>source</em>, <em>kondisi node</em>, <em>nilai anomali temporal</em>, dan <em>status policy</em>.</li>
+          <li>Skor di-update terus menerus berdasarkan event terbaru agar kebijakan <strong>ALLOW / RESTRICT / DENY / QUARANTINE</strong> tidak statis.</li>
+          <li>Setiap keputusan diekspor sebagai jejak audit supaya dapat ditelusuri saat investigasi berikutnya.</li>
+          <li>Fallback rule disiapkan untuk mode koneksi buruk, termasuk mode degradasi aman agar traffic kritis tetap bisa diproses.</li>
+        </ol>
+
+        <h2>Hasil Lapangan</h2>
+        <p>Model ini diuji pada simulasi gateway dengan beban event sederhana, lalu dibandingkan dengan pendekatan aturan tetap. Hasil awal yang saya dapat:</p>
+        <ul>
+          <li>Respons kebijakan rata-rata menjadi lebih stabil saat burst traffic karena tidak membuat evaluasi ulang berulang ke cloud.</li>
+          <li>Jumlah event yang tertahan saat kondisi risk tinggi menurun karena threshold dinamis mengikuti jam operasi lapangan.</li>
+          <li>Audit log lebih kaya, sehingga korelasi insiden lebih cepat saat review mingguan.</li>
+        </ul>
+
+        <h2>Catatan Implementasi</h2>
+        <p>Di sisi praktis, bagian terpenting bukan hanya logika score itu sendiri, tapi <strong>disiplin observabilitas</strong>. Tanpa metrik kesehatan modul, perubahan aturan akan terlihat seperti “magic box.”</p>
+
+        <h2>Kesimpulan Sementara</h2>
+        <p>Kebijakan edge yang adaptif jauh lebih realistis untuk IIoT karena kondisi fisik jaringan tidak pernah ideal. Prinsipnya sederhana: lebih baik keputusan lokal konsisten, cepat, dan audit-able daripada menunggu analisis lengkap di luar edge.</p>
+
+        <div class="inline-note">
+          Karyaku ini ditulis dari pengalaman langsung saat meramu desain PALASIK pada versi awal sistem, lalu disederhanakan agar alurnya tetap bisa dipakai untuk dokumentasi internal tim.
+        </div>
+
+        <a class="hero-button hero-button-primary" href="/penelitian/">← Kembali ke daftar penelitian</a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <span>&copy; 2026 <a href="/">David Rinaldi</a></span> ·
+    <span>Powered by
+      <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+      <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener noreferrer" target="_blank">PaperMod</a>
+    </span>
+  </footer>
+
+  <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+  </a>
+
+  <script>
+    let menu = document.getElementById("menu");
+    if (menu) {
+      const e = localStorage.getItem("menu-scroll-position");
+      e && (menu.scrollLeft = parseInt(e, 10));
+      menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+      };
+    }
+
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+      document.body.scrollTop > 800 || document.documentElement.scrollTop > 800
+        ? (mybutton.style.visibility = "visible", mybutton.style.opacity = "1")
+        : (mybutton.style.visibility = "hidden", mybutton.style.opacity = "0");
+    };
+
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      const e = document.querySelector("html");
+      if (e.dataset.theme === "dark") {
+        e.dataset.theme = "light";
+        localStorage.setItem("pref-theme", "light");
+      } else {
+        e.dataset.theme = "dark";
+        localStorage.setItem("pref-theme", "dark");
+      }
+    });
+  </script>
+</body>
+</html>
