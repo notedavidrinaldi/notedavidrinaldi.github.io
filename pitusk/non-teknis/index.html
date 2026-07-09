@@ -1,0 +1,177 @@
+<!doctype html><html lang="id" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>PiTUSK Non-Teknis | David Rinaldi</title>
+  <meta name="description" content="Dokumentasi PiTUSK untuk tim non-teknis: operasi harian, resume upload, status service, dan langkah penanganan gangguan umum.">
+  <meta name="author" content="David Rinaldi">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/pitusk/non-teknis/">
+  <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>
+    localStorage.getItem("pref-theme") === "dark"
+      ? document.querySelector("html").dataset.theme = "dark"
+      : localStorage.getItem("pref-theme") === "light"
+        ? document.querySelector("html").dataset.theme = "light"
+        : window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? document.querySelector("html").dataset.theme = "dark"
+          : document.querySelector("html").dataset.theme = "light"
+  </script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
+</head>
+<body class="single docs-shell" id="top">
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+      <div class="logo-switches">
+        <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+          <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+      </div>
+    </div>
+    <ul id="menu">
+      <li><a href="/" title="Home">Home</a></li>
+      <li><a href="/pitusk/" title="PiTUSK Docs">PiTUSK Docs</a></li>
+      <li><a href="/pitusk/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+      <li><a href="/pitusk/non-teknis/" title="Non-Teknis"><span class="active">Non-Teknis</span></a></li>
+      <li><a href="/pitusk/stakeholder/" title="Stakeholder">Stakeholder</a></li>
+      <li><a href="/pitusk/teknis/" title="Teknis">Teknis</a></li>
+      <li><a href="/docs/id/pitusk/" title="PiTUSK Detail">PiTUSK Detail</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main docs-shell">
+  <article class="post-single">
+    <header class="post-header">
+      <div class="breadcrumbs"><a href="/">Home</a> &raquo; <a href="/pitusk/">PiTUSK</a> &raquo; <a href="/pitusk/non-teknis/">Non-Teknis</a></div>
+      <h1 class="page-title">PiTUSK untuk Tim Non-Teknis</h1>
+      <div class="doc-subtitle">Versi 1 halaman untuk operasi upload harian tanpa tenggelam di detail implementasi</div>
+    </header>
+
+    <section class="doc-section">
+      <h2>PiTUSK itu apa?</h2>
+      <p>PiTUSK adalah <strong>petugas jalur upload</strong> untuk file yang dikirim dari perangkat atau sistem edge.</p>
+      <p>Kalau koneksi putus di tengah jalan, upload tidak perlu diulang dari nol. PiTUSK menyimpan progresnya lalu melanjutkan dari posisi terakhir.</p>
+      <ul>
+        <li><strong>Create</strong>: buka sesi upload.</li>
+        <li><strong>Patch</strong>: kirim file per bagian.</li>
+        <li><strong>Head</strong>: cek posisi terakhir.</li>
+        <li><strong>Finalize</strong>: selesaikan upload dan pindahkan ke lokasi akhir.</li>
+      </ul>
+    </section>
+
+    <section class="doc-section">
+      <h2>Kenapa penting untuk operasi</h2>
+      <ul>
+        <li>Tidak membuang waktu mengulang file besar dari awal.</li>
+        <li>Lebih aman untuk jaringan edge yang tidak selalu stabil.</li>
+        <li>Status sesi bisa dilihat jelas: baru, sedang upload, selesai, sinkron, atau gagal.</li>
+        <li>Mudah dibedakan apakah masalah ada di jaringan, token, offset, atau sinkronisasi akhir.</li>
+      </ul>
+    </section>
+
+    <section class="doc-section">
+      <h2>Status yang perlu dipahami</h2>
+      <ul>
+        <li><strong>new</strong>: sesi baru dibuat, file belum mulai dikirim.</li>
+        <li><strong>uploading</strong>: chunk sedang masuk.</li>
+        <li><strong>finalized</strong>: file sudah lengkap dan dipindahkan ke lokasi final.</li>
+        <li><strong>synced</strong>: file sudah diteruskan ke target sinkronisasi.</li>
+        <li><strong>failed</strong>: ada gangguan yang perlu dicek operator atau engineer.</li>
+      </ul>
+    </section>
+
+    <section class="doc-section">
+      <h2>Peta mental kerja</h2>
+      <ol>
+        <li>Buat sesi upload.</li>
+        <li>Kirim file per chunk.</li>
+        <li>Jika koneksi putus, cek offset terakhir.</li>
+        <li>Lanjutkan dari offset itu.</li>
+        <li>Finalize jika total file sudah lengkap.</li>
+      </ol>
+    </section>
+
+    <section class="doc-section">
+      <h2>Cara kerja tim harian</h2>
+      <ul>
+        <li><strong>Mulai shift</strong>: cek <code>/healthz</code> dan <code>/readyz</code>.</li>
+        <li><strong>Saat upload macet</strong>: cek offset terakhir dengan <code>HEAD</code>.</li>
+        <li><strong>Jika file belum muncul di lokasi akhir</strong>: cek apakah sesi masih <code>uploading</code> atau belum <code>finalize</code>.</li>
+        <li><strong>Jika sinkronisasi lambat</strong>: tandai sebagai isu reliability, bukan langsung dianggap file hilang.</li>
+        <li><strong>Jika auth gagal</strong>: verifikasi token API lebih dulu sebelum investigasi storage.</li>
+      </ul>
+    </section>
+
+    <section class="doc-section">
+      <h2>Command kunci (tim operasi)</h2>
+      <div class="docs-grid">
+        <article class="doc-card">
+          <h3>Cek service hidup</h3>
+          <pre><code>curl http://localhost:8080/healthz</code></pre>
+          <p>Memastikan proses layanan aktif.</p>
+        </article>
+        <article class="doc-card">
+          <h3>Cek service siap</h3>
+          <pre><code>curl http://localhost:8080/readyz</code></pre>
+          <p>Memastikan layanan siap menerima upload baru.</p>
+        </article>
+        <article class="doc-card">
+          <h3>Lanjutkan upload</h3>
+          <pre><code>curl -I http://localhost:8080/v1/uploads/&lt;upload-id&gt;</code></pre>
+          <p>Mengambil offset terakhir agar upload bisa dilanjutkan.</p>
+        </article>
+        <article class="doc-card">
+          <h3>Cek status sesi</h3>
+          <pre><code>curl http://localhost:8080/v1/uploads/&lt;upload-id&gt;/status</code></pre>
+          <p>Melihat status yang sedang berjalan pada sesi itu.</p>
+        </article>
+        <article class="doc-card">
+          <h3>Finalize file</h3>
+          <pre><code>curl -X POST http://localhost:8080/v1/uploads/&lt;upload-id&gt;/finalize</code></pre>
+          <p>Menyelesaikan upload setelah seluruh chunk masuk.</p>
+        </article>
+        <article class="doc-card">
+          <h3>Lanjut kerja dev</h3>
+          <pre><code>make resume
+make resume-json</code></pre>
+          <p>Untuk meneruskan roadmap pengembangan yang sempat terputus.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>Kapan perlu eskalasi</h2>
+      <ul>
+        <li>Offset tidak bergerak meski chunk baru sudah dikirim.</li>
+        <li>Status berulang kali berhenti di <strong>failed</strong>.</li>
+        <li>Service sehat tetapi file tidak pernah sampai ke lokasi final.</li>
+        <li>Auth failure muncul berulang walau token sudah benar.</li>
+        <li>Banyak sesi upload tertinggal dan tidak terselesaikan.</li>
+      </ul>
+    </section>
+  </article>
+</main>
+
+<footer class="footer"><span>&copy; 2026 <a href="https://notedavidrinaldi.github.io/">David Rinaldi</a></span></footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g"><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a>
+<script>
+  const themeButton = document.getElementById("theme-toggle");
+  const html = document.documentElement;
+  themeButton.addEventListener("click", () => {
+    if (html.dataset.theme === "dark") { html.dataset.theme = "light"; localStorage.setItem("pref-theme", "light"); }
+    else { html.dataset.theme = "dark"; localStorage.setItem("pref-theme", "dark"); }
+  });
+  const topButton = document.getElementById("top-link");
+  window.onscroll = function() {
+    if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) { topButton.style.visibility = "visible"; topButton.style.opacity = "1"; }
+    else { topButton.style.visibility = "hidden"; topButton.style.opacity = "0"; }
+  };
+</script>
+</body>
+</html>

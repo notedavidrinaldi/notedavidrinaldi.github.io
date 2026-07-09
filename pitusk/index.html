@@ -38,7 +38,11 @@
       <li><a href="/" title="Home">Home</a></li>
       <li><a href="/palasik/" title="PALASIK Docs">PALASIK Docs</a></li>
       <li><a href="/pitusk/" title="PiTUSK Docs"><span class="active">PiTUSK Docs</span></a></li>
-      <li><a href="/docs/id/pitusk/" title="PiTUSK Teknis">PiTUSK Teknis</a></li>
+      <li><a href="/pitusk/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+      <li><a href="/pitusk/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
+      <li><a href="/pitusk/stakeholder/" title="Stakeholder">Stakeholder</a></li>
+      <li><a href="/pitusk/teknis/" title="Teknis">Teknis</a></li>
+      <li><a href="/docs/id/pitusk/" title="PiTUSK Detail">PiTUSK Detail</a></li>
       <li><a href="/docs/id/" title="Documentation Center">Documentation Center</a></li>
       <li><a href="/demit/" title="DEMIT Runtime">DEMIT Runtime</a></li>
       <li><a href="/posts/" title="Posts">Posts</a></li>
@@ -66,11 +70,11 @@
     <section class="hero-panel" aria-label="Portal PiTUSK">
       <div class="hero-grid">
         <div class="hero-copy">
-          <p>Portal ini dibuat agar PiTUSK mudah dipahami dari dua arah sekaligus: sebagai aplikasi yang bisa langsung dijalankan, dan sebagai framework yang bisa diadopsi atau dikembangkan lebih jauh.</p>
+          <p>Portal ini sekarang dirancang seperti rumah aplikasi PALASIK: pembaca tidak perlu menebak mulai dari mana. Tinggal pilih jalur baca sesuai peran, dari executive summary sampai dokumentasi teknis yang lengkap.</p>
           <div class="hero-actions">
-            <a class="hero-button hero-button-primary" href="/docs/id/pitusk/">Masuk ke Dokumentasi Lengkap</a>
-            <a class="hero-button" href="#quick-access">Lihat akses cepat</a>
-            <a class="hero-button" href="#architecture">Lihat arsitektur</a>
+            <a class="hero-button hero-button-primary" href="/pitusk/executive-summary/">Mulai dari Executive Summary</a>
+            <a class="hero-button" href="/pitusk/non-teknis/">Jalur Non-Teknis</a>
+            <a class="hero-button" href="/pitusk/teknis/">Jalur Teknis</a>
           </div>
           <div class="hero-stats">
             <div class="hero-stat"><strong>1 layanan inti</strong><span>Fokus pada upload chunked yang bisa dilanjutkan setelah koneksi putus atau perangkat restart.</span></div>
@@ -81,10 +85,10 @@
         <aside class="hero-aside">
           <h3>Rute paling sering dipakai</h3>
           <ul class="hero-list">
-            <li><a href="/docs/id/pitusk/#quick-start">Mulai cepat<small>Jalankan service lokal, buat sesi upload, kirim chunk, lalu finalize.</small></a></li>
-            <li><a href="/docs/id/pitusk/#api">Kontrak API<small>Lihat endpoint publik untuk create, patch, head, status, finalize, dan delete.</small></a></li>
-            <li><a href="/docs/id/pitusk/#operasional">Panduan operasional<small>Cek readiness, environment variable, dan langkah resume kerja.</small></a></li>
-            <li><a href="/docs/id/pitusk/#roadmap">Roadmap<small>Lihat yang sudah selesai dan yang masih jadi prioritas pengembangan.</small></a></li>
+            <li><a href="/pitusk/executive-summary/">Brief 1 menit<small>Untuk menjelaskan PiTUSK tanpa masuk ke detail implementasi.</small></a></li>
+            <li><a href="/pitusk/non-teknis/">Runbook ringan<small>Untuk operator yang perlu status layanan dan langkah resume upload.</small></a></li>
+            <li><a href="/pitusk/stakeholder/">Kontrol risiko<small>Untuk governance reliability, keamanan, dan prioritas hardening.</small></a></li>
+            <li><a href="/pitusk/teknis/">Deep dive teknis<small>Untuk endpoint API, arsitektur, framework v1, dan roadmap engineering.</small></a></li>
           </ul>
         </aside>
       </div>
@@ -96,6 +100,10 @@
         <div class="inner">
           <ul>
             <li><a href="#overview">Apa itu PiTUSK</a></li>
+            <li><a href="#executive">Executive Summary</a></li>
+            <li><a href="#non-teknis">Versi Non-Teknis</a></li>
+            <li><a href="#stakeholder">Versi Stakeholder</a></li>
+            <li><a href="#teknis">Dokumentasi Teknis</a></li>
             <li><a href="#quick-access">Masuk berdasarkan kebutuhan</a></li>
             <li><a href="#architecture">Arsitektur dasar</a></li>
             <li><a href="#api">API inti</a></li>
@@ -119,23 +127,73 @@
       </ul>
     </section>
 
+    <section id="executive" class="doc-section">
+      <h2>Executive Summary</h2>
+      <p>PiTUSK menjaga progres upload tetap aman di lingkungan edge yang tidak stabil, sekaligus menyiapkan jalur adopsi sebagai service maupun framework.</p>
+      <p><a href="/pitusk/executive-summary/">Buka halaman executive summary</a></p>
+    </section>
+
+    <section class="doc-section">
+      <h2>Masuk Berdasarkan Peran</h2>
+      <div class="path-grid">
+        <article class="path-card">
+          <h3>Eksekutif</h3>
+          <p>Butuh gambaran nilai, risiko, dan alasan kenapa layanan upload ini penting untuk edge operation.</p>
+          <a href="/pitusk/executive-summary/">Buka jalur eksekutif →</a>
+        </article>
+        <article class="path-card">
+          <h3>Operator</h3>
+          <p>Butuh langkah cepat saat upload terputus, sesi macet, atau status finalisasi belum selesai.</p>
+          <a href="/pitusk/non-teknis/">Buka jalur operator →</a>
+        </article>
+        <article class="path-card">
+          <h3>Stakeholder</h3>
+          <p>Butuh pemahaman risiko, readiness, backlog reliability, dan prioritas hardening sebelum rilis besar.</p>
+          <a href="/pitusk/stakeholder/">Buka jalur stakeholder →</a>
+        </article>
+        <article class="path-card">
+          <h3>Engineer</h3>
+          <p>Butuh arsitektur, API, framework v1, environment variable, dan roadmap implementation detail.</p>
+          <a href="/pitusk/teknis/">Buka jalur engineer →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="non-teknis" class="doc-section">
+      <h2>Versi Non-Teknis</h2>
+      <p>Ringkas operasional harian untuk tim upload: health, readiness, offset resume, dan penanganan gangguan umum.</p>
+      <p><a href="/pitusk/non-teknis/">Buka versi non-teknis</a></p>
+    </section>
+
+    <section id="stakeholder" class="doc-section">
+      <h2>Versi Stakeholder</h2>
+      <p>Ringkas dampak bisnis, kontrol reliability, indikator kesehatan layanan, dan backlog prioritas untuk governance.</p>
+      <p><a href="/pitusk/stakeholder/">Buka versi stakeholder</a></p>
+    </section>
+
+    <section id="teknis" class="doc-section">
+      <h2>Dokumentasi Teknis</h2>
+      <p>Arsitektur, quick start, endpoint API, mode framework, konfigurasi, reliability, security, dan roadmap engineering.</p>
+      <p><a href="/pitusk/teknis/">Buka dokumentasi teknis</a></p>
+    </section>
+
     <section id="quick-access" class="doc-section">
       <h2>Masuk Berdasarkan Kebutuhan</h2>
       <div class="path-grid">
         <article class="path-card">
           <h3>Saya ingin langsung menjalankan service</h3>
           <p>Masuk ke quick start untuk boot lokal, environment variable dasar, dan contoh alur <code>curl</code>.</p>
-          <a href="/docs/id/pitusk/#quick-start">Buka quick start →</a>
+          <a href="/pitusk/teknis/#quick">Buka quick start →</a>
         </article>
         <article class="path-card">
           <h3>Saya ingin mengintegrasikan sebagai framework</h3>
           <p>Lihat package publik <code>pkg/pitusk/v1</code>, contoh import, dan panduan migrasi dari API lama.</p>
-          <a href="/docs/id/pitusk/#framework">Buka jalur framework →</a>
+          <a href="/pitusk/teknis/#framework">Buka jalur framework →</a>
         </article>
         <article class="path-card">
           <h3>Saya sedang pegang operasi atau reliability</h3>
           <p>Baca health, readiness, sync worker, dan resume workflow agar troubleshooting lebih cepat.</p>
-          <a href="/docs/id/pitusk/#operasional">Buka panduan operasional →</a>
+          <a href="/pitusk/non-teknis/">Buka panduan operasional →</a>
         </article>
       </div>
     </section>
@@ -179,7 +237,7 @@
           <tr><td>GET</td><td><code>/readyz</code></td><td>Readiness layanan.</td></tr>
         </tbody>
       </table>
-      <p><a href="/docs/id/pitusk/">Buka dokumentasi lengkap endpoint dan operasional</a></p>
+      <p><a href="/pitusk/teknis/">Buka dokumentasi lengkap endpoint dan operasional</a></p>
     </section>
 
     <section id="quick-start" class="doc-section">
@@ -203,9 +261,9 @@ go run ./cmd/piresum</code></pre>
         <div class="spotlight-item"><strong>Reliability path</strong><span>Worker sync, SQLite metadata, dan finalize flow jadi fondasi recovery setelah gangguan.</span></div>
       </div>
       <ul>
-        <li><a href="/docs/id/pitusk/#operasional">Panduan operasional lengkap</a></li>
-        <li><a href="/docs/id/pitusk/#security">Catatan hardening dan keamanan</a></li>
-        <li><a href="/docs/id/pitusk/#roadmap">Status roadmap dan backlog prioritas</a></li>
+        <li><a href="/pitusk/non-teknis/">Panduan operasional lengkap</a></li>
+        <li><a href="/pitusk/teknis/#security">Catatan hardening dan keamanan</a></li>
+        <li><a href="/pitusk/teknis/#roadmap">Status roadmap dan backlog prioritas</a></li>
       </ul>
     </section>
 
@@ -221,7 +279,7 @@ go run ./cmd/piresum</code></pre>
     <section id="migration" class="doc-section">
       <h2>Migrasi API v1</h2>
       <p>Package yang direkomendasikan sekarang adalah <code>github.com/notedavidrinaldi/PiTUSK/pkg/pitusk/v1</code>, sedangkan <code>pkg/pitusk</code> tetap dipertahankan sebagai layer kompatibilitas sementara.</p>
-      <p><a href="/docs/id/pitusk/#migration">Buka panduan migrasi</a></p>
+      <p><a href="/pitusk/teknis/#migration">Buka panduan migrasi</a></p>
     </section>
   </article>
 </main>

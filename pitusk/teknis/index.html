@@ -1,0 +1,233 @@
+<!doctype html><html lang="id" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>Dokumentasi Teknis PiTUSK | David Rinaldi</title>
+  <meta name="description" content="Dokumentasi teknis PiTUSK: arsitektur, endpoint upload, mode framework, quick start, konfigurasi, reliability, dan roadmap engineering.">
+  <meta name="author" content="David Rinaldi">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/pitusk/teknis/">
+  <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>
+    localStorage.getItem("pref-theme") === "dark"
+      ? document.querySelector("html").dataset.theme = "dark"
+      : localStorage.getItem("pref-theme") === "light"
+        ? document.querySelector("html").dataset.theme = "light"
+        : window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? document.querySelector("html").dataset.theme = "dark"
+          : document.querySelector("html").dataset.theme = "light"
+  </script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
+</head>
+<body class="single docs-shell" id="top">
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+      <div class="logo-switches">
+        <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+          <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+      </div>
+    </div>
+    <ul id="menu">
+      <li><a href="/" title="Home">Home</a></li>
+      <li><a href="/pitusk/" title="PiTUSK Docs">PiTUSK Docs</a></li>
+      <li><a href="/pitusk/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+      <li><a href="/pitusk/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
+      <li><a href="/pitusk/stakeholder/" title="Stakeholder">Stakeholder</a></li>
+      <li><a href="/pitusk/teknis/" title="Teknis"><span class="active">Teknis</span></a></li>
+      <li><a href="/docs/id/pitusk/" title="PiTUSK Detail">PiTUSK Detail</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main docs-shell">
+  <article class="post-single">
+    <header class="post-header">
+      <div class="breadcrumbs"><a href="/">Home</a> &raquo; <a href="/pitusk/">PiTUSK</a> &raquo; <a href="/pitusk/teknis/">Teknis</a></div>
+      <h1 class="page-title">Dokumentasi Teknis PiTUSK</h1>
+      <div class="doc-subtitle">Panduan implementasi praktis untuk resumable upload berbasis Go di Raspberry Pi dan edge gateway</div>
+    </header>
+
+    <div class="toc">
+      <details open>
+        <summary accesskey="c" title="(Alt + C)"><span class="details">Daftar Isi</span></summary>
+        <div class="inner">
+          <ul>
+            <li><a href="#arsitektur">Arsitektur</a></li>
+            <li><a href="#alur">Alur Upload</a></li>
+            <li><a href="#quick">Mulai Cepat</a></li>
+            <li><a href="#api">Kontrak API</a></li>
+            <li><a href="#framework">Mode Framework</a></li>
+            <li><a href="#config">Konfigurasi Dasar</a></li>
+            <li><a href="#reliability">Reliability</a></li>
+            <li><a href="#security">Keamanan</a></li>
+            <li><a href="#ops">Operasional</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
+            <li><a href="#migration">Migrasi</a></li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <section id="arsitektur" class="doc-section">
+      <h2>Arsitektur</h2>
+      <div class="inline-note">PiTUSK berjalan sebagai service upload edge: API layer → upload engine → local staging/storage → metadata SQLite → sync worker.</div>
+      <table>
+        <thead><tr><th>Komponen</th><th>Peran</th><th>Catatan</th></tr></thead>
+        <tbody>
+          <tr><td>API Layer</td><td>HTTP endpoint</td><td>Validasi auth, header, routing, dan error mapping.</td></tr>
+          <tr><td>Upload Engine</td><td>Lifecyle session</td><td>Create, write chunk, offset validation, finalize, delete.</td></tr>
+          <tr><td>Storage Local</td><td>Staging + final file</td><td>Memisahkan lokasi upload sementara dan lokasi hasil akhir.</td></tr>
+          <tr><td>Metadata Repo</td><td>Status persisten</td><td>SQLite menyimpan offset, status, dan info sesi.</td></tr>
+          <tr><td>Sync Worker</td><td>Distribusi lanjutan</td><td>Target lokal tersedia, adapter lain masih berkembang.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="alur" class="doc-section">
+      <h2>Alur Upload</h2>
+      <pre><code>Create session → PATCH chunk → Update offset
+              → HEAD for resume → Finalize
+              → Sync worker (optional)</code></pre>
+      <p>Alur ini menjaga proses tetap idempotent secara operasional: client cukup tahu offset terakhir, lalu melanjutkan dari sana.</p>
+    </section>
+
+    <section id="quick" class="doc-section">
+      <h2>Mulai Cepat (5 menit)</h2>
+      <ol>
+        <li><strong>Jalankan service</strong><pre><code>cd /Users/davidrinaldi/Documents/PROJECT-DAVID/PiTUSK
+go run ./cmd/piresum</code></pre></li>
+        <li><strong>Buat sesi upload</strong><pre><code>curl -X POST http://localhost:8080/v1/uploads \
+  -H "Content-Type: application/json" \
+  -d '{"filename":"video.mp4","size_total":2048}'</code></pre></li>
+        <li><strong>Kirim chunk</strong><pre><code>curl -X PATCH http://localhost:8080/v1/uploads/&lt;upload-id&gt; \
+  -H "Upload-Offset: 0" \
+  --data-binary @chunk.bin</code></pre></li>
+        <li><strong>Resume jika putus</strong><pre><code>curl -I http://localhost:8080/v1/uploads/&lt;upload-id&gt;</code></pre></li>
+        <li><strong>Finalize</strong><pre><code>curl -X POST http://localhost:8080/v1/uploads/&lt;upload-id&gt;/finalize</code></pre></li>
+      </ol>
+    </section>
+
+    <section id="api" class="doc-section">
+      <h2>Kontrak API</h2>
+      <table>
+        <thead><tr><th>Method</th><th>Endpoint</th><th>Fungsi</th></tr></thead>
+        <tbody>
+          <tr><td>POST</td><td><code>/v1/uploads</code></td><td>Membuat sesi upload baru.</td></tr>
+          <tr><td>PATCH</td><td><code>/v1/uploads/{id}</code></td><td>Mengirim chunk berdasarkan <code>Upload-Offset</code>.</td></tr>
+          <tr><td>HEAD</td><td><code>/v1/uploads/{id}</code></td><td>Mengambil offset terkini untuk resume.</td></tr>
+          <tr><td>GET</td><td><code>/v1/uploads/{id}/status</code></td><td>Mengambil status sesi.</td></tr>
+          <tr><td>POST</td><td><code>/v1/uploads/{id}/finalize</code></td><td>Menyelesaikan dan memindahkan file ke jalur final.</td></tr>
+          <tr><td>DELETE</td><td><code>/v1/uploads/{id}</code></td><td>Membatalkan sesi upload.</td></tr>
+          <tr><td>GET</td><td><code>/healthz</code></td><td>Health check.</td></tr>
+          <tr><td>GET</td><td><code>/readyz</code></td><td>Readiness check.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="framework" class="doc-section">
+      <h2>Mode Framework</h2>
+      <pre><code>import "github.com/notedavidrinaldi/PiTUSK/pkg/pitusk/v1"
+
+cfg, err := v1.LoadConfig()
+server, err := v1.New(cfg, nil)
+if err != nil { panic(err) }
+if err := server.Run(); err != nil { panic(err) }</code></pre>
+      <p>Jalur publik yang direkomendasikan sekarang adalah <code>pkg/pitusk/v1</code>. Layer lama <code>pkg/pitusk</code> masih dipertahankan untuk backward compatibility.</p>
+    </section>
+
+    <section id="config" class="doc-section">
+      <h2>Konfigurasi Dasar</h2>
+      <ul>
+        <li><code>PI_TUSK_ADDR</code> default <code>:8080</code></li>
+        <li><code>PI_TUSK_STAGING_DIR</code> default <code>data/staging</code></li>
+        <li><code>PI_TUSK_FINAL_DIR</code> default <code>data/files</code></li>
+        <li><code>PI_TUSK_DB_PATH</code> default <code>data/piresum.sqlite</code></li>
+        <li><code>PI_TUSK_CHUNK_SIZE</code>, <code>PI_TUSK_MAX_FILE_SIZE</code>, <code>PI_TUSK_MAX_CONCURRENT</code></li>
+        <li><code>PI_TUSK_SYNC_ENABLED</code>, <code>PI_TUSK_SYNC_INTERVAL</code>, <code>PI_TUSK_SHUTDOWN_TIMEOUT</code>, <code>PI_TUSK_API_TOKEN</code></li>
+      </ul>
+    </section>
+
+    <section id="reliability" class="doc-section">
+      <h2>Reliability</h2>
+      <ul>
+        <li>Session dan offset dipersistenkan ke SQLite.</li>
+        <li>Worker sinkronisasi dasar sudah tersedia.</li>
+        <li>Target local copy sudah tersedia sebagai adapter awal.</li>
+        <li>Backlog reliability: adapter S3/MinIO, retry policy, DLQ, dan idempotency sync.</li>
+      </ul>
+    </section>
+
+    <section id="security" class="doc-section">
+      <h2>Keamanan</h2>
+      <ul>
+        <li>Auth token middleware sudah tersedia.</li>
+        <li>Validasi ukuran file, offset, dan status sesi sudah berjalan.</li>
+        <li>Prioritas berikutnya: sanitize nama file, proteksi path traversal, rate limit, dan audit log event sensitif.</li>
+      </ul>
+    </section>
+
+    <section id="ops" class="doc-section">
+      <h2>Operasional</h2>
+      <pre><code>curl http://localhost:8080/healthz
+curl http://localhost:8080/readyz
+make resume
+make resume-json</code></pre>
+      <p>Health dan readiness cocok untuk supervisi service, sedangkan command resume dipakai untuk melanjutkan pengembangan yang terhenti.</p>
+    </section>
+
+    <section id="roadmap" class="doc-section">
+      <h2>Roadmap</h2>
+      <ul>
+        <li>Foundation dan core framework contract sudah tersedia.</li>
+        <li>Sync reliability masih aktif dikembangkan.</li>
+        <li>Security hardening dan observability menjadi agenda sebelum rilis mayor.</li>
+        <li>Packaging komunitas disiapkan sebagai fase lanjutan.</li>
+      </ul>
+    </section>
+
+    <section id="migration" class="doc-section">
+      <h2>Migrasi</h2>
+      <pre><code>// Sebelum
+import "github.com/notedavidrinaldi/PiTUSK/pkg/pitusk"
+
+// Sesudah
+import "github.com/notedavidrinaldi/PiTUSK/pkg/pitusk/v1"</code></pre>
+      <p>Semua integrasi baru sebaiknya menggunakan path <code>v1</code> agar kontraknya stabil untuk pengembangan berikutnya.</p>
+    </section>
+  </article>
+</main>
+
+<footer class="footer"><span>&copy; 2026 <a href="https://notedavidrinaldi.github.io/">David Rinaldi</a></span></footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g"><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a>
+<script>
+  const themeButton = document.getElementById("theme-toggle");
+  const html = document.documentElement;
+  themeButton.addEventListener("click", () => {
+    if (html.dataset.theme === "dark") { html.dataset.theme = "light"; localStorage.setItem("pref-theme", "light"); }
+    else { html.dataset.theme = "dark"; localStorage.setItem("pref-theme", "dark"); }
+  });
+  const topButton = document.getElementById("top-link");
+  window.onscroll = function() {
+    if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) { topButton.style.visibility = "visible"; topButton.style.opacity = "1"; }
+    else { topButton.style.visibility = "hidden"; topButton.style.opacity = "0"; }
+  };
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function(e) {
+      e.preventDefault();
+      const id = this.getAttribute("href").substr(1);
+      const target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+      if (!target) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) target.scrollIntoView();
+      else target.scrollIntoView({ behavior: "smooth" });
+      id === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${id}`);
+    });
+  });
+</script>
+</body>
+</html>

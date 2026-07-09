@@ -1,0 +1,127 @@
+<!doctype html><html lang="id" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>PiTUSK untuk Stakeholder | David Rinaldi</title>
+  <meta name="description" content="Dokumentasi PiTUSK untuk stakeholder: dampak bisnis, kontrol risiko upload, health service, dan governance reliability.">
+  <meta name="author" content="David Rinaldi">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/pitusk/stakeholder/">
+  <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>
+    localStorage.getItem("pref-theme") === "dark"
+      ? document.querySelector("html").dataset.theme = "dark"
+      : localStorage.getItem("pref-theme") === "light"
+        ? document.querySelector("html").dataset.theme = "light"
+        : window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? document.querySelector("html").dataset.theme = "dark"
+          : document.querySelector("html").dataset.theme = "light"
+  </script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
+</head>
+<body class="single docs-shell" id="top">
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+      <div class="logo-switches">
+        <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+          <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+      </div>
+    </div>
+    <ul id="menu">
+      <li><a href="/" title="Home">Home</a></li>
+      <li><a href="/pitusk/" title="PiTUSK Docs">PiTUSK Docs</a></li>
+      <li><a href="/pitusk/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+      <li><a href="/pitusk/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
+      <li><a href="/pitusk/stakeholder/" title="Stakeholder"><span class="active">Stakeholder</span></a></li>
+      <li><a href="/pitusk/teknis/" title="Teknis">Teknis</a></li>
+      <li><a href="/docs/id/pitusk/" title="PiTUSK Detail">PiTUSK Detail</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main docs-shell">
+  <article class="post-single">
+    <header class="post-header">
+      <div class="breadcrumbs"><a href="/">Home</a> &raquo; <a href="/pitusk/">PiTUSK</a> &raquo; <a href="/pitusk/stakeholder/">Stakeholder</a></div>
+      <h1 class="page-title">PiTUSK untuk Stakeholder</h1>
+      <div class="doc-subtitle">Versi singkat untuk pimpinan, pemilik layanan, dan pengambil keputusan operasional</div>
+    </header>
+
+    <section class="doc-section">
+      <h2>Ringkasan untuk keputusan bisnis</h2>
+      <p><strong>PiTUSK</strong> adalah lapisan reliabilitas upload untuk perangkat edge dan sistem yang beroperasi pada jaringan yang tidak selalu stabil.</p>
+      <p>Nilai bisnisnya sederhana tetapi penting: <strong>mengurangi gagal upload</strong>, <strong>menghindari pengulangan transfer file besar</strong>, dan <strong>membuat troubleshooting lebih terukur</strong>.</p>
+    </section>
+
+    <section class="doc-section">
+      <h2>Nilai Operasional</h2>
+      <div class="docs-grid">
+        <article class="doc-card"><h3>Progress tidak hilang</h3><p>Session dan offset membuat transfer file bisa dilanjutkan setelah interupsi.</p></article>
+        <article class="doc-card"><h3>Recovery lebih cepat</h3><p>Tim operasi bisa memisahkan masalah jaringan, token, storage, dan sinkronisasi.</p></article>
+        <article class="doc-card"><h3>Adopsi lebih fleksibel</h3><p>Bisa dipakai sebagai service mandiri atau diserap sebagai framework v1 di aplikasi lain.</p></article>
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>Kontrak health untuk governance</h2>
+      <ul>
+        <li><strong>Service hidup</strong>: endpoint <code>/healthz</code> merespons normal.</li>
+        <li><strong>Service siap</strong>: endpoint <code>/readyz</code> merespons normal.</li>
+        <li><strong>Gangguan operasional</strong>: finalize gagal, sinkronisasi tertunda, atau offset mismatch meningkat.</li>
+        <li><strong>Gangguan akses</strong>: auth failure meningkat atau upload baru gagal dibuat.</li>
+      </ul>
+    </section>
+
+    <section class="doc-section">
+      <h2>Rantai kendali risiko</h2>
+      <ol>
+        <li>Validasi service hidup dan siap sebelum trafik diarahkan.</li>
+        <li>Pantau rasio sesi berhasil vs gagal.</li>
+        <li>Amati backlog sinkronisasi dan status finalization.</li>
+        <li>Eskalasikan jika sesi gagal atau retry manual meningkat.</li>
+        <li>Prioritaskan backlog security dan observability sebelum rilis mayor.</li>
+      </ol>
+    </section>
+
+    <section class="doc-section">
+      <h2>Indikator yang dipantau</h2>
+      <ul>
+        <li>Jumlah sesi <code>failed</code> per periode.</li>
+        <li>Rasio finalize berhasil dibanding sesi aktif.</li>
+        <li>Jumlah file yang sudah <code>finalized</code> tetapi belum <code>synced</code>.</li>
+        <li>Frekuensi auth failure dan offset mismatch.</li>
+        <li>Waktu pemulihan saat upload terputus di area edge.</li>
+      </ul>
+    </section>
+
+    <section class="doc-section">
+      <h2>Keputusan dan governance</h2>
+      <p>PiTUSK sudah layak diposisikan sebagai fondasi upload edge, namun backlog yang masih aktif harus diperlakukan sebagai prioritas governance: sanitize nama file, proteksi path traversal, retry/backoff sinkronisasi, rate limiting, dan observability.</p>
+      <p>Dengan kata lain, nilai layanan sudah terlihat, tetapi penguatan production-readiness masih perlu didorong secara disiplin.</p>
+    </section>
+  </article>
+</main>
+
+<footer class="footer"><span>&copy; 2026 <a href="https://notedavidrinaldi.github.io/">David Rinaldi</a></span></footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g"><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a>
+<script>
+  const themeButton = document.getElementById("theme-toggle");
+  const html = document.documentElement;
+  themeButton.addEventListener("click", () => {
+    if (html.dataset.theme === "dark") { html.dataset.theme = "light"; localStorage.setItem("pref-theme", "light"); }
+    else { html.dataset.theme = "dark"; localStorage.setItem("pref-theme", "dark"); }
+  });
+  const topButton = document.getElementById("top-link");
+  window.onscroll = function() {
+    if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) { topButton.style.visibility = "visible"; topButton.style.opacity = "1"; }
+    else { topButton.style.visibility = "hidden"; topButton.style.opacity = "0"; }
+  };
+</script>
+</body>
+</html>
