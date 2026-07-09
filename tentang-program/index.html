@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>Tentang Program | David Rinaldi</title>
+  <meta name="description" content="Ringkasan singkat tentang PALASIK dan DEMIT, dengan detail lengkap dokumentasi program di Notion.">
+  <meta name="author" content="David Rinaldi">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/tentang-program/">
+  <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>localStorage.getItem("pref-theme") === "dark"
+    ? document.querySelector("html").dataset.theme = "dark"
+    : localStorage.getItem("pref-theme") === "light"
+      ? document.querySelector("html").dataset.theme = "light"
+      : window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? document.querySelector("html").dataset.theme = "dark"
+        : document.querySelector("html").dataset.theme = "light"
+  </script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
+</head>
+<body class="single docs-shell" id="top">
+  <header class="header">
+    <nav class="nav">
+      <div class="logo">
+        <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+        <div class="logo-switches">
+          <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+            <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+            <svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <ul id="menu">
+        <li><a href="/" title="Home">Home</a></li>
+        <li><a href="/palasik/" title="PALASIK Docs">PALASIK Docs</a></li>
+        <li><a href="/palasik/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+        <li><a href="/palasik/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
+        <li><a href="/palasik/stakeholder/" title="Stakeholder">Stakeholder</a></li>
+        <li><a href="/palasik/teknis/" title="Teknis">Teknis</a></li>
+        <li><a href="/demit/" title="DEMIT Runtime">DEMIT Runtime</a></li>
+        <li><a href="/docs/id/" title="Documentation Center">Documentation Center</a></li>
+        <li><a href="/docs/id/plan/" title="Plan">Plan</a></li>
+        <li><a href="/docs/id/history/" title="History">History</a></li>
+        <li><a href="/posts/" title="Posts">Posts</a></li>
+        <li><a href="/about/" title="About">About</a></li>
+        <li><a href="/tentang-program/" title="Tentang Program"><span class="active">Tentang Program</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main docs-shell">
+    <article class="post-single">
+      <header class="post-header">
+        <div class="doc-kicker">Overview Ringkas</div>
+        <h1 class="page-title">Tentang Program</h1>
+        <div class="doc-subtitle">Ringkasnya: ini adalah pusat dokumentasi untuk runtime keamanan edge PALASIK + ekosistem DEMIT.</div>
+      </header>
+
+      <section class="doc-section">
+        <h2>Inti Program</h2>
+        <p>Program ini dibuat untuk menyatukan dokumentasi <strong>PALASIK</strong> dan <strong>DEMIT</strong> dalam satu alur yang praktis:</p>
+        <div class="docs-grid">
+          <article class="doc-card">
+            <div class="doc-card-eyebrow">Fokus Utama</div>
+            <h3>Pemahaman Singkat</h3>
+            <p>Menjelaskan kenapa PALASIK dibangun di edge, alur keputusannya, dan bagaimana pengendalian event dilakukan secara adaptif.</p>
+          </article>
+          <article class="doc-card">
+            <div class="doc-card-eyebrow">Pemakaian Nyata</div>
+            <h3>Jalur Praktis</h3>
+            <p>Dokumentasi dibagi peran: eksekutif, operator, stakeholder, dan teknis supaya siapa pun bisa langsung masuk ke poin yang dibutuhkan.</p>
+          </article>
+          <article class="doc-card">
+            <div class="doc-card-eyebrow">Operasional</div>
+            <h3>DEMIT + PALASIK</h3>
+            <p>DEMIT menjadi runtime host, sedangkan PALASIK berjalan sebagai modul keamanan untuk keputusan trust-policy di edge gateway.</p>
+          </article>
+          <article class="doc-card">
+            <div class="doc-card-eyebrow">Update</div>
+            <h3>Relevansi</h3>
+            <p>Struktur dokumentasi terus disesuaikan berdasarkan hasil uji lapangan dan temuan operasional supaya tetap sinkron dengan kondisi implementasi.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="doc-section">
+        <h2>Detail Lebih Lengkap</h2>
+        <p>Jika kamu butuh detail penuh (arsitektur, timeline, risiko, SOP, dan catatan keputusan teknis), buka halaman Notion berikut:</p>
+        <a class="hero-button hero-button-primary" href="https://app.notion.com/p/tes-3989be071c61804ebb34cf52684823f4?source=copy_link" target="_blank" rel="noopener noreferrer">Buka Dokumentasi Detail di Notion</a>
+        <p class="inline-note">Tautan Notion sudah diarahkan ke halaman program yang kamu kirim.</p>
+      </section>
+
+      <section class="doc-section">
+        <h2>Mulai dari Sini</h2>
+        <div class="path-grid">
+          <article class="path-card">
+            <h3>Untuk pemahaman cepat</h3>
+            <p>Baca portal <a href="/palasik/">PALASIK Docs</a> agar tahu struktur dasar terlebih dulu.</p>
+          </article>
+          <article class="path-card">
+            <h3>Untuk operasional harian</h3>
+            <p>Buka <a href="/palasik/non-teknis/">dokumen non-teknis</a> dan <a href="/palasik/teknis/">teknis</a>.</p>
+          </article>
+          <article class="path-card">
+            <h3>Untuk pengelola proyek</h3>
+            <p>Rujuk <a href="/docs/id/">documentation center</a> untuk rencana, sejarah perubahan, dan catatan peluncuran.</p>
+          </article>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <span>&copy; 2026 <a href="/">David Rinaldi</a></span> ·
+    <span>Powered by
+      <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+      <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener noreferrer" target="_blank">PaperMod</a>
+    </span>
+  </footer>
+
+  <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+  </a>
+
+  <script>
+    let menu = document.getElementById("menu");
+    if (menu) {
+      const e = localStorage.getItem("menu-scroll-position");
+      e && (menu.scrollLeft = parseInt(e, 10));
+      menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+      };
+    }
+
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+      document.body.scrollTop > 800 || document.documentElement.scrollTop > 800
+        ? (mybutton.style.visibility = "visible", mybutton.style.opacity = "1")
+        : (mybutton.style.visibility = "hidden", mybutton.style.opacity = "0");
+    };
+
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      const e = document.querySelector("html");
+      if (e.dataset.theme === "dark") {
+        e.dataset.theme = "light";
+        localStorage.setItem("pref-theme", "light");
+      } else {
+        e.dataset.theme = "dark";
+        localStorage.setItem("pref-theme", "dark");
+      }
+    });
+  </script>
+</body>
+</html>
