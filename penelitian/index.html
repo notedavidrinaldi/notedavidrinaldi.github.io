@@ -5,8 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <meta name="robots" content="index, follow">
-  <title>Penelitian | David Rinaldi</title>
-  <meta name="description" content="Kumpulan karya tulis ilmiah praktis terkait PALASIK, PiTUSK, dan implementasi edge computing pada sistem IIoT.">
+  <title>Jurnal Penelitian Ilmiah | David Rinaldi</title>
+  <meta name="description" content="Katalog jurnal ilmiah internal: paper formal, technical note, dan kerangka acuan penelitian PALASIK dan PiTUSK.">
   <meta name="author" content="David Rinaldi">
   <link rel="canonical" href="https://notedavidrinaldi.github.io/penelitian/">
   <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
@@ -72,57 +72,82 @@
     <article class="post-single">
       <header class="post-header">
         <div class="doc-kicker">Pusat Penelitian</div>
-        <h1 class="page-title">Penelitian</h1>
-        <div class="doc-subtitle">Konsep dan catatan implementasi dari riset kecil yang dipakai langsung untuk PALASIK, PiTUSK, dan arsitektur edge.</div>
+        <h1 class="page-title">Jurnal Penelitian Ilmiah</h1>
+        <div class="doc-subtitle">Semua hasil riset yang tersedia untuk dibaca, direview, dan dikembangkan kembali untuk standar ilmiah.</div>
       </header>
 
       <section class="doc-section">
-        <p>Semua tulisan di bawah ini ditulis dari hasil eksperimen langsung dan dokumentasi proyek, bukan prompt otomatis. Setiap karya dibuat untuk menjawab masalah nyata saat bangun sistem edge, bukan sekadar teori.</p>
-        <div class="docs-grid">
-          <article class="doc-card">
-            <div class="doc-card-eyebrow">Paper Akademik</div>
-            <h3><a href="/penelitian/academic-paper-palasik-edge-trust/">Adaptive Trust-Based Edge Decision for IIoT Security</a></h3>
-            <p>Versi karya tulis formal untuk model keputusan adaptif PALASIK berbasis trust score di lingkungan edge.</p>
-            <p><strong>Pilihan bahasa:</strong> <a href="/penelitian/academic-paper-palasik-edge-trust/">EN</a> | <a href="/penelitian/academic-paper-palasik-edge-trust/id/">ID</a></p>
-            <div class="doc-card-cta">Baca paper →</div>
-          </article>
+        <p>Gunakan menu ini sebagai satu navigasi portal jurnal penelitian. Setiap baris mengikuti format referensi: judul, kategori, publikasi, bahasa, dan akses versi.</p>
 
-          <article class="doc-card">
-            <div class="doc-card-eyebrow">Paper Akademik</div>
-            <h3><a href="/penelitian/academic-paper-pitusk-resumable/">Resumable Edge Upload as Reliability Infrastructure</a></h3>
-            <p>Versi karya tulis formal untuk topik reliabilitas transfer file dengan flow resumable dan state recovery di PiTUSK.</p>
-            <p><strong>Pilihan bahasa:</strong> <a href="/penelitian/academic-paper-pitusk-resumable/">EN</a> | <a href="/penelitian/academic-paper-pitusk-resumable/id/">ID</a></p>
-            <div class="doc-card-cta">Baca paper →</div>
-          </article>
-
-          <article class="doc-card">
-            <div class="doc-card-eyebrow">Acuan</div>
-            <h3><a href="/penelitian/kerangka-acuan-penelitian/">Kerangka Acuan Penelitian Lanjutan</a></h3>
-            <p>Template metodologi, indikator, dan dataset baku untuk riset berikutnya agar pengembangan PALASIK-PiTUSK tetap konsisten dan bisa dibandingkan antar siklus.</p>
-            <div class="doc-card-cta">Baca acuan →</div>
-          </article>
-
-          <article class="doc-card">
-            <div class="doc-card-eyebrow">Karya 1</div>
-            <h3><a href="/penelitian/rancangan-keputusan-edge-palasik/">Rancangan Keputusan Edge dengan PALASIK untuk Konteks Industri</a></h3>
-            <p>Riset ini menjelaskan bagaimana skoring trust dibangun di edge agar kebijakan keamanan tetap ringan, cepat, dan tidak bergantung cloud.</p>
-            <div class="doc-card-cta">Baca karya →</div>
-          </article>
-
-          <article class="doc-card">
-            <div class="doc-card-eyebrow">Karya 2</div>
-            <h3><a href="/penelitian/upload-resumable-pitusk/">Model Upload Resumable PiTUSK untuk Konektivitas Tidak Stabil</a></h3>
-            <p>Studi kasus implementasi upload chunked dan resume state pada edge agar operasi tetap jalan saat jaringan drop dan sinyal fluktuatif.</p>
-            <div class="doc-card-cta">Baca karya →</div>
-          </article>
-
-          <article class="doc-card">
-            <div class="doc-card-eyebrow">Karya 3</div>
-            <h3><a href="/penelitian/perbandingan-rpi-siemens-iot2050/">Evaluasi Raspberry Pi 3+ vs Siemens IOT2050 di Jalur Edge</a></h3>
-            <p>Perbandingan praktis untuk menentukan kapan Raspberry Pi cukup kuat dan kapan perangkat industrial memberi nilai tambah pada reliability.</p>
-            <div class="doc-card-cta">Baca karya →</div>
-          </article>
-        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>ISSN Internal</th>
+              <th>Judul</th>
+              <th>Kategori</th>
+              <th>Status</th>
+              <th>Tahun</th>
+              <th>Bahasa</th>
+              <th>Dokumen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>JP-2026-01</td>
+              <td>Adaptive Trust-Based Edge Decision for IIoT Security</td>
+              <td>Paper Akademik</td>
+              <td>Draft Review</td>
+              <td>2026</td>
+              <td>EN, ID</td>
+              <td><a href="/penelitian/academic-paper-palasik-edge-trust/">EN</a> · <a href="/penelitian/academic-paper-palasik-edge-trust/id/">ID</a></td>
+            </tr>
+            <tr>
+              <td>JP-2026-02</td>
+              <td>Resumable Edge Upload as Reliability Infrastructure</td>
+              <td>Paper Akademik</td>
+              <td>Draft Review</td>
+              <td>2026</td>
+              <td>EN, ID</td>
+              <td><a href="/penelitian/academic-paper-pitusk-resumable/">EN</a> · <a href="/penelitian/academic-paper-pitusk-resumable/id/">ID</a></td>
+            </tr>
+            <tr>
+              <td>JP-2026-03</td>
+              <td>Kerangka Acuan Penelitian Lanjutan</td>
+              <td>Framework</td>
+              <td>Ready</td>
+              <td>2026</td>
+              <td>ID</td>
+              <td><a href="/penelitian/kerangka-acuan-penelitian/">Akses Dokumen</a></td>
+            </tr>
+            <tr>
+              <td>JP-2026-04</td>
+              <td>Rancangan Keputusan Edge dengan PALASIK untuk Konteks Industri</td>
+              <td>Studi Kasus</td>
+              <td>Ready</td>
+              <td>2026</td>
+              <td>ID</td>
+              <td><a href="/penelitian/rancangan-keputusan-edge-palasik/">Akses Dokumen</a></td>
+            </tr>
+            <tr>
+              <td>JP-2026-05</td>
+              <td>Model Upload Resumable PiTUSK untuk Konektivitas Tidak Stabil</td>
+              <td>Studi Kasus</td>
+              <td>Ready</td>
+              <td>2026</td>
+              <td>ID</td>
+              <td><a href="/penelitian/upload-resumable-pitusk/">Akses Dokumen</a></td>
+            </tr>
+            <tr>
+              <td>JP-2026-06</td>
+              <td>Evaluasi Raspberry Pi 3+ vs Siemens IOT2050 di Jalur Edge</td>
+              <td>Perbandingan Teknologi</td>
+              <td>Ready</td>
+              <td>2026</td>
+              <td>ID</td>
+              <td><a href="/penelitian/perbandingan-rpi-siemens-iot2050/">Akses Dokumen</a></td>
+            </tr>
+          </tbody>
+        </table>
       </section>
     </article>
   </main>
