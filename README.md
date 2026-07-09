@@ -57,7 +57,10 @@ export SEARCH_INDEXER_NOTIFY_WEBHOOK=https://hooks.example.com/xxx
 export SEARCH_INDEXER_NOTIFY_WEBHOOK_PLATFORM=discord
 ```
 
-Workflow GitHub Actions membaca secret `SEARCH_INDEXER_NOTIFY_WEBHOOK`.
+Workflow GitHub Actions membaca secret:
+
+- `SEARCH_INDEXER_NOTIFY_WEBHOOK`
+- `SEARCH_INDEXER_NOTIFY_WEBHOOK_PLATFORM` (opsional: `auto`, `slack`, `discord`, `teams`)
 
 ## GitHub Actions
 

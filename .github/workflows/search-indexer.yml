@@ -17,6 +17,9 @@ jobs:
       - name: Kirim sinyal indexing sitemap
         id: indexer
         continue-on-error: true
+        env:
+          SEARCH_INDEXER_NOTIFY_WEBHOOK: ${{ secrets.SEARCH_INDEXER_NOTIFY_WEBHOOK }}
+          SEARCH_INDEXER_NOTIFY_WEBHOOK_PLATFORM: ${{ secrets.SEARCH_INDEXER_NOTIFY_WEBHOOK_PLATFORM }}
         run: |
           set +e
           bash program/search-indexer.sh \
@@ -31,6 +34,7 @@ jobs:
         if: ${{ steps.indexer.outputs.exit_code == '2' }}
         env:
           SEARCH_INDEXER_NOTIFY_WEBHOOK: ${{ secrets.SEARCH_INDEXER_NOTIFY_WEBHOOK }}
+          SEARCH_INDEXER_NOTIFY_WEBHOOK_PLATFORM: ${{ secrets.SEARCH_INDEXER_NOTIFY_WEBHOOK_PLATFORM }}
         run: |
           if [[ -z "${SEARCH_INDEXER_NOTIFY_WEBHOOK}" ]]; then
             echo "Webhook tidak dikonfigurasi; lewati alert manual."
@@ -39,10 +43,20 @@ jobs:
 
           message="search-indexer: workflow ${GITHUB_REPOSITORY} run ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID} exit=2 (gagal total)"
           message_escaped="$(printf '%s' "$message" | sed -e 's/\\/\\\\/g' -e 's/"/\\\"/g')"
+          webhook_platform="${SEARCH_INDEXER_NOTIFY_WEBHOOK_PLATFORM:-auto}"
+          if [[ "$webhook_platform" == "auto" ]]; then
+            if [[ "$SEARCH_INDEXER_NOTIFY_WEBHOOK" == *"discord.com/api/webhooks"* || "$SEARCH_INDEXER_NOTIFY_WEBHOOK" == *"discordapp.com/api/webhooks"* ]]; then
+              webhook_platform="discord"
+            elif [[ "$SEARCH_INDEXER_NOTIFY_WEBHOOK" == *"webhook.office.com"* || "$SEARCH_INDEXER_NOTIFY_WEBHOOK" == *"outlook.office.com/webhook"* || "$SEARCH_INDEXER_NOTIFY_WEBHOOK" == *"teams.microsoft.com"* ]]; then
+              webhook_platform="teams"
+            else
+              webhook_platform="slack"
+            fi
+          fi
 
-          if [[ "$SEARCH_INDEXER_NOTIFY_WEBHOOK" == *"discord.com/api/webhooks"* || "$SEARCH_INDEXER_NOTIFY_WEBHOOK" == *"discordapp.com/api/webhooks"* ]]; then
+          if [[ "$webhook_platform" == "discord" ]]; then
             payload="{\"content\":\"$message_escaped\"}"
-          elif [[ "$SEARCH_INDEXER_NOTIFY_WEBHOOK" == *"webhook.office.com"* || "$SEARCH_INDEXER_NOTIFY_WEBHOOK" == *"outlook.office.com/webhook"* || "$SEARCH_INDEXER_NOTIFY_WEBHOOK" == *"teams.microsoft.com"* ]]; then
+          elif [[ "$webhook_platform" == "teams" ]]; then
             payload="{\"@type\":\"MessageCard\",\"@context\":\"https://schema.org/extensions\",\"summary\":\"search-indexer fail\",\"title\":\"search-indexer fail\",\"text\":\"$message_escaped\"}"
           else
             payload="{\"text\":\"$message_escaped\"}"
