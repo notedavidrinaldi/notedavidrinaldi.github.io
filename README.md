@@ -73,6 +73,10 @@ Terpicu pada:
 - `push` ke branch `main`
 - `workflow_dispatch`
 
+Saat `workflow_dispatch`, bisa set input:
+
+- `webhook_platform` (`auto`, `slack`, `discord`, `teams`) — default `auto`
+
 Workflow menjalankan:
 
 ```bash

@@ -5,6 +5,11 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      webhook_platform:
+        description: "Platform webhook notifikasi (auto|slack|discord|teams)"
+        required: false
+        default: ""
 
 jobs:
   submit:
@@ -19,7 +24,7 @@ jobs:
         continue-on-error: true
         env:
           SEARCH_INDEXER_NOTIFY_WEBHOOK: ${{ secrets.SEARCH_INDEXER_NOTIFY_WEBHOOK }}
-          SEARCH_INDEXER_NOTIFY_WEBHOOK_PLATFORM: ${{ secrets.SEARCH_INDEXER_NOTIFY_WEBHOOK_PLATFORM }}
+          SEARCH_INDEXER_NOTIFY_WEBHOOK_PLATFORM: ${{ github.event.inputs.webhook_platform || secrets.SEARCH_INDEXER_NOTIFY_WEBHOOK_PLATFORM || 'auto' }}
         run: |
           set +e
           bash program/search-indexer.sh \
@@ -34,7 +39,7 @@ jobs:
         if: ${{ steps.indexer.outputs.exit_code == '2' }}
         env:
           SEARCH_INDEXER_NOTIFY_WEBHOOK: ${{ secrets.SEARCH_INDEXER_NOTIFY_WEBHOOK }}
-          SEARCH_INDEXER_NOTIFY_WEBHOOK_PLATFORM: ${{ secrets.SEARCH_INDEXER_NOTIFY_WEBHOOK_PLATFORM }}
+          SEARCH_INDEXER_NOTIFY_WEBHOOK_PLATFORM: ${{ github.event.inputs.webhook_platform || secrets.SEARCH_INDEXER_NOTIFY_WEBHOOK_PLATFORM || 'auto' }}
         run: |
           if [[ -z "${SEARCH_INDEXER_NOTIFY_WEBHOOK}" ]]; then
             echo "Webhook tidak dikonfigurasi; lewati alert manual."
