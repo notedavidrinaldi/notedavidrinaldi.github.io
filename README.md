@@ -67,6 +67,26 @@ Workflow GitHub Actions membaca secret:
 - `SEARCH_INDEXER_NOTIFY_WEBHOOK`
 - `SEARCH_INDEXER_NOTIFY_WEBHOOK_PLATFORM` (opsional: `auto`, `slack`, `discord`, `teams`)
 
+Contoh payload yang dikirim (contoh singkat):
+
+- Slack (atau platform default):
+
+```json
+{"text":"[search-indexer] OK: [Result] total=2, sukses=2, unknown=0, gagal=0, dry_run=0, engines=(...)"}
+```
+
+- Discord:
+
+```json
+{"content":"[search-indexer] FAILED: [Result] total=2, sukses=0, unknown=0, gagal=2, dry_run=0, engines=(...)"}
+```
+
+- Teams:
+
+```json
+{"@type":"MessageCard","@context":"https://schema.org/extensions","summary":"search-indexer FAILED","title":"search-indexer FAILED","text":"[search-indexer] FAILED: [Result] total=2, sukses=0, unknown=0, gagal=2, dry_run=0, engines=(...)"}
+```
+
 ## GitHub Actions
 
 Workflow otomatis ada di:
