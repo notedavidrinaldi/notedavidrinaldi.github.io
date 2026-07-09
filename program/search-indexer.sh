@@ -9,6 +9,7 @@ DEFAULT_BASE_URL="https://notedavidrinaldi.github.io"
 DEFAULT_ENGINES="google,bing"
 LOG_FILE=""
 NOTIFY_WEBHOOK="${SEARCH_INDEXER_NOTIFY_WEBHOOK:-}"
+NOTIFY_WEBHOOK_PLATFORM="${SEARCH_INDEXER_NOTIFY_WEBHOOK_PLATFORM:-auto}"
 
 readonly -a AVAILABLE_ENGINES=(
   "google:https://www.google.com/ping"
@@ -36,6 +37,7 @@ Options:
   --engines <names>          Daftar mesin (comma-separated), default: ${DEFAULT_ENGINES}
                              Contoh: --engines google,bing
   --notify-webhook <url>     URL webhook notifikasi (Slack/Discord/Teams). Default dari env SEARCH_INDEXER_NOTIFY_WEBHOOK
+  --notify-webhook-platform <platform>  Platform webhook (slack|discord|teams|auto). Default: auto
 
 Positional:
   base_url     Base URL website (default: ${DEFAULT_BASE_URL})
@@ -128,6 +130,18 @@ else
         NOTIFY_WEBHOOK="$(trim "${1#*=}")"
         shift
         ;;
+      --notify-webhook-platform)
+        if [[ $# -lt 2 ]]; then
+          echo "--notify-webhook-platform membutuhkan platform (slack|discord|teams|auto)" >&2
+          exit 2
+        fi
+        NOTIFY_WEBHOOK_PLATFORM="$(normalize_engine "$2")"
+        shift 2
+        ;;
+      --notify-webhook-platform=*)
+        NOTIFY_WEBHOOK_PLATFORM="$(normalize_engine "${1#*=}")"
+        shift
+        ;;
       --*)
         echo "Argumen tidak dikenal: $1" >&2
         print_usage
@@ -172,6 +186,15 @@ if [[ -z "$LOG_FILE" ]]; then
   mkdir -p "$LOG_DIR"
   LOG_FILE="$LOG_DIR/search-indexer-$(date +%Y%m%d-%H%M%S).log"
 fi
+
+case "$NOTIFY_WEBHOOK_PLATFORM" in
+  auto|slack|discord|teams) ;;
+  *)
+    echo "Platform webhook tidak valid: $NOTIFY_WEBHOOK_PLATFORM" >&2
+    echo "Nilai valid: slack, discord, teams, auto" >&2
+    exit 2
+    ;;
+esac
 
 IFS=',' read -r -a requested_engines <<< "$SELECTED_ENGINES"
 selected_pairs=()
@@ -225,9 +248,20 @@ notify_webhook() {
     -e 's/\\/\\\\/g' \
     -e 's/"/\\\"/g')"
 
-  if [[ "$NOTIFY_WEBHOOK" == *"discord.com/api/webhooks"* || "$NOTIFY_WEBHOOK" == *"discordapp.com/api/webhooks"* ]]; then
+  local webhook_platform="$NOTIFY_WEBHOOK_PLATFORM"
+  if [[ "$webhook_platform" == "auto" ]]; then
+    if [[ "$NOTIFY_WEBHOOK" == *"discord.com/api/webhooks"* || "$NOTIFY_WEBHOOK" == *"discordapp.com/api/webhooks"* ]]; then
+      webhook_platform="discord"
+    elif [[ "$NOTIFY_WEBHOOK" == *"webhook.office.com"* || "$NOTIFY_WEBHOOK" == *"outlook.office.com/webhook"* || "$NOTIFY_WEBHOOK" == *"teams.microsoft.com"* ]]; then
+      webhook_platform="teams"
+    else
+      webhook_platform="slack"
+    fi
+  fi
+
+  if [[ "$webhook_platform" == "discord" ]]; then
     payload="{\"content\":\"${escaped_message}\"}"
-  elif [[ "$NOTIFY_WEBHOOK" == *"webhook.office.com"* || "$NOTIFY_WEBHOOK" == *"outlook.office.com/webhook"* || "$NOTIFY_WEBHOOK" == *"teams.microsoft.com"* ]]; then
+  elif [[ "$webhook_platform" == "teams" ]]; then
     payload="{\"@type\":\"MessageCard\",\"@context\":\"https://schema.org/extensions\",\"summary\":\"search-indexer ${status_text}\",\"title\":\"search-indexer ${status_text}\",\"text\":\"${escaped_message}\"}"
   else
     payload="{\"text\":\"${escaped_message}\"}"

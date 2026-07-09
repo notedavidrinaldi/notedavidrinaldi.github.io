@@ -39,6 +39,7 @@ bash program/search-indexer.sh --help
 bash program/search-indexer.sh --dry-run
 bash program/search-indexer.sh --timeout 30 --log-file /tmp/indexer.log https://notedavidrinaldi.github.io
 SEARCH_INDEXER_NOTIFY_WEBHOOK=https://hooks.slack.com/services/xxx bash program/search-indexer.sh https://notedavidrinaldi.github.io
+bash program/search-indexer.sh --notify-webhook https://hooks.example.com/xxx --notify-webhook-platform discord --timeout 30 https://notedavidrinaldi.github.io
 ```
 
 ### Exit code
@@ -53,6 +54,7 @@ SEARCH_INDEXER_NOTIFY_WEBHOOK=https://hooks.slack.com/services/xxx bash program/
 
 ```bash
 export SEARCH_INDEXER_NOTIFY_WEBHOOK=https://hooks.example.com/xxx
+export SEARCH_INDEXER_NOTIFY_WEBHOOK_PLATFORM=discord
 ```
 
 Workflow GitHub Actions membaca secret `SEARCH_INDEXER_NOTIFY_WEBHOOK`.
