@@ -31,7 +31,7 @@ Usage:
 
 Options:
   -h, --help                Tampilkan bantuan ini
-  --dry-run                  Simulasi kirim, tidak melakukan request ke mesin pencari
+  --dry-run                  Simulasi kirim, tidak melakukan request ke mesin pencari (dan skip notifikasi webhook)
   --timeout <sec>            Timeout koneksi/curl (default: ${DEFAULT_TIMEOUT})
   --log-file <path>          Lokasi file log (default: ${LOG_DIR}/search-indexer-<timestamp>.log)
   --engines <names>          Daftar mesin (comma-separated), default: ${DEFAULT_ENGINES}
@@ -351,6 +351,11 @@ log "[Result] Jika sukses=total, script selesai sukses."
 log "[Info] robots.txt: ${BASE_URL}/robots.txt"
 
 RESULT_MESSAGE="[Result] total=${TOTAL_REQUESTS}, sukses=${SUCCESS_COUNT}, unknown=${UNKNOWN_COUNT}, gagal=${FAIL_COUNT}, dry_run=${DRY_RUN}, engines=${selected_pairs[*]}"
+
+if [[ "$DRY_RUN" == "1" ]]; then
+  log "[Result] Mode DRY-RUN: skip notifikasi webhook."
+  exit 0
+fi
 
 if [[ "$SUCCESS_COUNT" -eq "$TOTAL_REQUESTS" && "$FAIL_COUNT" -eq 0 && "$UNKNOWN_COUNT" -eq 0 ]]; then
   notify_webhook "OK" "$RESULT_MESSAGE"
