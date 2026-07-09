@@ -7,7 +7,16 @@
   <meta name="robots" content="index, follow">
   <title>Jurnal Penelitian Ilmiah | David Rinaldi</title>
   <meta name="description" content="Katalog jurnal ilmiah internal: paper formal, technical note, dan kerangka acuan penelitian PALASIK dan PiTUSK.">
+  <meta name="keywords" content="Jurnal Penelitian, PALASIK, PiTUSK, IIoT, Edge Computing, Trust-Based Security, Resumable Upload, Rujukan Ilmiah">
   <meta name="author" content="David Rinaldi">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jurnal Penelitian Ilmiah | David Rinaldi">
+  <meta property="og:description" content="Jurnal ilmiah terpusat untuk karya tulis, studi kasus, dan kerangka metodologi PALASIK serta PiTUSK.">
+  <meta property="og:url" content="https://notedavidrinaldi.github.io/penelitian/">
+  <meta property="og:site_name" content="Notedavidrinaldi">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Jurnal Penelitian Ilmiah | David Rinaldi">
+  <meta name="twitter:description" content="Pusat jurnal penelitian untuk pengembangan karya ilmiah PALASIK dan PiTUSK.">
   <link rel="canonical" href="https://notedavidrinaldi.github.io/penelitian/">
   <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
   <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
@@ -19,6 +28,57 @@
         : window.matchMedia("(prefers-color-scheme: dark)").matches
           ? document.querySelector("html").dataset.theme = "dark"
           : document.querySelector("html").dataset.theme = "light"
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "@id": "https://notedavidrinaldi.github.io/penelitian/",
+      "url": "https://notedavidrinaldi.github.io/penelitian/",
+      "name": "Jurnal Penelitian Ilmiah",
+      "inLanguage": "id",
+      "description": "Satu gerbang arsip untuk paper dan hasil studi PALASIK dan PiTUSK dengan format referensi ilmiah.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Notedavidrinaldi",
+        "url": "https://notedavidrinaldi.github.io/"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "David Rinaldi",
+        "url": "https://notedavidrinaldi.github.io/"
+      },
+      "editor": {
+        "@type": "Person",
+        "name": "David Rinaldi"
+      },
+      "hasPart": [
+        {
+          "@type": "ScholarlyArticle",
+          "headline": "Adaptive Trust-Based Edge Decision for IIoT Security",
+          "url": "https://notedavidrinaldi.github.io/penelitian/academic-paper-palasik-edge-trust/",
+          "datePublished": "2026-01-01",
+          "author": {
+            "@type": "Person",
+            "name": "David Rinaldi"
+          },
+          "keywords": ["edge security", "trust score", "industrial IoT", "PALASIK"],
+          "inLanguage": "en"
+        },
+        {
+          "@type": "ScholarlyArticle",
+          "headline": "Resumable Edge Upload as Reliability Infrastructure",
+          "url": "https://notedavidrinaldi.github.io/penelitian/academic-paper-pitusk-resumable/",
+          "datePublished": "2026-01-01",
+          "author": {
+            "@type": "Person",
+            "name": "David Rinaldi"
+          },
+          "keywords": ["resumable upload", "edge transport", "PiTUSK", "reliability"],
+          "inLanguage": "en"
+        }
+      ]
+    }
   </script>
   <link rel="stylesheet" href="/css/palasik-doc.css">
 </head>
@@ -77,7 +137,27 @@
       </header>
 
       <section class="doc-section">
-        <p>Gunakan menu ini sebagai satu navigasi portal jurnal penelitian. Setiap baris mengikuti format referensi: judul, kategori, publikasi, bahasa, dan akses versi.</p>
+        <div class="doc-tags">
+          <span class="tag">Jurnal Rujukan Utama</span>
+          <span class="tag">Indonesian Research Journal Collection</span>
+          <span class="tag">IIoT &amp; Edge Research</span>
+          <span class="tag">Reusable Evidence</span>
+        </div>
+
+        <p>Portal ini dibuat sebagai <strong>sumber rujukan utama</strong> untuk pengembangan penelitian lanjutan, bukan sekadar catatan dokumentasi teknis. Struktur kami gunakan mengikuti format katalog jurnal: identitas karya, kategori, status verifikasi, dan akses dokumen.</p>
+
+        <div class="doc-card" style="margin-bottom:0.85rem;">
+          <div class="doc-card-eyebrow">Informasi Penerbitan</div>
+          <h3>Jurnal Penelitian Ilmiah David Rinaldi</h3>
+          <p><strong>ISSN Internal:</strong> JDR-ISSN-2026</p>
+          <p><strong>Edisi:</strong> 2026 Vol. 1 (Pilot)</p>
+          <p><strong>Fokus:</strong> Edge security, transport reliability, metodologi implementasi, dan validasi operasional.</p>
+          <p><strong>Bahasa:</strong> Indonesia dan Inggris.</p>
+          <p><strong>Tujuan:</strong> Menjadi acuan berkelanjutan untuk karya ilmiah lanjutan dan kolaborasi riset.</p>
+        </div>
+
+        <h2>Daftar Isi Jurnal</h2>
+        <p>Setiap entri memuat status akademik, bukan sekadar daftar artikel.</p>
 
         <table>
           <thead>
@@ -87,6 +167,8 @@
               <th>Kategori</th>
               <th>Status</th>
               <th>Tahun</th>
+              <th>Volume</th>
+              <th>Jenis Rujukan</th>
               <th>Bahasa</th>
               <th>Dokumen</th>
             </tr>
@@ -98,6 +180,8 @@
               <td>Paper Akademik</td>
               <td>Draft Review</td>
               <td>2026</td>
+              <td>Vol. 1, No. 1</td>
+              <td>Artikel Acuan / International Draft</td>
               <td>EN, ID</td>
               <td><a href="/penelitian/academic-paper-palasik-edge-trust/">EN</a> · <a href="/penelitian/academic-paper-palasik-edge-trust/id/">ID</a></td>
             </tr>
@@ -107,6 +191,8 @@
               <td>Paper Akademik</td>
               <td>Draft Review</td>
               <td>2026</td>
+              <td>Vol. 1, No. 2</td>
+              <td>Artikel Acuan / International Draft</td>
               <td>EN, ID</td>
               <td><a href="/penelitian/academic-paper-pitusk-resumable/">EN</a> · <a href="/penelitian/academic-paper-pitusk-resumable/id/">ID</a></td>
             </tr>
@@ -116,6 +202,8 @@
               <td>Framework</td>
               <td>Ready</td>
               <td>2026</td>
+              <td>Vol. 1, No. 3</td>
+              <td>Metodologi</td>
               <td>ID</td>
               <td><a href="/penelitian/kerangka-acuan-penelitian/">Akses Dokumen</a></td>
             </tr>
@@ -125,6 +213,8 @@
               <td>Studi Kasus</td>
               <td>Ready</td>
               <td>2026</td>
+              <td>Vol. 1, No. 4</td>
+              <td>Studi Kasus</td>
               <td>ID</td>
               <td><a href="/penelitian/rancangan-keputusan-edge-palasik/">Akses Dokumen</a></td>
             </tr>
@@ -134,6 +224,8 @@
               <td>Studi Kasus</td>
               <td>Ready</td>
               <td>2026</td>
+              <td>Vol. 1, No. 5</td>
+              <td>Studi Kasus</td>
               <td>ID</td>
               <td><a href="/penelitian/upload-resumable-pitusk/">Akses Dokumen</a></td>
             </tr>
@@ -143,11 +235,24 @@
               <td>Perbandingan Teknologi</td>
               <td>Ready</td>
               <td>2026</td>
+              <td>Vol. 1, No. 6</td>
+              <td>Evaluasi Teknik</td>
               <td>ID</td>
               <td><a href="/penelitian/perbandingan-rpi-siemens-iot2050/">Akses Dokumen</a></td>
             </tr>
           </tbody>
         </table>
+
+        <h2>Sumber Rujukan yang Disarankan</h2>
+        <p>Untuk penelitian lanjutan, gunakan format sitasi berikut sebagai rujukan awal, lalu lengkapi dengan DOI/ISBN jika sudah tersedia.</p>
+        <ul>
+          <li>APA (Ringkas): Nama Belakang, Inisial. (Tahun). Judul artikel. <em>Jurnal Penelitian Ilmiah David Rinaldi</em>, Vol.1(No. x), halaman.</li>
+          <li>Chicago/BibTeX: gunakan blok <code>@article</code> dan ID jurnal yang ada di kolom ISSN Internal.</li>
+          <li>Cross-language citation: tulis judul asli + terjemahan judul di belakang.</li>
+        </ul>
+
+        <h2>Untuk Publikasi Lanjutan</h2>
+        <p>Jika digunakan sebagai sumber akademik, sebaiknya lampirkan data pendukung di lampiran masing-masing paper: rentang data, metrik evaluasi, batas validitas, dan bukti replikasi. Hal ini penting untuk meningkatkan kredibilitas saat diajukan ke reviewer.</p>
       </section>
     </article>
   </main>
