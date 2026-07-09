@@ -218,10 +218,20 @@ notify_webhook() {
     return 0
   fi
 
-  local safe_message
-  safe_message="$(printf '%s' "$message" | sed 's/\\/\\\\/g; s/"/\\\"/g')"
-  local payload
-  payload="{\"text\":\"[search-indexer] ${status_text}: ${safe_message}\"}"
+  local escaped_message payload
+  local full_message="[search-indexer] ${status_text}: ${message}"
+
+  escaped_message="$(printf '%s' "$full_message" | sed \
+    -e 's/\\/\\\\/g' \
+    -e 's/"/\\\"/g')"
+
+  if [[ "$NOTIFY_WEBHOOK" == *"discord.com/api/webhooks"* || "$NOTIFY_WEBHOOK" == *"discordapp.com/api/webhooks"* ]]; then
+    payload="{\"content\":\"${escaped_message}\"}"
+  elif [[ "$NOTIFY_WEBHOOK" == *"webhook.office.com"* || "$NOTIFY_WEBHOOK" == *"outlook.office.com/webhook"* || "$NOTIFY_WEBHOOK" == *"teams.microsoft.com"* ]]; then
+    payload="{\"@type\":\"MessageCard\",\"@context\":\"https://schema.org/extensions\",\"summary\":\"search-indexer ${status_text}\",\"title\":\"search-indexer ${status_text}\",\"text\":\"${escaped_message}\"}"
+  else
+    payload="{\"text\":\"${escaped_message}\"}"
+  fi
 
   curl -sS -m "$TIMEOUT" -X POST \
     -H 'Content-Type: application/json' \

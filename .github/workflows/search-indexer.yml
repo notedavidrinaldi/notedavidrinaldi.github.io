@@ -38,7 +38,15 @@ jobs:
           fi
 
           message="search-indexer: workflow ${GITHUB_REPOSITORY} run ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID} exit=2 (gagal total)"
-          payload="{\"text\":\"${message}\"}"
+          message_escaped="$(printf '%s' "$message" | sed -e 's/\\/\\\\/g' -e 's/"/\\\"/g')"
+
+          if [[ "$SEARCH_INDEXER_NOTIFY_WEBHOOK" == *"discord.com/api/webhooks"* || "$SEARCH_INDEXER_NOTIFY_WEBHOOK" == *"discordapp.com/api/webhooks"* ]]; then
+            payload="{\"content\":\"$message_escaped\"}"
+          elif [[ "$SEARCH_INDEXER_NOTIFY_WEBHOOK" == *"webhook.office.com"* || "$SEARCH_INDEXER_NOTIFY_WEBHOOK" == *"outlook.office.com/webhook"* || "$SEARCH_INDEXER_NOTIFY_WEBHOOK" == *"teams.microsoft.com"* ]]; then
+            payload="{\"@type\":\"MessageCard\",\"@context\":\"https://schema.org/extensions\",\"summary\":\"search-indexer fail\",\"title\":\"search-indexer fail\",\"text\":\"$message_escaped\"}"
+          else
+            payload="{\"text\":\"$message_escaped\"}"
+          fi
 
           curl -sS -m 10 -X POST \
             -H 'Content-Type: application/json' \
