@@ -108,6 +108,14 @@ Workflow menjalankan:
 bash program/search-indexer.sh --timeout 30 --engines google,bing https://notedavidrinaldi.github.io https://notedavidrinaldi.github.io/sitemap.xml
 ```
 
+### Trigger manual (tanpa gh CLI)
+
+- Buka:
+  https://github.com/notedavidrinaldi/notedavidrinaldi.github.io/actions/workflows/search-indexer.yml
+- Klik **Run workflow**, isi:
+  - `webhook_platform`: `auto`, `slack`, `discord`, atau `teams`
+- Klik **Run workflow**.
+
 ## Catatan
 
 - Jika endpoint mesin pencari merespons kode yang bukan sukses, exit code bisa `1` atau `2`.
