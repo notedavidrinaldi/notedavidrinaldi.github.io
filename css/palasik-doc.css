@@ -757,6 +757,223 @@ blockquote {
   background: var(--docs-surface-soft);
 }
 
+.navigator-shell {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.navigator-controls,
+.navigator-output {
+  border: 1px solid var(--docs-border);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--docs-surface) 92%, transparent);
+  box-shadow: var(--docs-shadow);
+}
+
+.navigator-controls {
+  padding: 1rem;
+  position: sticky;
+  top: 5.8rem;
+}
+
+.navigator-group + .navigator-group {
+  margin-top: 0.85rem;
+}
+
+.navigator-group label {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--docs-muted-strong);
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.navigator-select {
+  width: 100%;
+  min-height: 3rem;
+  border: 1px solid var(--docs-border);
+  border-radius: 14px;
+  background: var(--docs-surface-soft);
+  color: var(--docs-text);
+  padding: 0.8rem 0.9rem;
+  font: inherit;
+}
+
+.navigator-output {
+  padding: 1rem;
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--docs-accent) 14%, transparent), transparent 28%),
+    linear-gradient(180deg, color-mix(in srgb, var(--docs-surface) 94%, transparent), color-mix(in srgb, var(--docs-accent-soft) 24%, var(--docs-surface)));
+}
+
+.navigator-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--docs-accent) 35%, var(--docs-border));
+  background: color-mix(in srgb, var(--docs-accent) 12%, transparent);
+  color: var(--docs-link);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.navigator-output h3 {
+  margin: 0.8rem 0 0.35rem;
+  font-size: clamp(1.3rem, 1vw + 1rem, 1.7rem);
+}
+
+.navigator-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 1rem 0;
+}
+
+.navigator-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.85rem;
+}
+
+.navigator-card {
+  border: 1px solid color-mix(in srgb, var(--docs-accent) 18%, var(--docs-border));
+  border-radius: 16px;
+  padding: 0.95rem;
+  background: color-mix(in srgb, var(--docs-surface) 88%, transparent);
+}
+
+.navigator-card h4 {
+  margin: 0 0 0.55rem;
+}
+
+.navigator-card ol,
+.navigator-card p {
+  margin: 0;
+}
+
+.navigator-card ol {
+  padding-left: 1.2rem;
+}
+
+.navigator-card pre {
+  margin: 0;
+}
+
+.collab-shell {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.collab-controls,
+.collab-output {
+  border: 1px solid var(--docs-border);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--docs-surface) 92%, transparent);
+  box-shadow: var(--docs-shadow);
+}
+
+.collab-controls {
+  padding: 1rem;
+}
+
+.collab-output {
+  padding: 1rem;
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--docs-accent-warm) 16%, transparent), transparent 28%),
+    linear-gradient(180deg, color-mix(in srgb, var(--docs-surface) 95%, transparent), color-mix(in srgb, var(--docs-accent-soft) 18%, var(--docs-surface)));
+}
+
+.collab-list {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.maze-shell {
+  display: grid;
+  gap: 1rem;
+}
+
+.maze-panel {
+  padding: 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--docs-accent-warm) 28%, var(--docs-border));
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--docs-accent-warm) 18%, transparent), transparent 26%),
+    radial-gradient(circle at bottom right, color-mix(in srgb, var(--docs-accent) 16%, transparent), transparent 30%),
+    linear-gradient(145deg, color-mix(in srgb, var(--docs-surface) 94%, transparent), color-mix(in srgb, var(--docs-accent-soft) 22%, var(--docs-surface)));
+  box-shadow: var(--docs-shadow-strong);
+}
+
+.maze-kicker {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--docs-accent-warm) 45%, var(--docs-border));
+  background: color-mix(in srgb, var(--docs-accent-warm) 16%, transparent);
+  color: color-mix(in srgb, var(--docs-accent-warm) 75%, var(--docs-text));
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.maze-panel h3 {
+  margin: 0.7rem 0 0.3rem;
+  font-size: clamp(1.35rem, 1vw + 1rem, 1.8rem);
+}
+
+.maze-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.maze-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.9rem;
+}
+
+.maze-card {
+  padding: 1rem;
+  border: 1px solid color-mix(in srgb, var(--docs-accent) 20%, var(--docs-border));
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--docs-surface) 93%, transparent), color-mix(in srgb, var(--docs-accent-soft) 20%, var(--docs-surface)));
+  box-shadow: 0 14px 30px rgba(20, 42, 92, 0.08);
+}
+
+.maze-card h3 {
+  margin: 0.35rem 0 0.45rem;
+}
+
+.maze-card p {
+  margin: 0 0 0.7rem;
+}
+
+.maze-card a {
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.maze-notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8rem;
+}
+
 @media (max-width: 768px) {
   .nav {
     flex-direction: column;
@@ -786,6 +1003,18 @@ blockquote {
   }
 
   .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .navigator-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .navigator-controls {
+    position: static;
+  }
+
+  .collab-shell {
     grid-template-columns: 1fr;
   }
 }

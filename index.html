@@ -8,7 +8,19 @@
   <title>Notedavidrinaldi Docs Hub | David Rinaldi</title>
   <meta name="description" content="Pusat dokumentasi untuk PALASIK dan PiTUSK di Notedavidrinaldi: arsitektur, operasional, roadmap, dan materi detail.">
   <meta name="author" content="David Rinaldi">
+  <meta name="keywords" content="PALASIK, PiTUSK, edge security, resumable upload, Raspberry Pi, IoT security, zero trust IoT, Go upload service, DEMIT, documented engineering">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; script-src 'self' 'unsafe-inline'; connect-src 'self'; manifest-src 'self'; upgrade-insecure-requests; block-all-mixed-content">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), browsing-topics=()">
   <link rel="canonical" href="https://notedavidrinaldi.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Notedavidrinaldi Docs Hub">
+  <meta property="og:description" content="Rumah dokumentasi PALASIK dan PiTUSK untuk edge security, resumable upload, operasional, dan pengembangan program.">
+  <meta property="og:url" content="https://notedavidrinaldi.github.io/">
+  <meta property="og:site_name" content="Notedavidrinaldi Docs Hub">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Notedavidrinaldi Docs Hub">
+  <meta name="twitter:description" content="Portal dokumentasi PALASIK dan PiTUSK dengan jalur baca per peran, navigator situasional, dan undangan kolaborasi otomatis.">
   <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
   <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
   <script>
@@ -19,6 +31,91 @@
         : window.matchMedia("(prefers-color-scheme: dark)").matches
           ? document.querySelector("html").dataset.theme = "dark"
           : document.querySelector("html").dataset.theme = "light"
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://notedavidrinaldi.github.io/#organization",
+          "name": "Notedavidrinaldi Docs Hub",
+          "url": "https://notedavidrinaldi.github.io/",
+          "founder": {
+            "@type": "Person",
+            "name": "David Rinaldi"
+          },
+          "sameAs": [
+            "https://github.com/notedavidrinaldi"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://notedavidrinaldi.github.io/#website",
+          "url": "https://notedavidrinaldi.github.io/",
+          "name": "Notedavidrinaldi Docs Hub",
+          "publisher": {
+            "@id": "https://notedavidrinaldi.github.io/#organization"
+          },
+          "inLanguage": "id"
+        },
+        {
+          "@type": "CollectionPage",
+          "@id": "https://notedavidrinaldi.github.io/#homepage",
+          "url": "https://notedavidrinaldi.github.io/",
+          "name": "Notedavidrinaldi Docs Hub",
+          "description": "Pusat dokumentasi untuk PALASIK dan PiTUSK di Notedavidrinaldi.",
+          "isPartOf": {
+            "@id": "https://notedavidrinaldi.github.io/#website"
+          },
+          "about": [
+            {
+              "@type": "SoftwareApplication",
+              "name": "PALASIK",
+              "applicationCategory": "SecurityApplication",
+              "operatingSystem": "Linux, Raspberry Pi",
+              "url": "https://notedavidrinaldi.github.io/palasik/"
+            },
+            {
+              "@type": "SoftwareApplication",
+              "name": "PiTUSK",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "Linux, Raspberry Pi",
+              "url": "https://notedavidrinaldi.github.io/pitusk/"
+            }
+          ]
+        },
+        {
+          "@type": "ItemList",
+          "name": "Aplikasi Utama",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "PALASIK",
+              "url": "https://notedavidrinaldi.github.io/palasik/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "PiTUSK",
+              "url": "https://notedavidrinaldi.github.io/pitusk/"
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://notedavidrinaldi.github.io/"
+            }
+          ]
+        }
+      ]
+    }
   </script>
   <link rel="stylesheet" href="/css/palasik-doc.css">
 </head>
@@ -90,6 +187,7 @@
           <div class="hero-actions">
             <a class="hero-button hero-button-primary" href="/palasik/">Masuk ke Portal PALASIK</a>
             <a class="hero-button" href="/pitusk/">Masuk ke Portal PiTUSK</a>
+            <a class="hero-button" href="#navigator-edge">Buka Navigator Situasional</a>
             <a class="hero-button" href="/docs/id/">Buka Pusat Dokumentasi</a>
             <a class="hero-button" href="/demit/">Lihat Runtime DEMIT</a>
           </div>
@@ -117,7 +215,7 @@
         <summary accesskey="c" title="(Alt + C)"><span class="details">Panduan Cepat</span></summary>
         <div class="inner">
           <ul>
-            <li><a href="#palasik-akses-cepat">Akses Cepat PALASIK</a></li>
+            <li><a href="#navigator-edge">Navigator Situasional</a></li>
             <li><a href="#app-houses">Dua Rumah Aplikasi</a></li>
             <li><a href="#palasik-akses-cepat">Akses Cepat PALASIK</a></li>
             <li><a href="#pitusk-akses-cepat">Akses Cepat PiTUSK</a></li>
@@ -127,6 +225,173 @@
         </div>
       </details>
     </div>
+
+    <section id="navigator-edge" class="doc-section">
+      <h2>Navigator Situasional Edge</h2>
+      <p>Ini fitur yang sangat spesifik untuk web ini: bukan sekadar daftar dokumentasi, tetapi <strong>pengarah keputusan</strong> saat pembaca sedang berada di situasi nyata. Pilih aplikasi, peran, dan kondisi yang sedang Anda hadapi, lalu web ini memberi jalur baca, langkah awal, dan command pertama yang paling tepat.</p>
+      <div class="navigator-shell">
+        <div class="navigator-controls">
+          <div class="navigator-group">
+            <label for="nav-app">Aplikasi</label>
+            <select id="nav-app" class="navigator-select">
+              <option value="palasik">PALASIK</option>
+              <option value="pitusk">PiTUSK</option>
+            </select>
+          </div>
+          <div class="navigator-group">
+            <label for="nav-role">Peran</label>
+            <select id="nav-role" class="navigator-select">
+              <option value="operator">Operator</option>
+              <option value="executive">Eksekutif</option>
+              <option value="stakeholder">Stakeholder</option>
+              <option value="engineer">Engineer</option>
+            </select>
+          </div>
+          <div class="navigator-group">
+            <label for="nav-situation">Situasi</label>
+            <select id="nav-situation" class="navigator-select">
+              <option value="first-look">Saya baru buka dan butuh arah</option>
+              <option value="ops-check">Saya sedang cek operasi</option>
+              <option value="incident">Ada gangguan dan butuh langkah awal</option>
+              <option value="integration">Saya mau integrasi / implementasi</option>
+              <option value="governance">Saya butuh ringkasan risiko / governance</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="navigator-output" id="navigator-output">
+          <div class="navigator-badge" id="navigator-badge">Mode aktif</div>
+          <h3 id="navigator-title">Rekomendasi akan tampil di sini</h3>
+          <p id="navigator-summary">Pilih konteks kerja Anda agar web ini memetakan rute baca yang paling masuk akal.</p>
+          <div class="navigator-actions">
+            <a class="hero-button hero-button-primary" id="navigator-primary" href="/palasik/">Buka Halaman Utama</a>
+            <a class="hero-button" id="navigator-secondary" href="/docs/id/">Buka Referensi Pendukung</a>
+          </div>
+          <div class="navigator-grid">
+            <article class="navigator-card">
+              <h4>Langkah awal</h4>
+              <ol id="navigator-steps">
+                <li>Pilih konteks Anda di panel kiri.</li>
+              </ol>
+            </article>
+            <article class="navigator-card">
+              <h4>Command pertama</h4>
+              <pre id="navigator-command"><code>Tentukan konteks dulu.</code></pre>
+            </article>
+            <article class="navigator-card">
+              <h4>Kenapa rute ini</h4>
+              <p id="navigator-why">Navigator ini dirancang untuk memotong waktu pencarian saat kebutuhan Anda sangat spesifik.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="collab-invite" class="doc-section">
+      <h2>Undangan Kolaborator Otomatis</h2>
+      <p>Fitur ini unik untuk web ini: bukan sekadar tombol “contact me”, tetapi <strong>mesin undangan kolaborasi</strong> yang membaca minat pengunjung lalu mengubahnya menjadi ajakan yang terasa personal, masuk akal, dan langsung bisa ditindaklanjuti.</p>
+      <div class="collab-shell">
+        <div class="collab-controls">
+          <div class="navigator-group">
+            <label for="invite-skill">Keahlian Pengunjung</label>
+            <select id="invite-skill" class="navigator-select">
+              <option value="backend">Backend / Go / API</option>
+              <option value="iot">IoT / Edge / Raspberry Pi</option>
+              <option value="security">Security / Zero Trust</option>
+              <option value="ops">Ops / Reliability / Infra</option>
+              <option value="writer">Technical Writer / Documentation</option>
+            </select>
+          </div>
+          <div class="navigator-group">
+            <label for="invite-style">Gaya Kontribusi</label>
+            <select id="invite-style" class="navigator-select">
+              <option value="build">Saya ingin membangun fitur</option>
+              <option value="audit">Saya ingin review / audit</option>
+              <option value="experiment">Saya ingin riset / eksperimen</option>
+              <option value="document">Saya ingin merapikan dokumentasi</option>
+            </select>
+          </div>
+          <div class="navigator-group">
+            <label for="invite-time">Ketersediaan</label>
+            <select id="invite-time" class="navigator-select">
+              <option value="light">Ringan, kontribusi kecil</option>
+              <option value="steady">Rutin, kontribusi bertahap</option>
+              <option value="deep">Dalam, siap pegang area</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="collab-output">
+          <div class="navigator-badge" id="invite-badge">Undangan aktif</div>
+          <h3 id="invite-title">Undangan kolaborasi akan muncul di sini</h3>
+          <p id="invite-summary">Pilih keahlian, gaya kontribusi, dan ketersediaan untuk melihat ajakan yang paling relevan.</p>
+          <blockquote id="invite-message">Web ini akan menyusun pesan undangan yang bisa langsung dipakai sebagai ajakan kolaborasi.</blockquote>
+          <div class="navigator-actions">
+            <a class="hero-button hero-button-primary" id="invite-primary" href="/pitusk/">Lihat Area Kontribusi</a>
+            <a class="hero-button" id="invite-secondary" href="/docs/id/">Buka Pusat Referensi</a>
+          </div>
+          <div class="navigator-grid">
+            <article class="navigator-card">
+              <h4>Kontribusi yang paling cocok</h4>
+              <ul id="invite-fit" class="collab-list">
+                <li>Tentukan konteks pengunjung dulu.</li>
+              </ul>
+            </article>
+            <article class="navigator-card">
+              <h4>Langkah pertama yang disarankan</h4>
+              <ol id="invite-steps">
+                <li>Pilih keahlian dan gaya kontribusi.</li>
+              </ol>
+            </article>
+            <article class="navigator-card">
+              <h4>Sinyal kenapa ia potensial</h4>
+              <p id="invite-why">Mesin ini memetakan calon kolaborator ke area program yang paling mungkin cocok untuk mereka.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="explorer-maze" class="doc-section">
+      <h2>Labirin Penjelajah</h2>
+      <p>Bagian ini sengaja dibuat agar pengunjung merasa selalu ada lorong berikutnya yang layak dibuka. Bukan tersesat tanpa arah, tetapi <strong>ditarik oleh rasa penasaran</strong> dari satu ide ke ide berikutnya.</p>
+      <div class="maze-shell">
+        <div class="maze-panel">
+          <div class="maze-kicker">Belokan Tak Terduga</div>
+          <h3 id="maze-title">Klik untuk menemukan lorong baca berikutnya</h3>
+          <p id="maze-summary">Web ini akan memilih satu sudut pandang yang mungkin belum terpikir, lalu menghubungkannya ke halaman yang relevan.</p>
+          <div class="maze-actions">
+            <button class="hero-button hero-button-primary" id="maze-spin" type="button">Putar Labirin</button>
+            <a class="hero-button" id="maze-link" href="/palasik/">Masuk ke Lorong Terpilih</a>
+          </div>
+        </div>
+        <div class="maze-grid">
+          <article class="maze-card">
+            <div class="doc-card-eyebrow">Jejak 1</div>
+            <h3>Masuk dari pertanyaan, keluar di sistem</h3>
+            <p>Orang yang awalnya hanya ingin tahu “PALASIK itu apa?” bisa berakhir membaca health contract, rollback path, dan DEMIT runtime.</p>
+            <a href="/palasik/executive-summary/">Coba jejak ini →</a>
+          </article>
+          <article class="maze-card">
+            <div class="doc-card-eyebrow">Jejak 2</div>
+            <h3>Masuk dari masalah, keluar di arsitektur</h3>
+            <p>Pengunjung yang datang karena upload macet bisa dibawa dari offset resume ke reliability roadmap dan mode framework PiTUSK.</p>
+            <a href="/pitusk/non-teknis/">Coba jejak ini →</a>
+          </article>
+          <article class="maze-card">
+            <div class="doc-card-eyebrow">Jejak 3</div>
+            <h3>Masuk dari peran, keluar di kolaborasi</h3>
+            <p>Executive summary, stakeholder view, dan referensi detail saling silang agar pengunjung merasa setiap pintu punya kejutan berikutnya.</p>
+            <a href="#collab-invite">Coba jejak ini →</a>
+          </article>
+        </div>
+        <div class="maze-notes" id="maze-notes">
+          <div class="spotlight-item"><strong>Clue pertama</strong><span>Sering kali halaman terbaik berikutnya bukan yang paling teknis, tetapi yang paling berbeda sudut pandangnya.</span></div>
+          <div class="spotlight-item"><strong>Clue kedua</strong><span>Jika Anda datang untuk satu aplikasi, coba sengaja belok ke aplikasi lain. Banyak ide terbaik lahir dari perbandingan ini.</span></div>
+          <div class="spotlight-item"><strong>Clue ketiga</strong><span>Gunakan navigator dan undangan kolaborasi sebagai pintu rahasia untuk menemukan area yang biasanya terlewat.</span></div>
+        </div>
+      </div>
+    </section>
 
     <section id="app-houses" class="doc-section">
       <h2>Dua Rumah Aplikasi</h2>
@@ -425,6 +690,789 @@ make edge-post-restart-check-strict</code></pre>
       ? (mybutton.style.visibility = "visible", mybutton.style.opacity = "1")
       : (mybutton.style.visibility = "hidden", mybutton.style.opacity = "0");
   };
+
+  const navigatorData = {
+    palasik: {
+      operator: {
+        "first-look": {
+          badge: "PALASIK • Operator • Masuk awal",
+          title: "Mulai dari jalur non-teknis PALASIK",
+          summary: "Jalur ini cocok saat Anda butuh orientasi cepat tentang health, status, dan langkah kerja harian tanpa masuk ke trust engine lebih dulu.",
+          primaryHref: "/palasik/non-teknis/",
+          primaryLabel: "Buka Non-Teknis PALASIK",
+          secondaryHref: "/palasik/",
+          secondaryLabel: "Buka Portal PALASIK",
+          steps: ["Pahami arti status health.", "Lihat command shift harian.", "Naik ke teknis jika perlu rollback atau deploy-check."],
+          command: "palasik check --config config.yaml\npalasik status --config config.yaml",
+          why: "Operator biasanya perlu tindakan dulu, baru konsep. Jalur ini memotong waktu cari halaman yang benar."
+        },
+        "ops-check": {
+          badge: "PALASIK • Operator • Cek operasi",
+          title: "Gunakan runbook operasional PALASIK",
+          summary: "Rute ini paling pas untuk validasi rutin, start shift, atau pemeriksaan pasca restart.",
+          primaryHref: "/palasik/non-teknis/",
+          primaryLabel: "Buka Runbook Operator",
+          secondaryHref: "/palasik/teknis/#shortcuts",
+          secondaryLabel: "Lihat Shortcut Operasional",
+          steps: ["Cek startup pipeline.", "Cek status runtime.", "Validasi post-restart bila ada perubahan."],
+          command: "palasik check --config config.yaml\nmake edge-post-restart-check",
+          why: "Rute ini mengutamakan command yang paling sering dipakai operator, bukan keseluruhan dokumentasi teknis."
+        },
+        incident: {
+          badge: "PALASIK • Operator • Gangguan",
+          title: "Masuk ke jalur rollback dan health PALASIK",
+          summary: "Ini jalur tercepat jika ada deny spike, status DEGRADED, atau hasil pasca restart tidak normal.",
+          primaryHref: "/palasik/teknis/#rollback",
+          primaryLabel: "Buka Jalur Rollback",
+          secondaryHref: "/palasik/non-teknis/",
+          secondaryLabel: "Buka Ringkasan Operator",
+          steps: ["Ambil status saat ini.", "Bandingkan dengan snapshot terakhir.", "Rollback lalu validasi ulang health."],
+          command: "palasik status --config config.yaml\npalasik policy-rollback --config config.yaml --snapshot runs/policy_snapshots/<file>.snapshot.yaml",
+          why: "Saat incident, halaman yang paling tepat lebih penting daripada membaca ulang semua konsep."
+        },
+        integration: {
+          badge: "PALASIK • Operator • Integrasi",
+          title: "Naik ke dokumentasi teknis PALASIK",
+          summary: "Jika Anda sedang masuk ke konfigurasi runtime atau route DEMIT, langsung gunakan jalur teknis.",
+          primaryHref: "/palasik/teknis/",
+          primaryLabel: "Buka Teknis PALASIK",
+          secondaryHref: "/docs/id/palasik/",
+          secondaryLabel: "Buka Dokumentasi ID",
+          steps: ["Baca arsitektur runtime.", "Pahami alur event.", "Lihat konfigurasi dan deploy gate."],
+          command: "palasik init\npalasik check --config config.yaml",
+          why: "Begitu kebutuhan masuk ke integrasi, jalur teknis jauh lebih efisien daripada halaman operator."
+        },
+        governance: {
+          badge: "PALASIK • Operator • Governance",
+          title: "Gunakan jalur stakeholder PALASIK",
+          summary: "Jika Anda harus menjelaskan risiko ke pimpinan, jalur stakeholder lebih tepat daripada runbook operator.",
+          primaryHref: "/palasik/stakeholder/",
+          primaryLabel: "Buka Stakeholder PALASIK",
+          secondaryHref: "/palasik/executive-summary/",
+          secondaryLabel: "Buka Executive Summary",
+          steps: ["Lihat kontrak health.", "Pahami rantai kendali risiko.", "Gunakan ringkasan eksekutif untuk versi 1 menit."],
+          command: "Tidak perlu command. Fokus ke indikator health, governance, dan rollback path.",
+          why: "Navigator ini membantu menerjemahkan kebutuhan operasional ke bahasa governance tanpa perlu menebak halaman."
+        }
+      },
+      executive: {
+        "first-look": {
+          badge: "PALASIK • Eksekutif • Masuk awal",
+          title: "Mulai dari executive summary PALASIK",
+          summary: "Versi ini menjelaskan nilai, risiko, dan guardrail operasional PALASIK tanpa tenggelam di detail implementasi.",
+          primaryHref: "/palasik/executive-summary/",
+          primaryLabel: "Buka Executive Summary",
+          secondaryHref: "/palasik/stakeholder/",
+          secondaryLabel: "Buka Jalur Stakeholder",
+          steps: ["Baca inti narasi.", "Lihat value proposition.", "Naik ke stakeholder bila perlu governance lebih lengkap."],
+          command: "Tidak perlu command. Fokus ke value, indikator, dan risiko.",
+          why: "Leadership perlu jawaban cepat yang bisa dipakai untuk pengambilan keputusan."
+        },
+        "ops-check": {
+          badge: "PALASIK • Eksekutif • Cek operasi",
+          title: "Stakeholder view paling pas untuk membaca kesehatan operasi",
+          summary: "Jalur stakeholder merangkum health contract, indikator deny spike, dan rantai kontrol risiko.",
+          primaryHref: "/palasik/stakeholder/",
+          primaryLabel: "Buka Stakeholder View",
+          secondaryHref: "/palasik/executive-summary/",
+          secondaryLabel: "Buka Ringkasan 1 Menit",
+          steps: ["Cek health contract.", "Lihat indikator trust drop.", "Pastikan rollback path ada."],
+          command: "Tidak perlu command. Gunakan indikator health dan kontrol risiko.",
+          why: "Eksekutif butuh sinyal layanan yang bisa dipercaya, bukan rincian CLI."
+        },
+        incident: {
+          badge: "PALASIK • Eksekutif • Gangguan",
+          title: "Masuk ke jalur risiko saat PALASIK terganggu",
+          summary: "Gunakan jalur stakeholder untuk memahami dampak insiden, kesiapan rollback, dan kontrol yang tersedia.",
+          primaryHref: "/palasik/stakeholder/",
+          primaryLabel: "Buka Rantai Risiko",
+          secondaryHref: "/palasik/non-teknis/",
+          secondaryLabel: "Lihat Jalur Operator",
+          steps: ["Pastikan ada snapshot.", "Pastikan ada post-restart gate.", "Pastikan rollback bisa dijalankan cepat."],
+          command: "Tidak perlu command. Fokus ke dampak layanan dan jalur pemulihan.",
+          why: "Pandangan eksekutif saat incident harus menjawab seberapa aman dan seberapa cepat sistem bisa dipulihkan."
+        },
+        integration: {
+          badge: "PALASIK • Eksekutif • Integrasi",
+          title: "Lihat portal PALASIK lalu delegasikan ke jalur teknis",
+          summary: "Portal utama memberi konteks struktur pembaca sehingga diskusi integrasi tetap terarah.",
+          primaryHref: "/palasik/",
+          primaryLabel: "Buka Portal PALASIK",
+          secondaryHref: "/palasik/teknis/",
+          secondaryLabel: "Lihat Jalur Teknis",
+          steps: ["Pahami struktur pembaca.", "Lihat rute engineer.", "Gunakan teknis hanya untuk briefing mendalam."],
+          command: "Tidak perlu command. Fokus pada struktur adopsi dan route teknis.",
+          why: "Integrasi lebih mudah dipahami dari peta besarnya dulu, baru turun ke detail."
+        },
+        governance: {
+          badge: "PALASIK • Eksekutif • Governance",
+          title: "Stakeholder view adalah jalur governance utama",
+          summary: "Halaman ini merangkum kontrak health, indikator yang dipantau, dan rantai kendali risiko untuk governance.",
+          primaryHref: "/palasik/stakeholder/",
+          primaryLabel: "Buka Governance View",
+          secondaryHref: "/palasik/executive-summary/",
+          secondaryLabel: "Buka Ringkasan 1 Menit",
+          steps: ["Pahami status UP/DEGRADED/DOWN.", "Lihat chain snapshot-check-rollback.", "Gunakan indikator untuk review berkala."],
+          command: "Tidak perlu command. Gunakan health contract dan governance chain.",
+          why: "PALASIK unggul bukan hanya karena security engine, tetapi karena kontrol operasionalnya jelas."
+        }
+      },
+      stakeholder: {
+        "first-look": {
+          badge: "PALASIK • Stakeholder • Masuk awal",
+          title: "Mulai dari stakeholder PALASIK",
+          summary: "Jalur ini paling pas bila Anda ingin memahami dampak bisnis, governance, dan kontrol risiko tanpa detail engineering.",
+          primaryHref: "/palasik/stakeholder/",
+          primaryLabel: "Buka Stakeholder PALASIK",
+          secondaryHref: "/palasik/executive-summary/",
+          secondaryLabel: "Buka Ringkasan 1 Menit",
+          steps: ["Lihat nilai operasional.", "Pahami kontrak health.", "Gunakan executive summary untuk briefing singkat."],
+          command: "Tidak perlu command. Fokus ke risiko, auditability, dan jalur recovery.",
+          why: "Stakeholder butuh menjawab dampak dan kontrol, bukan syntax implementasi."
+        },
+        "ops-check": {
+          badge: "PALASIK • Stakeholder • Cek operasi",
+          title: "Gunakan governance view untuk memantau operasi",
+          summary: "Halaman stakeholder menyusun indikator yang relevan untuk review berkala dan health governance.",
+          primaryHref: "/palasik/stakeholder/",
+          primaryLabel: "Buka Governance View",
+          secondaryHref: "/palasik/non-teknis/",
+          secondaryLabel: "Lihat Jalur Operator",
+          steps: ["Pantau health state.", "Lihat deny spike dan trust drop.", "Pastikan rollback path aktif."],
+          command: "Tidak perlu command. Gunakan indikator layanan dan rantai kontrol risiko.",
+          why: "Review operasi untuk stakeholder harus berbasis indikator, bukan eksplorasi manual menu."
+        },
+        incident: {
+          badge: "PALASIK • Stakeholder • Gangguan",
+          title: "Lihat kontrol risiko saat incident",
+          summary: "Jalur ini membantu Anda melihat kesiapan snapshot, gate pasca restart, dan rollback sebagai kontrol insiden.",
+          primaryHref: "/palasik/stakeholder/",
+          primaryLabel: "Buka Kontrol Risiko",
+          secondaryHref: "/palasik/teknis/#rollback",
+          secondaryLabel: "Lihat Jalur Rollback",
+          steps: ["Konfirmasi dampak layanan.", "Konfirmasi kontrol yang tersedia.", "Eskalasi ke teknis jika perlu detail implementasi."],
+          command: "Tidak perlu command. Fokus ke recovery path dan MTTR.",
+          why: "Stakeholder perlu jembatan yang menghubungkan insiden teknis ke keputusan operasional."
+        },
+        integration: {
+          badge: "PALASIK • Stakeholder • Integrasi",
+          title: "Mulai dari portal, lanjut ke teknis bila perlu",
+          summary: "Portal utama memberi peta pembaca, lalu jalur teknis digunakan bila pembahasan sudah masuk ke implementasi.",
+          primaryHref: "/palasik/",
+          primaryLabel: "Buka Portal PALASIK",
+          secondaryHref: "/palasik/teknis/",
+          secondaryLabel: "Buka Jalur Teknis",
+          steps: ["Pahami struktur aplikasi.", "Lihat rute engineer.", "Gunakan teknis hanya bila konteks sudah jelas."],
+          command: "Tidak perlu command. Fokus ke jalur implementasi yang akan dideligasikan.",
+          why: "Ini membantu stakeholder masuk ke diskusi integrasi tanpa terseret terlalu cepat ke detail rendah."
+        },
+        governance: {
+          badge: "PALASIK • Stakeholder • Governance",
+          title: "Stakeholder view adalah rumah governance PALASIK",
+          summary: "Jalur ini memang dirancang untuk membaca kesehatan layanan, kontrol perubahan, dan auditability PALASIK.",
+          primaryHref: "/palasik/stakeholder/",
+          primaryLabel: "Buka Stakeholder PALASIK",
+          secondaryHref: "/palasik/executive-summary/",
+          secondaryLabel: "Buka Executive Summary",
+          steps: ["Pahami health contract.", "Lihat kontrol snapshot-check-rollback.", "Gunakan indikator untuk review periodik."],
+          command: "Tidak perlu command. Gunakan indikator layanan dan governance chain.",
+          why: "Fitur ini mengunci jalur tercepat ke halaman yang memang dibuat untuk governance."
+        }
+      },
+      engineer: {
+        "first-look": {
+          badge: "PALASIK • Engineer • Masuk awal",
+          title: "Mulai dari dokumentasi teknis PALASIK",
+          summary: "Engineer paling efisien jika langsung masuk ke arsitektur, event flow, health contract, dan deploy gate.",
+          primaryHref: "/palasik/teknis/",
+          primaryLabel: "Buka Teknis PALASIK",
+          secondaryHref: "/docs/id/palasik/",
+          secondaryLabel: "Buka Dokumentasi ID",
+          steps: ["Baca arsitektur.", "Pahami alur event.", "Lihat quick start dan deploy gate."],
+          command: "palasik init\npalasik check --config config.yaml",
+          why: "Engineer perlu meminimalkan bouncing antarhalaman dan langsung masuk ke kontrak teknis."
+        },
+        "ops-check": {
+          badge: "PALASIK • Engineer • Cek operasi",
+          title: "Gunakan jalur teknis dan shortcut health PALASIK",
+          summary: "Ini rute terbaik bila Anda sedang verifikasi startup, health, atau kondisi pasca restart dari sisi engineering.",
+          primaryHref: "/palasik/teknis/#shortcuts",
+          primaryLabel: "Buka Shortcut Teknis",
+          secondaryHref: "/palasik/teknis/#health",
+          secondaryLabel: "Lihat Health Contract",
+          steps: ["Cek startup pipeline.", "Cek health mode.", "Validasi pasca restart dengan helper."],
+          command: "palasik check --config config.yaml\nmake edge-health-strict",
+          why: "Engineer perlu kombinasi command dan kontrak health, bukan sekadar runbook ringkas."
+        },
+        incident: {
+          badge: "PALASIK • Engineer • Gangguan",
+          title: "Masuk ke rollback, health, dan deploy gate PALASIK",
+          summary: "Jalur teknis memberi konteks penuh untuk mendiagnosis deny spike, health degradation, dan efek policy change.",
+          primaryHref: "/palasik/teknis/#rollback",
+          primaryLabel: "Buka Rollback Teknis",
+          secondaryHref: "/palasik/teknis/#deploy",
+          secondaryLabel: "Lihat Deploy Gate",
+          steps: ["Capture status.", "Verifikasi smoke gate.", "Rollback jika kontrak health memburuk."],
+          command: "palasik status --config config.yaml\npalasik policy-deploy-check --config config.yaml --require-allow",
+          why: "Engineer butuh jalur diagnosa yang mencakup sebab, validasi, dan recovery dalam satu rangkaian."
+        },
+        integration: {
+          badge: "PALASIK • Engineer • Integrasi",
+          title: "Jalur teknis PALASIK adalah pusat integrasi",
+          summary: "Di sini ada arsitektur, config, DEMIT integration, deploy aman, dan referensi lanjutan yang engineer butuhkan.",
+          primaryHref: "/palasik/teknis/",
+          primaryLabel: "Buka Pusat Teknis",
+          secondaryHref: "/docs/id/palasik/",
+          secondaryLabel: "Buka Dokumentasi ID",
+          steps: ["Pahami DEMIT route.", "Pahami config dasar.", "Gunakan referensi lanjutan untuk deep dive."],
+          command: "palasik run --config config.yaml\npalasik serve-api --config config.yaml",
+          why: "Fitur ini mencegah engineer memulai dari halaman bisnis saat kebutuhan utamanya adalah contract-level detail."
+        },
+        governance: {
+          badge: "PALASIK • Engineer • Governance",
+          title: "Mulai dari stakeholder, validasi dengan teknis",
+          summary: "Jika Anda engineer yang sedang menyiapkan materi governance, gunakan stakeholder untuk framing lalu teknis untuk bukti implementasinya.",
+          primaryHref: "/palasik/stakeholder/",
+          primaryLabel: "Buka Stakeholder View",
+          secondaryHref: "/palasik/teknis/",
+          secondaryLabel: "Buka Bukti Teknis",
+          steps: ["Ambil framing governance.", "Ambil kontrak health.", "Turun ke teknis untuk bukti command dan path recovery."],
+          command: "make edge-post-restart-check\npalasik policy-snapshot --config config.yaml",
+          why: "Engineer sering jadi jembatan governance dan implementasi. Navigator ini memotong jalur transisi itu."
+        }
+      }
+    },
+    pitusk: {
+      operator: {
+        "first-look": {
+          badge: "PiTUSK • Operator • Masuk awal",
+          title: "Mulai dari jalur non-teknis PiTUSK",
+          summary: "Jalur ini paling cocok jika Anda perlu memahami resume upload, status sesi, dan langkah dasar saat jaringan edge tidak stabil.",
+          primaryHref: "/pitusk/non-teknis/",
+          primaryLabel: "Buka Non-Teknis PiTUSK",
+          secondaryHref: "/pitusk/",
+          secondaryLabel: "Buka Portal PiTUSK",
+          steps: ["Pahami status sesi upload.", "Pelajari offset dan finalize.", "Naik ke teknis bila perlu kontrak API lengkap."],
+          command: "curl http://localhost:8080/healthz\ncurl http://localhost:8080/readyz",
+          why: "Operator upload butuh jalur tindakan cepat, bukan seluruh arsitektur service."
+        },
+        "ops-check": {
+          badge: "PiTUSK • Operator • Cek operasi",
+          title: "Gunakan runbook upload PiTUSK",
+          summary: "Paling pas untuk start shift, validasi readiness, atau memastikan service masih siap menerima upload.",
+          primaryHref: "/pitusk/non-teknis/",
+          primaryLabel: "Buka Jalur Operasional",
+          secondaryHref: "/pitusk/teknis/#ops",
+          secondaryLabel: "Lihat Operasional Teknis",
+          steps: ["Cek healthz.", "Cek readyz.", "Pastikan sesi gagal dan backlog tidak meningkat."],
+          command: "curl http://localhost:8080/healthz\ncurl http://localhost:8080/readyz",
+          why: "Health dan readiness adalah pintu pertama untuk memastikan PiTUSK benar-benar siap bekerja."
+        },
+        incident: {
+          badge: "PiTUSK • Operator • Gangguan",
+          title: "Mulai dari offset dan status sesi PiTUSK",
+          summary: "Ini jalur tercepat saat upload macet, koneksi putus, atau file belum terselesaikan di lokasi final.",
+          primaryHref: "/pitusk/non-teknis/",
+          primaryLabel: "Buka Jalur Gangguan Upload",
+          secondaryHref: "/pitusk/teknis/#api",
+          secondaryLabel: "Lihat Kontrak API",
+          steps: ["Ambil offset terakhir via HEAD.", "Cek status sesi via endpoint status.", "Finalize atau eskalasi bila status gagal berulang."],
+          command: "curl -I http://localhost:8080/v1/uploads/<upload-id>\ncurl http://localhost:8080/v1/uploads/<upload-id>/status",
+          why: "Saat upload macet, offset dan status jauh lebih penting daripada membaca ulang struktur repo."
+        },
+        integration: {
+          badge: "PiTUSK • Operator • Integrasi",
+          title: "Naik ke dokumentasi teknis PiTUSK",
+          summary: "Kalau kebutuhan Anda sudah masuk ke API, framework v1, atau environment contract, langsung gunakan jalur teknis.",
+          primaryHref: "/pitusk/teknis/",
+          primaryLabel: "Buka Teknis PiTUSK",
+          secondaryHref: "/docs/id/pitusk/",
+          secondaryLabel: "Buka Referensi Detail",
+          steps: ["Baca kontrak API.", "Lihat mode framework.", "Gunakan referensi detail jika perlu rangkuman satu halaman."],
+          command: "go run ./cmd/piresum",
+          why: "Jalur teknis mempercepat perpindahan dari operasi harian ke implementasi konkret."
+        },
+        governance: {
+          badge: "PiTUSK • Operator • Governance",
+          title: "Gunakan jalur stakeholder PiTUSK",
+          summary: "Jika tujuan Anda menjelaskan risiko layanan ke atasan, jalur stakeholder lebih tepat daripada non-teknis.",
+          primaryHref: "/pitusk/stakeholder/",
+          primaryLabel: "Buka Stakeholder PiTUSK",
+          secondaryHref: "/pitusk/executive-summary/",
+          secondaryLabel: "Buka Executive Summary",
+          steps: ["Lihat indikator layanan.", "Pahami backlog reliability.", "Gunakan executive summary untuk briefing singkat."],
+          command: "Tidak perlu command. Fokus ke risiko layanan dan indikator.",
+          why: "Navigator ini membantu operator menjelaskan dampak layanan tanpa perlu menerjemahkan semuanya sendiri."
+        }
+      },
+      executive: {
+        "first-look": {
+          badge: "PiTUSK • Eksekutif • Masuk awal",
+          title: "Mulai dari executive summary PiTUSK",
+          summary: "Versi ini menjelaskan kenapa resumable upload penting di edge dan apa nilai bisnisnya tanpa masuk ke detail API.",
+          primaryHref: "/pitusk/executive-summary/",
+          primaryLabel: "Buka Executive Summary",
+          secondaryHref: "/pitusk/stakeholder/",
+          secondaryLabel: "Buka Jalur Stakeholder",
+          steps: ["Baca inti narasi.", "Lihat value proposition.", "Naik ke stakeholder jika butuh governance dan backlog prioritas."],
+          command: "Tidak perlu command. Fokus ke reliability, adopsi, dan readiness.",
+          why: "Leadership perlu memahami nilai layanan sebelum turun ke detail engineering."
+        },
+        "ops-check": {
+          badge: "PiTUSK • Eksekutif • Cek operasi",
+          title: "Gunakan stakeholder view untuk kesehatan layanan PiTUSK",
+          summary: "Jalur stakeholder paling cocok untuk melihat health, readiness, rasio sesi gagal, dan backlog sync sebagai indikator layanan.",
+          primaryHref: "/pitusk/stakeholder/",
+          primaryLabel: "Buka Stakeholder View",
+          secondaryHref: "/pitusk/executive-summary/",
+          secondaryLabel: "Buka Ringkasan 1 Menit",
+          steps: ["Lihat indikator layanan.", "Pahami rantai kendali risiko.", "Pastikan backlog reliability ditangani."],
+          command: "Tidak perlu command. Gunakan health, readiness, dan backlog indicators.",
+          why: "Eksekutif butuh sinyal layanan yang bisa dipakai untuk review, bukan sekadar daftar endpoint."
+        },
+        incident: {
+          badge: "PiTUSK • Eksekutif • Gangguan",
+          title: "Masuk ke jalur stakeholder untuk membaca dampak insiden",
+          summary: "Jika upload bermasalah, yang paling penting bagi pimpinan adalah memahami dampak, recovery path, dan backlog yang harus diprioritaskan.",
+          primaryHref: "/pitusk/stakeholder/",
+          primaryLabel: "Buka Rantai Risiko PiTUSK",
+          secondaryHref: "/pitusk/non-teknis/",
+          secondaryLabel: "Lihat Jalur Operator",
+          steps: ["Pahami jenis gangguan layanan.", "Lihat indikator sesi gagal dan finalize.", "Pastikan ada eskalasi ke teknis bila pattern berulang."],
+          command: "Tidak perlu command. Fokus ke dampak layanan dan recovery path.",
+          why: "Incident view untuk eksekutif harus menjawab seberapa terdampak dan apa jalur pulihnya."
+        },
+        integration: {
+          badge: "PiTUSK • Eksekutif • Integrasi",
+          title: "Lihat portal PiTUSK sebelum turun ke teknis",
+          summary: "Portal utama memberi konteks struktur pembaca dan memudahkan delegasi ke jalur yang tepat.",
+          primaryHref: "/pitusk/",
+          primaryLabel: "Buka Portal PiTUSK",
+          secondaryHref: "/pitusk/teknis/",
+          secondaryLabel: "Lihat Jalur Teknis",
+          steps: ["Pahami mode service vs framework.", "Lihat rute engineer.", "Delegasikan kontrak API ke jalur teknis."],
+          command: "Tidak perlu command. Fokus ke struktur adopsi.",
+          why: "Integrasi lebih aman dibahas dari struktur besar dulu, baru turun ke detail."
+        },
+        governance: {
+          badge: "PiTUSK • Eksekutif • Governance",
+          title: "Stakeholder view adalah jalur governance PiTUSK",
+          summary: "Di sini governance layanan dijelaskan lewat indikator kesehatan, backlog hardening, dan prioritas production-readiness.",
+          primaryHref: "/pitusk/stakeholder/",
+          primaryLabel: "Buka Governance View",
+          secondaryHref: "/pitusk/executive-summary/",
+          secondaryLabel: "Buka Ringkasan Singkat",
+          steps: ["Lihat indikator layanan.", "Pahami backlog security dan observability.", "Gunakan executive summary untuk keputusan cepat."],
+          command: "Tidak perlu command. Gunakan indikator layanan dan prioritas backlog.",
+          why: "Nilai unik PiTUSK bukan hanya resumable upload, tetapi cara reliability-nya bisa dikelola sebagai keputusan operasional."
+        }
+      },
+      stakeholder: {
+        "first-look": {
+          badge: "PiTUSK • Stakeholder • Masuk awal",
+          title: "Mulai dari stakeholder PiTUSK",
+          summary: "Jalur ini paling pas jika Anda ingin memahami dampak bisnis, indikator layanan, dan backlog hardening tanpa membaca kontrak API lebih dulu.",
+          primaryHref: "/pitusk/stakeholder/",
+          primaryLabel: "Buka Stakeholder PiTUSK",
+          secondaryHref: "/pitusk/executive-summary/",
+          secondaryLabel: "Buka Executive Summary",
+          steps: ["Lihat nilai operasional.", "Pahami health dan readiness.", "Gunakan executive summary untuk briefing singkat."],
+          command: "Tidak perlu command. Fokus ke risiko layanan dan readiness.",
+          why: "Stakeholder perlu ringkasan yang langsung bisa dipakai untuk governance dan prioritisasi."
+        },
+        "ops-check": {
+          badge: "PiTUSK • Stakeholder • Cek operasi",
+          title: "Gunakan stakeholder view untuk memantau layanan PiTUSK",
+          summary: "Halaman ini merangkum indikator operasi yang paling relevan untuk review: sesi gagal, backlog sync, dan kesiapan layanan.",
+          primaryHref: "/pitusk/stakeholder/",
+          primaryLabel: "Buka Governance View",
+          secondaryHref: "/pitusk/non-teknis/",
+          secondaryLabel: "Lihat Jalur Operator",
+          steps: ["Pantau healthz dan readyz sebagai sinyal dasar.", "Pantau rasio sesi gagal.", "Lihat backlog reliability yang belum selesai."],
+          command: "Tidak perlu command. Gunakan indikator layanan dan backlog reliability.",
+          why: "Review operasi untuk stakeholder harus berbasis indikator layanan, bukan browsing manual semua halaman."
+        },
+        incident: {
+          badge: "PiTUSK • Stakeholder • Gangguan",
+          title: "Lihat dampak layanan dan kontrol saat incident",
+          summary: "Gunakan jalur stakeholder untuk memahami apa yang rusak, apa dampaknya, dan bagaimana recovery-nya diprioritaskan.",
+          primaryHref: "/pitusk/stakeholder/",
+          primaryLabel: "Buka Kontrol Layanan",
+          secondaryHref: "/pitusk/teknis/",
+          secondaryLabel: "Lihat Jalur Teknis",
+          steps: ["Konfirmasi jenis gangguan layanan.", "Konfirmasi indikator yang terdampak.", "Eskalasi ke teknis jika butuh root cause detail."],
+          command: "Tidak perlu command. Fokus ke dampak, backlog, dan recovery path.",
+          why: "Stakeholder butuh jembatan antara incident teknis dan keputusan prioritas bisnis."
+        },
+        integration: {
+          badge: "PiTUSK • Stakeholder • Integrasi",
+          title: "Mulai dari portal, lanjut ke teknis bila perlu",
+          summary: "Portal utama memberi konteks aplikasi, lalu jalur teknis dipakai ketika pembahasan sudah masuk ke implementasi atau framework adoption.",
+          primaryHref: "/pitusk/",
+          primaryLabel: "Buka Portal PiTUSK",
+          secondaryHref: "/pitusk/teknis/",
+          secondaryLabel: "Buka Jalur Teknis",
+          steps: ["Pahami struktur pembaca.", "Lihat service vs framework mode.", "Turun ke teknis bila kontrak perlu dibahas."],
+          command: "Tidak perlu command. Fokus ke struktur adopsi dan delegasi implementasi.",
+          why: "Ini menjaga pembahasan integrasi tetap strategis sebelum tenggelam di detail engineering."
+        },
+        governance: {
+          badge: "PiTUSK • Stakeholder • Governance",
+          title: "Stakeholder view adalah rumah governance PiTUSK",
+          summary: "Di sini kesehatan layanan, backlog security, dan prioritas production-readiness dirangkum dengan bahasa yang paling cocok untuk governance.",
+          primaryHref: "/pitusk/stakeholder/",
+          primaryLabel: "Buka Stakeholder PiTUSK",
+          secondaryHref: "/pitusk/executive-summary/",
+          secondaryLabel: "Buka Ringkasan 1 Menit",
+          steps: ["Pahami indikator layanan.", "Pahami backlog hardening.", "Gunakan executive summary untuk keputusan cepat."],
+          command: "Tidak perlu command. Gunakan indikator layanan dan prioritas backlog.",
+          why: "Fitur ini memastikan pembaca governance tidak salah masuk ke halaman yang terlalu teknis."
+        }
+      },
+      engineer: {
+        "first-look": {
+          badge: "PiTUSK • Engineer • Masuk awal",
+          title: "Mulai dari dokumentasi teknis PiTUSK",
+          summary: "Engineer paling efisien jika langsung masuk ke arsitektur, kontrak API, mode framework, dan roadmap engineering.",
+          primaryHref: "/pitusk/teknis/",
+          primaryLabel: "Buka Teknis PiTUSK",
+          secondaryHref: "/docs/id/pitusk/",
+          secondaryLabel: "Buka Referensi Detail",
+          steps: ["Baca arsitektur service.", "Pahami kontrak API.", "Lihat framework v1 dan roadmap reliability."],
+          command: "go run ./cmd/piresum",
+          why: "Engineer perlu jalur yang memotong langsung ke kontrak implementasi."
+        },
+        "ops-check": {
+          badge: "PiTUSK • Engineer • Cek operasi",
+          title: "Gunakan jalur teknis dan operasional PiTUSK",
+          summary: "Ini rute terbaik saat Anda memverifikasi health, readiness, atau perilaku sesi upload dari sisi engineering.",
+          primaryHref: "/pitusk/teknis/#ops",
+          primaryLabel: "Buka Operasional Teknis",
+          secondaryHref: "/pitusk/non-teknis/",
+          secondaryLabel: "Lihat Jalur Operator",
+          steps: ["Cek healthz.", "Cek readyz.", "Pantau status sesi dan jalur finalize."],
+          command: "curl http://localhost:8080/healthz\ncurl http://localhost:8080/readyz",
+          why: "Engineer perlu rute yang menghubungkan operasional dasar dengan kontrak service yang lebih dalam."
+        },
+        incident: {
+          badge: "PiTUSK • Engineer • Gangguan",
+          title: "Masuk ke API, status sesi, dan jalur reliability PiTUSK",
+          summary: "Jalur teknis memberi konteks penuh untuk mendiagnosis offset mismatch, finalization failure, atau backlog sync.",
+          primaryHref: "/pitusk/teknis/#api",
+          primaryLabel: "Buka Kontrak API",
+          secondaryHref: "/docs/id/pitusk/",
+          secondaryLabel: "Buka Referensi Detail",
+          steps: ["Ambil offset terakhir.", "Cek status sesi.", "Lihat backlog reliability dan adapter sync."],
+          command: "curl -I http://localhost:8080/v1/uploads/<upload-id>\ncurl http://localhost:8080/v1/uploads/<upload-id>/status",
+          why: "Engineer butuh root-cause path yang menghubungkan API behavior dengan layer reliability."
+        },
+        integration: {
+          badge: "PiTUSK • Engineer • Integrasi",
+          title: "Jalur teknis PiTUSK adalah pusat integrasi",
+          summary: "Di sini ada kontrak API, contoh framework v1, konfigurasi env, dan jalur referensi detail yang dibutuhkan engineer.",
+          primaryHref: "/pitusk/teknis/",
+          primaryLabel: "Buka Pusat Teknis",
+          secondaryHref: "/docs/id/pitusk/",
+          secondaryLabel: "Buka Referensi Detail",
+          steps: ["Baca mode framework.", "Lihat kontrak API.", "Gunakan referensi detail untuk rangkuman satu halaman."],
+          command: "import \"github.com/notedavidrinaldi/PiTUSK/pkg/pitusk/v1\"",
+          why: "Fitur ini mendorong engineer langsung ke halaman yang memiliki nilai implementasi tertinggi."
+        },
+        governance: {
+          badge: "PiTUSK • Engineer • Governance",
+          title: "Mulai dari stakeholder, validasi dengan teknis PiTUSK",
+          summary: "Jika Anda engineer yang sedang menyiapkan materi governance, gunakan stakeholder untuk framing lalu teknis untuk bukti implementasi.",
+          primaryHref: "/pitusk/stakeholder/",
+          primaryLabel: "Buka Stakeholder View",
+          secondaryHref: "/pitusk/teknis/",
+          secondaryLabel: "Buka Bukti Teknis",
+          steps: ["Ambil framing governance.", "Ambil indikator layanan.", "Turun ke teknis untuk bukti API, health, dan roadmap."],
+          command: "curl http://localhost:8080/readyz\ngo run ./cmd/piresum",
+          why: "Engineer sering jadi jembatan antara governance dan implementation detail. Navigator ini memotong jalur itu."
+        }
+      }
+    }
+  };
+
+  const navApp = document.getElementById("nav-app");
+  const navRole = document.getElementById("nav-role");
+  const navSituation = document.getElementById("nav-situation");
+  const navBadge = document.getElementById("navigator-badge");
+  const navTitle = document.getElementById("navigator-title");
+  const navSummary = document.getElementById("navigator-summary");
+  const navPrimary = document.getElementById("navigator-primary");
+  const navSecondary = document.getElementById("navigator-secondary");
+  const navSteps = document.getElementById("navigator-steps");
+  const navCommand = document.getElementById("navigator-command");
+  const navWhy = document.getElementById("navigator-why");
+  const inviteSkill = document.getElementById("invite-skill");
+  const inviteStyle = document.getElementById("invite-style");
+  const inviteTime = document.getElementById("invite-time");
+  const inviteBadge = document.getElementById("invite-badge");
+  const inviteTitle = document.getElementById("invite-title");
+  const inviteSummary = document.getElementById("invite-summary");
+  const inviteMessage = document.getElementById("invite-message");
+  const invitePrimary = document.getElementById("invite-primary");
+  const inviteSecondary = document.getElementById("invite-secondary");
+  const inviteFit = document.getElementById("invite-fit");
+  const inviteSteps = document.getElementById("invite-steps");
+  const inviteWhy = document.getElementById("invite-why");
+  const mazeTitle = document.getElementById("maze-title");
+  const mazeSummary = document.getElementById("maze-summary");
+  const mazeLink = document.getElementById("maze-link");
+  const mazeSpin = document.getElementById("maze-spin");
+  const mazeNotes = document.getElementById("maze-notes");
+
+  function setNavigatorResult() {
+    const app = navApp.value;
+    const role = navRole.value;
+    const situation = navSituation.value;
+    const result = navigatorData[app][role][situation];
+    if (!result) return;
+
+    localStorage.setItem("docs-edge-navigator", JSON.stringify({ app, role, situation }));
+
+    navBadge.textContent = result.badge;
+    navTitle.textContent = result.title;
+    navSummary.textContent = result.summary;
+    navPrimary.href = result.primaryHref;
+    navPrimary.textContent = result.primaryLabel;
+    navSecondary.href = result.secondaryHref;
+    navSecondary.textContent = result.secondaryLabel;
+    navSteps.innerHTML = result.steps.map((step) => `<li>${step}</li>`).join("");
+    navCommand.innerHTML = `<code>${result.command.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")}</code>`;
+    navWhy.textContent = result.why;
+  }
+
+  [navApp, navRole, navSituation].forEach((element) => {
+    element.addEventListener("change", setNavigatorResult);
+  });
+
+  const savedNavigator = localStorage.getItem("docs-edge-navigator");
+  if (savedNavigator) {
+    try {
+      const parsed = JSON.parse(savedNavigator);
+      if (parsed.app) navApp.value = parsed.app;
+      if (parsed.role) navRole.value = parsed.role;
+      if (parsed.situation) navSituation.value = parsed.situation;
+    } catch (error) {
+      localStorage.removeItem("docs-edge-navigator");
+    }
+  }
+  setNavigatorResult();
+
+  const inviteBase = {
+    backend: {
+      badge: "Kolaborator • Backend / API",
+      title: "Pengunjung ini cocok diajak memperkuat PiTUSK",
+      summary: "Keahlian backend paling dekat dengan kontrak API, framework v1, reliability, dan flow upload resumable di PiTUSK.",
+      message: "Kalau Anda senang membangun service yang rapi, tahan gangguan, dan jelas kontraknya, PiTUSK adalah tempat yang sangat cocok untuk meninggalkan kontribusi yang nyata.",
+      primaryHref: "/pitusk/teknis/",
+      primaryLabel: "Lihat Area Teknis PiTUSK",
+      secondaryHref: "/docs/id/pitusk/",
+      secondaryLabel: "Buka Referensi Detail PiTUSK",
+      fit: ["Endpoint upload v1", "Mode framework Go v1", "Retry, DLQ, dan reliability path", "Hardening operasional service"],
+      steps: ["Buka jalur teknis PiTUSK.", "Cek area API, framework, dan roadmap reliability.", "Pilih 1 area kecil yang bisa diberi perbaikan konkret."],
+      why: "Keahlian backend biasanya paling cepat memberi dampak pada layanan yang kontraknya sudah jelas tetapi masih punya backlog production-readiness."
+    },
+    iot: {
+      badge: "Kolaborator • IoT / Edge",
+      title: "Pengunjung ini cocok diajak mengembangkan PALASIK dan PiTUSK di lapangan edge",
+      summary: "Keahlian IoT dan Raspberry Pi cocok untuk menjembatani runtime nyata, eksperimen lapangan, dan integrasi perangkat.",
+      message: "Kalau Anda suka menghubungkan software dengan kondisi edge yang nyata, web ini punya dua arena yang saling menguatkan: PALASIK untuk keputusan keamanan dan PiTUSK untuk transfer file yang tahan putus.",
+      primaryHref: "/palasik/",
+      primaryLabel: "Lihat Portal PALASIK",
+      secondaryHref: "/pitusk/",
+      secondaryLabel: "Lihat Portal PiTUSK",
+      fit: ["Integrasi Raspberry Pi", "Edge runtime validation", "Workflow upload di jaringan tidak stabil", "Eksperimen lapangan berbasis dokumentasi"],
+      steps: ["Mulai dari portal aplikasi.", "Pilih jalur teknis sesuai kebutuhan.", "Dokumentasikan skenario lapangan yang benar-benar terjadi."],
+      why: "Kontributor edge yang baik biasanya membawa konteks yang tidak bisa ditiru hanya dari coding lokal."
+    },
+    security: {
+      badge: "Kolaborator • Security",
+      title: "Pengunjung ini cocok diajak memperkuat PALASIK",
+      summary: "Keahlian security paling relevan untuk policy, trust, governance, dan penguatan kontrol perubahan di PALASIK.",
+      message: "Kalau Anda tertarik pada zero trust, policy enforcement, dan bagaimana keamanan dijembatani ke operasi nyata, PALASIK adalah ruang yang tepat untuk ikut membentuk arah program ini.",
+      primaryHref: "/palasik/teknis/",
+      primaryLabel: "Lihat Teknis PALASIK",
+      secondaryHref: "/palasik/stakeholder/",
+      secondaryLabel: "Lihat Governance PALASIK",
+      fit: ["Policy gate dan rollback", "Health contract", "Risk control narrative", "Validasi alur keamanan edge"],
+      steps: ["Baca jalur stakeholder untuk framing risiko.", "Turun ke teknis untuk kontrak implementasi.", "Pilih area security yang bisa dipertegas atau diuji."],
+      why: "PALASIK sudah punya struktur keamanan yang menarik, dan kontributor security bisa langsung menambah kedalaman yang bernilai."
+    },
+    ops: {
+      badge: "Kolaborator • Ops / Reliability",
+      title: "Pengunjung ini cocok diajak memperkuat reliability PiTUSK dan operasi PALASIK",
+      summary: "Keahlian operasi cocok untuk health contract, restart safety, observability, dan jalur recovery kedua aplikasi.",
+      message: "Kalau Anda suka membuat sistem lebih tenang saat dijalankan orang lain, web ini punya banyak area yang siap ditingkatkan dari sisi reliability dan operasi nyata.",
+      primaryHref: "/pitusk/teknis/#roadmap",
+      primaryLabel: "Lihat Roadmap Reliability PiTUSK",
+      secondaryHref: "/palasik/teknis/#health",
+      secondaryLabel: "Lihat Health Contract PALASIK",
+      fit: ["Health dan readiness", "Observability", "Recovery path", "Runbook operasional yang bisa dipercaya"],
+      steps: ["Lihat jalur teknis dua aplikasi.", "Cari titik health, readiness, atau restart safety.", "Ubah 1 titik lemah jadi runbook yang berulang."],
+      why: "Kontributor ops sering memberi dampak paling besar justru pada area yang paling jarang dipoles orang lain."
+    },
+    writer: {
+      badge: "Kolaborator • Technical Writer",
+      title: "Pengunjung ini cocok diajak membesarkan kekuatan dokumentasi web ini",
+      summary: "Keahlian dokumentasi sangat cocok karena web ini memang dibangun sebagai rumah aplikasi dengan banyak jalur baca yang bisa terus diperdalam.",
+      message: "Kalau Anda suka membuat sistem kompleks terasa bisa dipahami banyak orang, tempat ini sangat cocok untuk meninggalkan karya yang benar-benar dipakai pembaca lintas peran.",
+      primaryHref: "/docs/id/",
+      primaryLabel: "Lihat Pusat Dokumentasi",
+      secondaryHref: "/pitusk/",
+      secondaryLabel: "Lihat Rumah PiTUSK",
+      fit: ["Jalur baca per peran", "Referensi detail", "Runbook dan executive summary", "Narasi yang menjembatani teknis dan governance"],
+      steps: ["Buka pusat dokumentasi.", "Cari area yang masih terlalu teknis atau terlalu tipis.", "Rapikan satu jalur baca agar lebih mudah dipakai orang baru."],
+      why: "Dokumentasi adalah aset pembeda web ini, dan kontributor writer bisa memperbesar keunggulan itu jauh lebih cepat dari yang lain."
+    }
+  };
+
+  const inviteStyleCopy = {
+    build: {
+      suffix: "yang suka membangun sesuatu yang nyata",
+      extra: "Fokuskan ajakan pada kontribusi yang menghasilkan fitur, struktur, atau alur baru."
+    },
+    audit: {
+      suffix: "yang kuat di review, evaluasi, dan penguatan kualitas",
+      extra: "Ajak mereka memeriksa blind spot, kontrak, dan titik lemah sebelum masalahnya tumbuh."
+    },
+    experiment: {
+      suffix: "yang senang menguji ide dan skenario lapangan",
+      extra: "Ajak mereka menjalankan eksperimen kecil yang bisa menghasilkan insight baru untuk program."
+    },
+    document: {
+      suffix: "yang suka menjernihkan hal rumit menjadi bisa dipakai orang lain",
+      extra: "Arahkan mereka ke area yang butuh dokumentasi, contoh, atau peta baca yang lebih kuat."
+    }
+  };
+
+  const inviteTimeCopy = {
+    light: "Mulai dari kontribusi kecil yang cepat terlihat hasilnya.",
+    steady: "Ajak masuk ke ritme kontribusi bertahap dan berulang.",
+    deep: "Undang untuk memegang satu area dengan rasa kepemilikan yang lebih besar."
+  };
+
+  function setInviteResult() {
+    const skill = inviteSkill.value;
+    const style = inviteStyle.value;
+    const time = inviteTime.value;
+    const base = inviteBase[skill];
+    const styleCopy = inviteStyleCopy[style];
+    const timeCopy = inviteTimeCopy[time];
+
+    localStorage.setItem("docs-collab-invite", JSON.stringify({ skill, style, time }));
+
+    inviteBadge.textContent = `${base.badge} • ${styleCopy.suffix}`;
+    inviteTitle.textContent = base.title;
+    inviteSummary.textContent = `${base.summary} ${timeCopy}`;
+    inviteMessage.textContent = `${base.message} Ini cocok untuk pengunjung ${styleCopy.suffix}.`;
+    invitePrimary.href = base.primaryHref;
+    invitePrimary.textContent = base.primaryLabel;
+    inviteSecondary.href = base.secondaryHref;
+    inviteSecondary.textContent = base.secondaryLabel;
+    inviteFit.innerHTML = base.fit.map((item) => `<li>${item}</li>`).join("");
+    inviteSteps.innerHTML = [
+      ...base.steps,
+      styleCopy.extra,
+      timeCopy
+    ].map((item) => `<li>${item}</li>`).join("");
+    inviteWhy.textContent = `${base.why} ${styleCopy.extra}`;
+  }
+
+  [inviteSkill, inviteStyle, inviteTime].forEach((element) => {
+    element.addEventListener("change", setInviteResult);
+  });
+
+  const savedInvite = localStorage.getItem("docs-collab-invite");
+  if (savedInvite) {
+    try {
+      const parsed = JSON.parse(savedInvite);
+      if (parsed.skill) inviteSkill.value = parsed.skill;
+      if (parsed.style) inviteStyle.value = parsed.style;
+      if (parsed.time) inviteTime.value = parsed.time;
+    } catch (error) {
+      localStorage.removeItem("docs-collab-invite");
+    }
+  }
+  setInviteResult();
+
+  const mazeRoutes = [
+    {
+      title: "Anda datang untuk security, tapi lorong berikutnya justru upload reliability",
+      summary: "Coba masuk ke PiTUSK dari sisi teknis. Banyak pengunjung baru sadar bahwa reliability di edge sama pentingnya dengan policy dan trust.",
+      href: "/pitusk/teknis/",
+      label: "Belok ke PiTUSK Teknis",
+      notes: [
+        "Bandingkan health contract PALASIK dengan healthz/readyz PiTUSK.",
+        "Lihat bagaimana dua aplikasi ini sama-sama bicara soal recovery, tapi dengan bahasa yang berbeda.",
+        "Gunakan referensi detail PiTUSK setelah membaca roadmap reliability."
+      ]
+    },
+    {
+      title: "Anda datang untuk upload, tapi lorong berikutnya justru governance security",
+      summary: "Coba belok ke stakeholder PALASIK. Di sana pengunjung sering menemukan cara berpikir risk-control yang bisa dipakai untuk layanan lain.",
+      href: "/palasik/stakeholder/",
+      label: "Belok ke Stakeholder PALASIK",
+      notes: [
+        "Perhatikan bagaimana kontrak health diterjemahkan ke bahasa governance.",
+        "Bandingkan rantai kontrol risiko dengan backlog reliability PiTUSK.",
+        "Gunakan executive summary jika ingin kembali ke versi 1 menit."
+      ]
+    },
+    {
+      title: "Anda ingin arah cepat, tapi lorong berikutnya justru jalur penjelajah",
+      summary: "Mulai dari Navigator Situasional, lalu sengaja pilih peran yang bukan peran Anda. Itu sering membuka sudut pandang baru yang tidak terduga.",
+      href: "#navigator-edge",
+      label: "Masuk ke Navigator",
+      notes: [
+        "Coba mode Operator walau Anda engineer.",
+        "Coba mode Governance walau Anda datang karena implementasi.",
+        "Lihat bagaimana rekomendasi berubah hanya karena konteks yang berbeda."
+      ]
+    },
+    {
+      title: "Anda ingin membaca, tapi web ini mengajak ikut membangun",
+      summary: "Belok ke Undangan Kolaborator Otomatis. Banyak pembaca paling potensial justru tertarik setelah melihat area kontribusi yang terasa cocok untuk mereka.",
+      href: "#collab-invite",
+      label: "Masuk ke Undangan Kolaborasi",
+      notes: [
+        "Pilih keahlian yang berbeda dari biasanya.",
+        "Lihat area kontribusi yang direkomendasikan.",
+        "Gunakan ini sebagai pintu untuk berpindah dari pembaca menjadi kontributor."
+      ]
+    },
+    {
+      title: "Anda ingin memahami satu aplikasi, tapi lorong berikutnya adalah rumah besarnya",
+      summary: "Coba masuk ke portal PALASIK atau PiTUSK dulu, lalu sengaja pilih jalur pembaca yang bukan pilihan pertama Anda.",
+      href: "/pitusk/",
+      label: "Masuk ke Rumah PiTUSK",
+      notes: [
+        "Portal selalu punya belokan yang lebih lembut daripada halaman teknis langsung.",
+        "Jalur per peran dirancang untuk membuat pembaca ingin membuka pintu berikutnya.",
+        "Lihat bagaimana satu topik berubah makna ketika dibaca dari peran lain."
+      ]
+    }
+  ];
+
+  function setMazeRoute(index) {
+    const route = mazeRoutes[index];
+    mazeTitle.textContent = route.title;
+    mazeSummary.textContent = route.summary;
+    mazeLink.href = route.href;
+    mazeLink.textContent = route.label;
+    mazeNotes.innerHTML = route.notes.map((note, i) => (
+      `<div class="spotlight-item"><strong>Clue ${i + 1}</strong><span>${note}</span></div>`
+    )).join("");
+  }
+
+  let mazeIndex = 0;
+  mazeSpin.addEventListener("click", () => {
+    mazeIndex = (mazeIndex + 1) % mazeRoutes.length;
+    setMazeRoute(mazeIndex);
+  });
+  setMazeRoute(mazeIndex);
 </script>
 </body>
 </html>

@@ -7,6 +7,9 @@
   <title>Dokumentasi Teknis PiTUSK | David Rinaldi</title>
   <meta name="description" content="Dokumentasi teknis PiTUSK: arsitektur, endpoint upload, mode framework, quick start, konfigurasi, reliability, dan roadmap engineering.">
   <meta name="author" content="David Rinaldi">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; script-src 'self' 'unsafe-inline'; connect-src 'self'; manifest-src 'self'; upgrade-insecure-requests; block-all-mixed-content">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), browsing-topics=()">
   <link rel="canonical" href="https://notedavidrinaldi.github.io/pitusk/teknis/">
   <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
   <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
@@ -52,6 +55,8 @@
       <h1 class="page-title">Dokumentasi Teknis PiTUSK</h1>
       <div class="doc-subtitle">Panduan implementasi praktis untuk resumable upload berbasis Go di Raspberry Pi dan edge gateway</div>
     </header>
+
+    <div class="inline-note"><strong>Butuh arsip teknis yang lebih rapat?</strong> Buka <a href="/docs/id/pitusk/">Referensi Detail PiTUSK</a> untuk versi pendamping yang merangkum kontrak teknis dalam satu halaman.</div>
 
     <div class="toc">
       <details open>
@@ -199,6 +204,15 @@ import "github.com/notedavidrinaldi/PiTUSK/pkg/pitusk"
 // Sesudah
 import "github.com/notedavidrinaldi/PiTUSK/pkg/pitusk/v1"</code></pre>
       <p>Semua integrasi baru sebaiknya menggunakan path <code>v1</code> agar kontraknya stabil untuk pengembangan berikutnya.</p>
+    </section>
+
+    <section class="doc-section">
+      <h2>Referensi Lanjutan</h2>
+      <div class="docs-grid">
+        <article class="doc-card"><h3><a href="/docs/id/pitusk/">Referensi Detail PiTUSK</a></h3><p>Versi satu halaman yang merangkum quick start, API, framework, data flow, operasional, dan migrasi.</p></article>
+        <article class="doc-card"><h3><a href="/pitusk/non-teknis/">Jalur Operasional</a></h3><p>Gunakan saat Anda butuh panduan cepat untuk health, readiness, dan resume upload.</p></article>
+        <article class="doc-card"><h3><a href="/pitusk/stakeholder/">Jalur Stakeholder</a></h3><p>Gunakan saat pembahasan beralih ke governance, risiko, dan prioritas reliability.</p></article>
+      </div>
     </section>
   </article>
 </main>

@@ -5,9 +5,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <meta name="robots" content="index, follow">
-  <title>Dokumentasi PiTUSK (ID) | David Rinaldi</title>
-  <meta name="description" content="Dokumentasi PiTUSK berbahasa Indonesia: arsitektur, quick start, API resumable upload, framework v1, roadmap, dan operasional edge.">
+  <title>Referensi Detail PiTUSK (ID) | David Rinaldi</title>
+  <meta name="description" content="Referensi detail PiTUSK berbahasa Indonesia: arsitektur, quick start, API resumable upload, framework v1, roadmap, dan operasional edge.">
   <meta name="author" content="David Rinaldi">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; script-src 'self' 'unsafe-inline'; connect-src 'self'; manifest-src 'self'; upgrade-insecure-requests; block-all-mixed-content">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), browsing-topics=()">
   <link rel="canonical" href="https://notedavidrinaldi.github.io/docs/id/pitusk/">
   <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
   <script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script>
@@ -24,6 +27,10 @@
       <li><a href="/" title="Home">Home</a></li>
       <li><a href="/palasik/" title="PALASIK Docs">PALASIK Docs</a></li>
       <li><a href="/pitusk/" title="PiTUSK Docs">PiTUSK Docs</a></li>
+      <li><a href="/pitusk/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+      <li><a href="/pitusk/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
+      <li><a href="/pitusk/stakeholder/" title="Stakeholder">Stakeholder</a></li>
+      <li><a href="/pitusk/teknis/" title="Teknis">Teknis</a></li>
       <li><a href="/docs/id/pitusk/" title="PiTUSK Detail"><span class="active">PiTUSK Detail</span></a></li>
       <li><a href="/docs/id/" title="Pusat Dokumentasi">Pusat Dokumentasi</a></li>
       <li><a href="/demit/" title="DEMIT Runtime">DEMIT Runtime</a></li>
@@ -37,12 +44,44 @@
 <main class="main docs-shell">
   <article class="post-single">
     <header class="post-header">
-      <div class="breadcrumbs"><a href="/docs/id/">Pusat Dokumentasi</a> » <a href="/docs/id/pitusk/">PiTUSK</a></div>
-      <h1 class="page-title">Dokumentasi PiTUSK</h1>
-      <div class="doc-subtitle">Layanan resumable upload untuk edge device, dengan mode konsumsi sebagai service dan framework Go publik.</div>
+      <div class="breadcrumbs"><a href="/docs/id/">Pusat Dokumentasi</a> » <a href="/pitusk/">PiTUSK</a> » <a href="/docs/id/pitusk/">Referensi Detail</a></div>
+      <h1 class="page-title">Referensi Detail PiTUSK</h1>
+      <div class="doc-subtitle">Halaman arsip detail untuk pembaca yang sudah memilih jalur PiTUSK dan sekarang butuh kontrak teknis yang lebih lengkap.</div>
     </header>
 
-    <section class="doc-section">
+    <div class="toc">
+      <details open>
+        <summary accesskey="c" title="(Alt + C)"><span class="details">Daftar Isi</span></summary>
+        <div class="inner">
+          <ul>
+            <li><a href="#jalur">Masuk dari Jalur yang Tepat</a></li>
+            <li><a href="#konsep">Konsep Inti</a></li>
+            <li><a href="#peta">Peta Bacaan</a></li>
+            <li><a href="#quick-start">Quick Start</a></li>
+            <li><a href="#api">Kontrak API</a></li>
+            <li><a href="#framework">Mode Framework</a></li>
+            <li><a href="#operasional">Operasional dan Konfigurasi</a></li>
+            <li><a href="#security">Keamanan dan Reliability</a></li>
+            <li><a href="#roadmap">Roadmap Pengembangan</a></li>
+            <li><a href="#migration">Migrasi ke API v1</a></li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <section id="jalur" class="doc-section">
+      <h2>Masuk dari Jalur yang Tepat</h2>
+      <p>Jika Anda baru pertama kali membuka PiTUSK, lebih nyaman memulai dari rumah aplikasi utamanya lalu memilih sudut pandang yang sesuai.</p>
+      <div class="docs-grid">
+        <article class="doc-card"><h3><a href="/pitusk/executive-summary/">Executive Summary</a></h3><p>Untuk leadership yang butuh ringkasan nilai, risiko, dan alasan adopsi.</p></article>
+        <article class="doc-card"><h3><a href="/pitusk/non-teknis/">Non-Teknis</a></h3><p>Untuk operator yang butuh langkah resume upload, health, dan status harian.</p></article>
+        <article class="doc-card"><h3><a href="/pitusk/stakeholder/">Stakeholder</a></h3><p>Untuk governance reliability, indikator layanan, dan prioritas hardening.</p></article>
+        <article class="doc-card"><h3><a href="/pitusk/teknis/">Teknis</a></h3><p>Untuk engineer yang butuh API, arsitektur, konfigurasi, dan roadmap implementasi.</p></article>
+      </div>
+      <div class="inline-note"><strong>Peran halaman ini:</strong> bukan lagi pintu masuk utama, tetapi <strong>referensi detail pendamping</strong> untuk semua jalur PiTUSK di atas.</div>
+    </section>
+
+    <section id="konsep" class="doc-section">
       <h2>Konsep Inti</h2>
       <p>PiTUSK menangani upload file besar secara bertahap tanpa mengorbankan kemampuan resume saat koneksi terputus.</p>
       <ul>
@@ -60,6 +99,18 @@
         <article class="doc-card"><h3>PiTUSK sebagai service</h3><p>Dipakai langsung melalui endpoint HTTP untuk create session, upload chunk, resume, dan finalize.</p></article>
         <article class="doc-card"><h3>PiTUSK sebagai framework</h3><p>Dipakai sebagai package publik <code>pkg/pitusk/v1</code> agar bisa ditanamkan ke project lain.</p></article>
       </div>
+    </section>
+
+    <section id="peta" class="doc-section">
+      <h2>Peta Bacaan</h2>
+      <ul>
+        <li><strong>Portal utama</strong>: buka <a href="/pitusk/">rumah aplikasi PiTUSK</a>.</li>
+        <li><strong>Ringkas eksekutif</strong>: baca jalur <a href="/pitusk/executive-summary/">executive summary</a>.</li>
+        <li><strong>Operasional harian</strong>: baca jalur <a href="/pitusk/non-teknis/">non-teknis</a>.</li>
+        <li><strong>Governance dan risiko</strong>: baca jalur <a href="/pitusk/stakeholder/">stakeholder</a>.</li>
+        <li><strong>Implementasi engineer</strong>: baca jalur <a href="/pitusk/teknis/">teknis</a>.</li>
+        <li><strong>Referensi detail</strong>: tetap gunakan halaman ini untuk potongan informasi yang lebih lengkap dan terpusat.</li>
+      </ul>
     </section>
 
     <section id="quick-start" class="doc-section">

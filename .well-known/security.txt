@@ -1,0 +1,7 @@
+Contact: https://github.com/notedavidrinaldi
+Contact: mailto:security@notedavidrinaldi.github.io
+Expires: 2027-12-31T23:59:59Z
+Preferred-Languages: id, en
+Canonical: https://notedavidrinaldi.github.io/.well-known/security.txt
+Policy: https://notedavidrinaldi.github.io/docs/id/
+Acknowledgments: https://notedavidrinaldi.github.io/about/
