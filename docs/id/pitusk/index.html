@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="id" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>Dokumentasi PiTUSK (ID) | David Rinaldi</title>
+  <meta name="description" content="Dokumentasi PiTUSK berbahasa Indonesia: arsitektur, quick start, API resumable upload, framework v1, roadmap, dan operasional edge.">
+  <meta name="author" content="David Rinaldi">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/docs/id/pitusk/">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script>
+  <link rel="stylesheet" href="/css/palasik-doc.css">
+</head>
+<body class="single docs-shell" id="top">
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+      <div class="logo-switches"><button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">◐</button></div>
+    </div>
+    <ul id="menu">
+      <li><a href="/" title="Home">Home</a></li>
+      <li><a href="/palasik/" title="PALASIK Docs">PALASIK Docs</a></li>
+      <li><a href="/pitusk/" title="PiTUSK Docs">PiTUSK Docs</a></li>
+      <li><a href="/docs/id/pitusk/" title="PiTUSK Detail"><span class="active">PiTUSK Detail</span></a></li>
+      <li><a href="/docs/id/" title="Pusat Dokumentasi">Pusat Dokumentasi</a></li>
+      <li><a href="/demit/" title="DEMIT Runtime">DEMIT Runtime</a></li>
+      <li><a href="/posts/" title="Posts">Posts</a></li>
+      <li><a href="/about/" title="About">About</a></li>
+      <li><a href="/program/" title="Program">Program</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main docs-shell">
+  <article class="post-single">
+    <header class="post-header">
+      <div class="breadcrumbs"><a href="/docs/id/">Pusat Dokumentasi</a> » <a href="/docs/id/pitusk/">PiTUSK</a></div>
+      <h1 class="page-title">Dokumentasi PiTUSK</h1>
+      <div class="doc-subtitle">Layanan resumable upload untuk edge device, dengan mode konsumsi sebagai service dan framework Go publik.</div>
+    </header>
+
+    <section class="doc-section">
+      <h2>Konsep Inti</h2>
+      <p>PiTUSK menangani upload file besar secara bertahap tanpa mengorbankan kemampuan resume saat koneksi terputus.</p>
+      <ul>
+        <li>Sesi upload disimpan sebagai metadata persisten di SQLite.</li>
+        <li>Chunk ditulis ke staging file dengan validasi offset.</li>
+        <li>File difinalisasi ke jalur akhir setelah seluruh data lengkap.</li>
+        <li>Worker sinkronisasi dapat meneruskan file final ke target lain.</li>
+      </ul>
+    </section>
+
+    <section class="doc-section">
+      <h2>Posisi PiTUSK di Rumah Aplikasi</h2>
+      <p>Jika PALASIK berfokus pada keputusan keamanan event IoT, maka PiTUSK berfokus pada <strong>ketahanan transfer file</strong> di lingkungan edge yang terbatas.</p>
+      <div class="docs-grid">
+        <article class="doc-card"><h3>PiTUSK sebagai service</h3><p>Dipakai langsung melalui endpoint HTTP untuk create session, upload chunk, resume, dan finalize.</p></article>
+        <article class="doc-card"><h3>PiTUSK sebagai framework</h3><p>Dipakai sebagai package publik <code>pkg/pitusk/v1</code> agar bisa ditanamkan ke project lain.</p></article>
+      </div>
+    </section>
+
+    <section id="quick-start" class="doc-section">
+      <h2>Quick Start</h2>
+      <pre><code>cd /Users/davidrinaldi/Documents/PROJECT-DAVID/PiTUSK
+go run ./cmd/piresum</code></pre>
+      <p>Contoh konsumsi package publik v1:</p>
+      <pre><code>import "github.com/notedavidrinaldi/PiTUSK/pkg/pitusk/v1"
+
+cfg, err := v1.LoadConfig()
+server, err := v1.New(cfg, nil)
+if err != nil { panic(err) }
+if err := server.Run(); err != nil { panic(err) }</code></pre>
+      <p>Versi lama <code>github.com/notedavidrinaldi/PiTUSK/pkg/pitusk</code> masih ada sebagai layer kompatibilitas, tetapi jalur baru yang direkomendasikan adalah <code>v1</code>.</p>
+    </section>
+
+    <section id="api" class="doc-section">
+      <h2>Kontrak API</h2>
+      <table>
+        <thead>
+          <tr><th>Endpoint</th><th>Fungsi</th><th>Catatan</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>POST /v1/uploads</code></td><td>Membuat sesi upload</td><td>Client mengirim nama file dan total ukuran.</td></tr>
+          <tr><td><code>PATCH /v1/uploads/{id}</code></td><td>Mengirim chunk</td><td>Perlu header <code>Upload-Offset</code> agar penulisan aman.</td></tr>
+          <tr><td><code>HEAD /v1/uploads/{id}</code></td><td>Mengambil offset saat ini</td><td>Dipakai untuk resume setelah gangguan koneksi.</td></tr>
+          <tr><td><code>GET /v1/uploads/{id}/status</code></td><td>Mengambil status sesi</td><td>Status umum: <code>new</code>, <code>uploading</code>, <code>finalized</code>, <code>synced</code>, <code>failed</code>.</td></tr>
+          <tr><td><code>POST /v1/uploads/{id}/finalize</code></td><td>Menyelesaikan sesi</td><td>File dipindahkan dari staging ke lokasi final.</td></tr>
+          <tr><td><code>DELETE /v1/uploads/{id}</code></td><td>Membatalkan sesi</td><td>Dipakai untuk cleanup atau abort manual.</td></tr>
+          <tr><td><code>GET /healthz</code></td><td>Health</td><td>Untuk cek apakah service hidup.</td></tr>
+          <tr><td><code>GET /readyz</code></td><td>Readiness</td><td>Untuk cek apakah service siap menerima trafik.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="doc-section">
+      <h2>Contoh Flow Client</h2>
+      <pre><code># create session
+curl -X POST http://localhost:8080/v1/uploads \
+  -H "Content-Type: application/json" \
+  -d '{"filename":"sample.bin","size_total":12345}'
+
+# upload chunk
+curl -X PATCH "http://localhost:8080/v1/uploads/&lt;upload-id&gt;" \
+  -H "Upload-Offset: 0" \
+  --data-binary @chunk.bin
+
+# check offset after interrupt
+curl -I http://localhost:8080/v1/uploads/&lt;upload-id&gt;
+
+# finalize
+curl -X POST http://localhost:8080/v1/uploads/&lt;upload-id&gt;/finalize</code></pre>
+    </section>
+
+    <section id="framework" class="doc-section">
+      <h2>Mode Framework</h2>
+      <p>PiTUSK tidak hanya diposisikan sebagai binary. Project ini juga disusun agar bisa dipakai sebagai framework upload inti.</p>
+      <ul>
+        <li>API publik utama berada di <code>github.com/notedavidrinaldi/PiTUSK/pkg/pitusk/v1</code>.</li>
+        <li>Layer lama <code>pkg/pitusk</code> tetap hidup untuk backward compatibility.</li>
+        <li>Konfigurasi dan inisialisasi server sudah dikemas agar bootstrap lebih konsisten.</li>
+      </ul>
+      <div class="inline-note"><strong>Inti arahnya:</strong> aplikasi dan library berbagi kontrak yang sama, sehingga tim bisa mulai dari binary lalu naik kelas ke integrasi framework tanpa ganti konsep.</div>
+    </section>
+
+    <section class="doc-section">
+      <h2>Arsitektur Komponen</h2>
+      <div class="docs-grid">
+        <article class="doc-card"><h3>API Layer</h3><p>Validasi auth, parsing header, middleware, dan routing.</p></article>
+        <article class="doc-card"><h3>Upload Engine</h3><p>Lifecycle sesi upload, kontrol offset, status, dan concurrency.</p></article>
+        <article class="doc-card"><h3>Storage Layer</h3><p>Staging file lokal, finalization path, dan repository metadata SQLite.</p></article>
+        <article class="doc-card"><h3>Sync Engine</h3><p>Worker background untuk copy atau sinkronisasi ke target lain.</p></article>
+        <article class="doc-card"><h3>Config + Runtime</h3><p>Bootstrap aplikasi, lifecycle, dan graceful shutdown.</p></article>
+        <article class="doc-card"><h3>Operations</h3><p>Health, readiness, logging, serta cleanup sesi gagal di tahap berikutnya.</p></article>
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>Data Flow</h2>
+      <ol>
+        <li>Client membuat sesi upload via <code>POST</code>.</li>
+        <li>Client mengirim chunk via <code>PATCH</code>.</li>
+        <li>Upload engine menulis chunk lalu memperbarui offset.</li>
+        <li>Jika koneksi putus, client mengambil offset terkini via <code>HEAD</code>.</li>
+        <li>Setelah upload penuh, client memanggil <code>finalize</code>.</li>
+        <li>Sync worker meneruskan file ke target sinkronisasi bila diaktifkan.</li>
+      </ol>
+    </section>
+
+    <section id="operasional" class="doc-section">
+      <h2>Operasional dan Konfigurasi</h2>
+      <p>Environment variable utama yang paling sering dipakai:</p>
+      <ul>
+        <li><code>PI_TUSK_ADDR</code> dengan default <code>:8080</code>.</li>
+        <li><code>PI_TUSK_STAGING_DIR</code> untuk area staging file.</li>
+        <li><code>PI_TUSK_FINAL_DIR</code> untuk lokasi file final.</li>
+        <li><code>PI_TUSK_DB_PATH</code> untuk SQLite metadata.</li>
+        <li><code>PI_TUSK_CHUNK_SIZE</code>, <code>PI_TUSK_MAX_FILE_SIZE</code>, dan <code>PI_TUSK_MAX_CONCURRENT</code> untuk kontrol upload.</li>
+        <li><code>PI_TUSK_SYNC_ENABLED</code> dan <code>PI_TUSK_SYNC_INTERVAL</code> untuk worker sinkronisasi.</li>
+        <li><code>PI_TUSK_SHUTDOWN_TIMEOUT</code> untuk graceful shutdown.</li>
+        <li><code>PI_TUSK_API_TOKEN</code> untuk bearer token opsional.</li>
+      </ul>
+      <div class="spotlight-strip">
+        <div class="spotlight-item"><strong>Untuk cek hidup</strong><span>Gunakan <code>/healthz</code> agar cepat tahu service aktif.</span></div>
+        <div class="spotlight-item"><strong>Untuk cek siap trafik</strong><span>Gunakan <code>/readyz</code> sebelum menempatkan service di belakang proxy atau supervisor.</span></div>
+        <div class="spotlight-item"><strong>Untuk lanjut kerja dev</strong><span><code>make resume</code> dan <code>make resume-json</code> membaca status roadmap dan action berikutnya.</span></div>
+      </div>
+    </section>
+
+    <section id="security" class="doc-section">
+      <h2>Keamanan dan Reliability</h2>
+      <ul>
+        <li>Middleware auth token sudah tersedia.</li>
+        <li>Validasi ukuran file, offset, dan status sesi sudah diterapkan.</li>
+        <li>Worker sinkronisasi dasar dan target lokal sudah tersedia.</li>
+        <li>Backlog prioritas berikutnya meliputi sanitize nama file, proteksi path traversal, retry/backoff, dan audit log event sensitif.</li>
+      </ul>
+    </section>
+
+    <section id="roadmap" class="doc-section">
+      <h2>Roadmap Pengembangan</h2>
+      <p>Status garis besarnya saat ini:</p>
+      <ul>
+        <li><strong>Tahap 0</strong>: foundation selesai.</li>
+        <li><strong>Tahap 1</strong>: core framework contract berjalan dan mayoritas komponen utama sudah ada.</li>
+        <li><strong>Tahap 2</strong>: sync adapter dan reliability masih berlanjut, terutama untuk S3/MinIO, retry, DLQ, dan idempotency.</li>
+        <li><strong>Tahap 3-5</strong>: hardening keamanan, observability, command operasi, dan packaging komunitas masih jadi backlog aktif.</li>
+      </ul>
+    </section>
+
+    <section id="migration" class="doc-section">
+      <h2>Migrasi ke API v1</h2>
+      <p>Jalur lama tetap tersedia agar project lama tidak langsung rusak, tetapi dokumentasi baru mengarahkan semua integrasi ke <code>pkg/pitusk/v1</code>.</p>
+      <pre><code>// Sebelum
+import "github.com/notedavidrinaldi/PiTUSK/pkg/pitusk"
+
+cfg, err := pitusk.LoadConfig()
+server, err := pitusk.New(cfg, nil)
+
+// Sesudah
+import "github.com/notedavidrinaldi/PiTUSK/pkg/pitusk/v1"
+
+cfg, err := v1.LoadConfig()
+server, err := v1.New(cfg, nil)</code></pre>
+    </section>
+  </article>
+</main>
+
+<footer class="footer"><span>&copy; 2026 <a href="https://notedavidrinaldi.github.io/">David Rinaldi</a></span></footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g"><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a>
+<script>
+  let menu = document.getElementById("menu");
+  if (menu) { const e = localStorage.getItem("menu-scroll-position"); e && (menu.scrollLeft = parseInt(e, 10)); menu.onscroll = function(){localStorage.setItem("menu-scroll-position", menu.scrollLeft);} }
+  document.getElementById("theme-toggle").addEventListener("click", () => { const root = document.querySelector("html"); if (root.dataset.theme === "dark") {root.dataset.theme = "light"; localStorage.setItem("pref-theme", "light");} else {root.dataset.theme = "dark"; localStorage.setItem("pref-theme", "dark");} });
+</script>
+</body>
+</html>

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   <meta name="robots" content="index, follow">
   <title>Notedavidrinaldi Docs Hub | David Rinaldi</title>
-  <meta name="description" content="Pusat dokumentasi untuk PALASIK dan halaman Program di Notedavidrinaldi: arsitektur, operasional, roadmap, dan materi detail.">
+  <meta name="description" content="Pusat dokumentasi untuk PALASIK dan PiTUSK di Notedavidrinaldi: arsitektur, operasional, roadmap, dan materi detail.">
   <meta name="author" content="David Rinaldi">
   <link rel="canonical" href="https://notedavidrinaldi.github.io/">
   <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
@@ -49,6 +49,8 @@
     <ul id="menu">
       <li><a href="/" title="Home"><span class="active">Home</span></a></li>
       <li><a href="/palasik/" title="PALASIK Docs">PALASIK Docs</a></li>
+      <li><a href="/pitusk/" title="PiTUSK Docs">PiTUSK Docs</a></li>
+      <li><a href="/docs/id/pitusk/" title="PiTUSK Detail">PiTUSK Detail</a></li>
       <li><a href="/palasik/executive-summary/" title="Executive Summary">Executive Summary</a></li>
       <li><a href="/palasik/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
       <li><a href="/palasik/stakeholder/" title="Stakeholder">Stakeholder</a></li>
@@ -69,7 +71,7 @@
     <header class="post-header">
       <div class="doc-kicker">Rumah Besar Aplikasi</div>
       <h1 class="page-title">Notedavidrinaldi Docs Hub</h1>
-      <div class="doc-subtitle">Satu pusat akses untuk dua area utama: <strong>PALASIK</strong> dan <strong>Program</strong>.</div>
+      <div class="doc-subtitle">Satu pusat akses untuk dua rumah aplikasi utama: <strong>PALASIK</strong> dan <strong>PiTUSK</strong>.</div>
     </header>
 
     <div class="doc-tags">
@@ -83,17 +85,17 @@
     <section class="hero-panel" aria-label="Pembuka dokumentasi">
       <div class="hero-grid">
         <div class="hero-copy">
-          <p>Semua jalur baca utama sekarang berkumpul dalam satu pengalaman yang lebih jelas: mulai dari pengenalan PALASIK, panduan operasional, sampai runtime DEMIT yang menjadi host aplikasi keamanan di edge.</p>
+          <p>Semua jalur baca utama sekarang berkumpul dalam satu pengalaman yang lebih jelas: mulai dari portal keamanan PALASIK sampai layanan upload edge PiTUSK, lengkap dengan dokumentasi teknis dan pusat referensi yang saling terhubung.</p>
           <div class="hero-actions">
             <a class="hero-button hero-button-primary" href="/palasik/">Masuk ke Portal PALASIK</a>
+            <a class="hero-button" href="/pitusk/">Masuk ke Portal PiTUSK</a>
             <a class="hero-button" href="/docs/id/">Buka Pusat Dokumentasi</a>
-            <a class="hero-button" href="/program/">Buka Menu Program</a>
             <a class="hero-button" href="/demit/">Lihat Runtime DEMIT</a>
           </div>
           <div class="hero-stats">
-            <div class="hero-stat"><strong>8 jalur utama</strong><span>Landing, portal, teknis, non-teknis, stakeholder, executive summary, DEMIT, documentation center.</span></div>
-            <div class="hero-stat"><strong>Operasional siap pakai</strong><span>Health contract, shortcut, dan post-restart gate sudah ditautkan langsung.</span></div>
-            <div class="hero-stat"><strong>Nyaman untuk pembaca baru</strong><span>Masuk dari ringkasan, lalu turun ke detail teknis saat dibutuhkan.</span></div>
+            <div class="hero-stat"><strong>2 rumah aplikasi</strong><span>PALASIK untuk keputusan keamanan IoT, PiTUSK untuk upload resumable di edge.</span></div>
+            <div class="hero-stat"><strong>Operasional siap pakai</strong><span>Health contract PALASIK dan alur upload-resume PiTUSK langsung bisa diakses.</span></div>
+            <div class="hero-stat"><strong>Nyaman untuk pembaca baru</strong><span>Masuk dari portal tiap aplikasi, lalu turun ke detail teknis saat dibutuhkan.</span></div>
           </div>
         </div>
         <aside class="hero-aside">
@@ -103,6 +105,7 @@
             <li><a href="/palasik/executive-summary/">Butuh versi 1 menit<small>Ringkasan cepat untuk pengambil keputusan.</small></a></li>
             <li><a href="/palasik/non-teknis/">Butuh panduan operator<small>Checklist, status, rollback, dan langkah pasca-restart.</small></a></li>
             <li><a href="/palasik/teknis/">Butuh detail implementasi<small>Arsitektur, route, deploy, dan kontrak health terbaru.</small></a></li>
+            <li><a href="/docs/id/pitusk/">Butuh upload service yang tahan putus<small>Masuk ke PiTUSK untuk API resumable upload dan roadmap reliability.</small></a></li>
           </ul>
         </aside>
       </div>
@@ -114,17 +117,33 @@
         <div class="inner">
           <ul>
             <li><a href="#palasik-akses-cepat">Akses Cepat PALASIK</a></li>
+            <li><a href="#app-houses">Dua Rumah Aplikasi</a></li>
+            <li><a href="#palasik-akses-cepat">Akses Cepat PALASIK</a></li>
+            <li><a href="#pitusk-akses-cepat">Akses Cepat PiTUSK</a></li>
             <li><a href="#overview">Apa itu PALASIK</a></li>
-            <li><a href="#architecture">Arsitektur</a></li>
-            <li><a href="#runtime">Alur Runtime</a></li>
-            <li><a href="#quick-start">Mulai Cepat</a></li>
-            <li><a href="#operational">Operasional Cepat</a></li>
-            <li><a href="#deployment">Deploy Edge</a></li>
-            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#pitusk-overview">Apa itu PiTUSK</a></li>
           </ul>
         </div>
       </details>
     </div>
+
+    <section id="app-houses" class="doc-section">
+      <h2>Dua Rumah Aplikasi</h2>
+      <div class="docs-grid">
+        <article class="doc-card">
+          <div class="doc-card-eyebrow">Security framework</div>
+          <h3><a href="/palasik/">PALASIK</a></h3>
+          <p>Portal dokumentasi keamanan IoT berbasis trust engine, policy engine, dan operasional edge.</p>
+          <div class="doc-card-cta">Masuk ke rumah PALASIK →</div>
+        </article>
+        <article class="doc-card">
+          <div class="doc-card-eyebrow">Upload framework</div>
+          <h3><a href="/pitusk/">PiTUSK</a></h3>
+          <p>Portal dokumentasi layanan upload resumable untuk Raspberry Pi, edge device, dan integrasi framework Go.</p>
+          <div class="doc-card-cta">Masuk ke rumah PiTUSK →</div>
+        </article>
+      </div>
+    </section>
 
     <section id="palasik-akses-cepat" class="doc-section">
       <h2>Akses Cepat Dokumentasi PALASIK</h2>
@@ -167,6 +186,41 @@
       </div>
     </section>
 
+    <section id="pitusk-akses-cepat" class="doc-section">
+      <h2>Akses Cepat Dokumentasi PiTUSK</h2>
+      <div class="spotlight-strip">
+        <div class="spotlight-item"><strong>Masuk paling nyaman</strong><span>Mulai dari portal PiTUSK jika ingin melihat gambaran besar lalu memilih jalur baca.</span></div>
+        <div class="spotlight-item"><strong>Masuk paling cepat</strong><span>Langsung ke dokumentasi detail jika fokus Anda endpoint upload, offset, atau konfigurasi.</span></div>
+        <div class="spotlight-item"><strong>Masuk paling strategis</strong><span>Baca roadmap jika Anda ingin melihat arah reliabilitas, sync, dan hardening yang sedang berjalan.</span></div>
+      </div>
+      <div class="docs-grid">
+        <article class="doc-card">
+          <div class="doc-card-eyebrow">Hub utama</div>
+          <h3><a href="/pitusk/">Portal PiTUSK</a></h3>
+          <p>Ringkas semua jalur dokumentasi PiTUSK dari konsep, arsitektur, API, hingga operasional.</p>
+          <div class="doc-card-cta">Buka portal →</div>
+        </article>
+        <article class="doc-card">
+          <div class="doc-card-eyebrow">Dokumen utama</div>
+          <h3><a href="/docs/id/pitusk/">Dokumentasi Lengkap</a></h3>
+          <p>Quick start, data flow, mode framework, keamanan, dan migrasi API v1.</p>
+          <div class="doc-card-cta">Buka dokumentasi lengkap →</div>
+        </article>
+        <article class="doc-card">
+          <div class="doc-card-eyebrow">Reliability</div>
+          <h3><a href="/docs/id/pitusk/#roadmap">Roadmap Reliability</a></h3>
+          <p>Lihat progres worker sync, adapter target, retry, DLQ, dan observability.</p>
+          <div class="doc-card-cta">Lihat roadmap →</div>
+        </article>
+        <article class="doc-card">
+          <div class="doc-card-eyebrow">Framework</div>
+          <h3><a href="/docs/id/pitusk/#framework">Konsumsi sebagai Library</a></h3>
+          <p>Gunakan package publik <code>pkg/pitusk/v1</code> untuk integrasi aplikasi lain.</p>
+          <div class="doc-card-cta">Buka jalur framework →</div>
+        </article>
+      </div>
+    </section>
+
     <section class="doc-section">
       <h2>Pilih Jalur Baca</h2>
       <div class="path-grid">
@@ -192,6 +246,12 @@
       <h2>Apa itu PALASIK</h2>
       <p><strong>PALASIK</strong> adalah <em>framework keputusan keamanan</em> untuk node IoT yang dijalankan di gateway (umumnya Raspberry Pi). Framework ini memeriksa perilaku device secara real-time lalu menentukan tindakan pengamanan secara adaptif.</p>
       <p class="inline-note"><strong>Poin inti:</strong> tidak semua data langsung dipercaya. Setiap device dinilai dulu lewat mekanisme trust score, lalu diputuskan aksinya.</p>
+    </section>
+
+    <section id="pitusk-overview" class="doc-section">
+      <h2>Apa itu PiTUSK</h2>
+      <p><strong>PiTUSK</strong> adalah <em>framework dan service resumable upload</em> untuk lingkungan edge. Fokusnya adalah memastikan upload file tetap bisa dilanjutkan dengan aman setelah koneksi putus, proses mati, atau perangkat restart.</p>
+      <p class="inline-note"><strong>Poin inti:</strong> data tidak dikirim sebagai satu tembakan besar. PiTUSK membaginya menjadi sesi, chunk, offset, finalize, lalu sinkronisasi lanjutan bila dibutuhkan.</p>
     </section>
 
     <section id="architecture" class="doc-section">
