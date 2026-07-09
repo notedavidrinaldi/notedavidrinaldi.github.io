@@ -93,3 +93,13 @@ bash program/search-indexer.sh --timeout 30 --engines google,bing https://noteda
 - Jika endpoint mesin pencari merespons kode yang bukan sukses, exit code bisa `1` atau `2`.
 - Untuk referensi penggunaan di halaman web, lihat:
   - `program/index.html` -> section "Program Referensi Index Search Engine".
+
+## Checklist validasi cepat
+
+Setelah deploy/trigger workflow, lakukan verifikasi berikut:
+
+- [ ] Workflow `submit-search-index` muncul dan statusnya sesuai (green untuk sukses/non-total-fail, red jika `exit=2`).
+- [ ] Log step **Kirim sinyal indexing sitemap** menampilkan `exit_code=<0|1|2>`.
+- [ ] Jika `exit_code=2`, step **Alert jika gagal total** dieksekusi dan ada notifikasi yang masuk.
+- [ ] Jika `exit_code=1`, script menampilkan status sukses parsial (tanpa failing job).
+- [ ] Jika test dengan `--dry-run`, pastikan tidak ada webhook yang terkirim (lihat log: `Mode DRY-RUN: skip notifikasi webhook.`).
