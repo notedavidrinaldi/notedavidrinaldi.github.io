@@ -122,6 +122,35 @@
           </article>
         </div>
       </section>
+
+      <section class="doc-section">
+        <h2>Program Referensi Index Search Engine</h2>
+        <p>Tambahkan ini kalau kamu mau memberi tahu mesin pencari saat ada update konten:</p>
+        <pre><code>bash program/search-indexer.sh https://notedavidrinaldi.github.io https://notedavidrinaldi.github.io/sitemap.xml</code></pre>
+        <p>Program ini:</p>
+        <ul>
+          <li>Memvalidasi sitemap URL (harus bisa diakses + format <code>urlset/sitemapindex</code>)</li>
+          <li>Mengirim ping ke endpoint resmi Google dan Bing.</li>
+          <li>Menyimpan log di <code>program/logs/</code> supaya jejak audit bisa dilacak.</li>
+        </ul>
+        <p>Opsi yang tersedia:</p>
+        <pre><code>bash program/search-indexer.sh --help</code></pre>
+        <pre><code>bash program/search-indexer.sh --dry-run --timeout 20 --log-file /tmp/search-indexer.log https://notedavidrinaldi.github.io</code></pre>
+        <p>Exit code:</p>
+        <ul>
+          <li><code>0</code> = semua engine sukses</li>
+          <li><code>1</code> = ada engine sukses, ada yang belum</li>
+          <li><code>2</code> = validasi gagal / semua engine gagal</li>
+        </ul>
+        <p>Otomatisasi:</p>
+        <ul>
+          <li>Script <code>deploy.sh</code> sekarang juga memicu <code>search-indexer.sh</code> setelah deploy.</li>
+          <li>Workflow GitHub Actions juga tersedia di <code>.github/workflows/search-indexer.yml</code> (trigger: <code>push main</code> dan <code>workflow_dispatch</code>).</li>
+          <li>Atur <code>RUN_INDEXER=0</code> saat menjalankan deploy kalau mau skip auto-submit.</li>
+          <li>Untuk notifikasi webhook, set env <code>SEARCH_INDEXER_NOTIFY_WEBHOOK</code> (didukung juga via argumen <code>--notify-webhook</code>).</li>
+        </ul>
+        <p class="inline-note">Cocok dipakai setelah deploy site agar crawler mendapat sinyal update baru lebih cepat.</p>
+      </section>
     </article>
   </main>
 

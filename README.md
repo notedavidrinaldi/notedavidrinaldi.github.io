@@ -1,0 +1,81 @@
+# Notedavidrinaldi Hugo Site
+
+[![submit-search-index](https://github.com/notedavidrinaldi/notedavidrinaldi.github.io/actions/workflows/search-indexer.yml/badge.svg)](https://github.com/notedavidrinaldi/notedavidrinaldi.github.io/actions/workflows/search-indexer.yml)
+
+Catatan operasional untuk build, deploy, dan notifikasi indexing mesin pencari.
+
+## Cara cepat jalankan
+
+1. Build + deploy:
+
+```bash
+./deploy.sh
+```
+
+2. Build + deploy + submit indexer (default aktif):
+
+```bash
+./deploy.sh
+```
+
+`deploy.sh` akan otomatis menjalankan `program/search-indexer.sh` setelah push ke `main`.
+
+3. Jika ingin skip submit indexer saat deploy:
+
+```bash
+RUN_INDEXER=0 ./deploy.sh
+```
+
+## search-indexer manual
+
+```bash
+bash program/search-indexer.sh https://notedavidrinaldi.github.io https://notedavidrinaldi.github.io/sitemap.xml
+```
+
+Opsional:
+
+```bash
+bash program/search-indexer.sh --help
+bash program/search-indexer.sh --dry-run
+bash program/search-indexer.sh --timeout 30 --log-file /tmp/indexer.log https://notedavidrinaldi.github.io
+SEARCH_INDEXER_NOTIFY_WEBHOOK=https://hooks.slack.com/services/xxx bash program/search-indexer.sh https://notedavidrinaldi.github.io
+```
+
+### Exit code
+
+- `0`: semua engine sukses
+- `1`: sebagian sukses, sebagian belum
+- `2`: validasi sitemap gagal / semua request gagal
+
+## Notifikasi webhook
+
+`program/search-indexer.sh` juga bisa kirim notifikasi ke webhook (Slack/Discord/Teams) jika set:
+
+```bash
+export SEARCH_INDEXER_NOTIFY_WEBHOOK=https://hooks.example.com/xxx
+```
+
+Workflow GitHub Actions membaca secret `SEARCH_INDEXER_NOTIFY_WEBHOOK`.
+
+## GitHub Actions
+
+Workflow otomatis ada di:
+
+- `.github/workflows/search-indexer.yml`
+
+Terpicu pada:
+
+- `push` ke branch `main`
+- `workflow_dispatch`
+
+Workflow menjalankan:
+
+```bash
+bash program/search-indexer.sh --timeout 30 --engines google,bing https://notedavidrinaldi.github.io https://notedavidrinaldi.github.io/sitemap.xml
+```
+
+## Catatan
+
+- Jika endpoint mesin pencari merespons kode yang bukan sukses, exit code bisa `1` atau `2`.
+- Untuk referensi penggunaan di halaman web, lihat:
+  - `program/index.html` -> section "Program Referensi Index Search Engine".

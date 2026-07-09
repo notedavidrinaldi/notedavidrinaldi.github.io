@@ -1,0 +1,57 @@
+name: submit-search-index
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Kirim sinyal indexing sitemap
+        id: indexer
+        continue-on-error: true
+        run: |
+          set +e
+          bash program/search-indexer.sh \
+            --timeout 30 \
+            --engines google,bing \
+            https://notedavidrinaldi.github.io \
+            https://notedavidrinaldi.github.io/sitemap.xml
+          exit_code=$?
+          echo "exit_code=${exit_code}" >> "$GITHUB_OUTPUT"
+
+      - name: Alert jika gagal total
+        if: ${{ steps.indexer.outputs.exit_code == '2' }}
+        env:
+          SEARCH_INDEXER_NOTIFY_WEBHOOK: ${{ secrets.SEARCH_INDEXER_NOTIFY_WEBHOOK }}
+        run: |
+          if [[ -z "${SEARCH_INDEXER_NOTIFY_WEBHOOK}" ]]; then
+            echo "Webhook tidak dikonfigurasi; lewati alert manual."
+            exit 0
+          fi
+
+          message="search-indexer: workflow ${GITHUB_REPOSITORY} run ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID} exit=2 (gagal total)"
+          payload="{\"text\":\"${message}\"}"
+
+          curl -sS -m 10 -X POST \
+            -H 'Content-Type: application/json' \
+            -d "$payload" \
+            "$SEARCH_INDEXER_NOTIFY_WEBHOOK" >/dev/null || true
+
+      - name: Tandai fail jika gagal total
+        if: ${{ steps.indexer.outputs.exit_code == '2' }}
+        run: |
+          echo "search-indexer exit code: 2 (gagal total)"
+          exit 1
+
+      - name: Tandai sukses/parcial
+        if: ${{ steps.indexer.outputs.exit_code != '2' }}
+        run: |
+          echo "search-indexer exit code: ${{ steps.indexer.outputs.exit_code }}"
