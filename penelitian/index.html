@@ -52,37 +52,126 @@
         "@type": "Person",
         "name": "David Rinaldi"
       },
-      "hasPart": [
-        {
-          "@type": "ScholarlyArticle",
-          "headline": "Adaptive Trust-Based Edge Decision for IIoT Security",
-          "url": "https://notedavidrinaldi.github.io/penelitian/academic-paper-palasik-edge-trust/",
-          "datePublished": "2026-01-01",
-          "author": {
-            "@type": "Person",
-            "name": "David Rinaldi"
+      "hasPart": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "ScholarlyArticle",
+              "headline": "Adaptive Trust-Based Edge Decision for IIoT Security",
+              "url": "https://notedavidrinaldi.github.io/penelitian/academic-paper-palasik-edge-trust/",
+              "datePublished": "2026-01-01",
+              "author": {
+                "@type": "Person",
+                "name": "David Rinaldi"
+              },
+              "keywords": ["edge security", "trust score", "industrial IoT", "PALASIK"],
+              "inLanguage": ["en", "id"],
+              "isPartOf": {
+                "@id": "https://notedavidrinaldi.github.io/penelitian/"
+              }
+            }
           },
-          "keywords": ["edge security", "trust score", "industrial IoT", "PALASIK"],
-          "inLanguage": "en"
-        },
-        {
-          "@type": "ScholarlyArticle",
-          "headline": "Resumable Edge Upload as Reliability Infrastructure",
-          "url": "https://notedavidrinaldi.github.io/penelitian/academic-paper-pitusk-resumable/",
-          "datePublished": "2026-01-01",
-          "author": {
-            "@type": "Person",
-            "name": "David Rinaldi"
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "ScholarlyArticle",
+              "headline": "Resumable Edge Upload as Reliability Infrastructure",
+              "url": "https://notedavidrinaldi.github.io/penelitian/academic-paper-pitusk-resumable/",
+              "datePublished": "2026-01-01",
+              "author": {
+                "@type": "Person",
+                "name": "David Rinaldi"
+              },
+              "keywords": ["resumable upload", "edge transport", "PiTUSK", "reliability"],
+              "inLanguage": ["en", "id"],
+              "isPartOf": {
+                "@id": "https://notedavidrinaldi.github.io/penelitian/"
+              }
+            }
           },
-          "keywords": ["resumable upload", "edge transport", "PiTUSK", "reliability"],
-          "inLanguage": "en"
-        }
-      ]
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "ScholarlyArticle",
+              "headline": "Kerangka Acuan Penelitian Lanjutan",
+              "url": "https://notedavidrinaldi.github.io/penelitian/kerangka-acuan-penelitian/",
+              "datePublished": "2026-01-01",
+              "author": {
+                "@type": "Person",
+                "name": "David Rinaldi"
+              },
+              "inLanguage": "id",
+              "isPartOf": {
+                "@id": "https://notedavidrinaldi.github.io/penelitian/"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+              "@type": "ScholarlyArticle",
+              "headline": "Rancangan Keputusan Edge dengan PALASIK untuk Konteks Industri",
+              "url": "https://notedavidrinaldi.github.io/penelitian/rancangan-keputusan-edge-palasik/",
+              "datePublished": "2026-01-01",
+              "author": {
+                "@type": "Person",
+                "name": "David Rinaldi"
+              },
+              "inLanguage": "id",
+              "isPartOf": {
+                "@id": "https://notedavidrinaldi.github.io/penelitian/"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+              "@type": "ScholarlyArticle",
+              "headline": "Model Upload Resumable PiTUSK untuk Konektivitas Tidak Stabil",
+              "url": "https://notedavidrinaldi.github.io/penelitian/upload-resumable-pitusk/",
+              "datePublished": "2026-01-01",
+              "author": {
+                "@type": "Person",
+                "name": "David Rinaldi"
+              },
+              "inLanguage": "id",
+              "isPartOf": {
+                "@id": "https://notedavidrinaldi.github.io/penelitian/"
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "item": {
+              "@type": "ScholarlyArticle",
+              "headline": "Evaluasi Raspberry Pi 3+ vs Siemens IOT2050 di Jalur Edge",
+              "url": "https://notedavidrinaldi.github.io/penelitian/perbandingan-rpi-siemens-iot2050/",
+              "datePublished": "2026-01-01",
+              "author": {
+                "@type": "Person",
+                "name": "David Rinaldi"
+              },
+              "inLanguage": "id",
+              "isPartOf": {
+                "@id": "https://notedavidrinaldi.github.io/penelitian/"
+              }
+            }
+          }
+        ]
+      }
     }
   </script>
   <link rel="stylesheet" href="/css/palasik-doc.css">
 </head>
-<body class="single docs-shell" id="top">
+<body class="single docs-shell research-journal" id="top">
   <header class="header">
     <nav class="nav">
       <div class="logo">
@@ -129,7 +218,7 @@
   </header>
 
   <main class="main docs-shell">
-    <article class="post-single">
+    <article class="post-single journal-portal">
       <header class="post-header">
         <div class="doc-kicker">Pusat Penelitian</div>
         <h1 class="page-title">Jurnal Penelitian Ilmiah</h1>
@@ -144,9 +233,15 @@
           <span class="tag">Bahan Rujukan Terarah</span>
         </div>
 
+        <div class="journal-toolbar" role="group" aria-label="Pengaturan tampilan jurnal">
+          <span class="journal-toolbar-label">Mode baca:</span>
+          <button id="journal-comfort" class="journal-toolbar-btn" type="button" aria-pressed="true">Nyaman</button>
+          <button id="journal-dense" class="journal-toolbar-btn" type="button" aria-pressed="false">Padat</button>
+        </div>
+
         <p>Halaman ini saya rancang sebagai <strong>sumber rujukan utama</strong> untuk penelitian lanjutan, bukan sekadar arsip teknis. Strukturnya dibuat seperti katalog jurnal: identitas karya, kategori, status, dan akses dokumen yang jelas.</p>
 
-        <div class="doc-card" style="margin-bottom:0.85rem;">
+        <div class="journal-lead doc-card">
           <div class="doc-card-eyebrow">Informasi Penerbitan</div>
           <h3>Jurnal Penelitian Ilmiah David Rinaldi</h3>
           <p><strong>ISSN Internal:</strong> JDR-ISSN-2026</p>
@@ -156,10 +251,29 @@
           <p><strong>Tujuan:</strong> menjadi rujukan berkelanjutan untuk karya ilmiah berikutnya dan kolaborasi riset yang lebih terarah.</p>
         </div>
 
+        <div class="journal-metrics" aria-label="Ringkasan statistik jurnal">
+          <article class="metric-card">
+            <p class="metric-number">6</p>
+            <p class="metric-title">Karya</p>
+            <p class="metric-caption">dokumentasi tersedia</p>
+          </article>
+          <article class="metric-card">
+            <p class="metric-number">2</p>
+            <p class="metric-title">Bahasa</p>
+            <p class="metric-caption">Indonesia dan Inggris</p>
+          </article>
+          <article class="metric-card">
+            <p class="metric-number">2026</p>
+            <p class="metric-title">Edisi</p>
+            <p class="metric-caption">Vol. 1 (pilot)</p>
+          </article>
+        </div>
+
         <h2>Daftar Isi Jurnal</h2>
         <p>Setiap baris di bawah ini menampilkan status rujukan ilmiah, jadi Anda bisa langsung melihat konteks penggunaannya.</p>
 
-        <table>
+        <div class="journal-table-wrap" role="region" aria-label="Daftar isi jurnal" tabindex="0">
+          <table class="journal-table">
           <thead>
             <tr>
               <th>ISSN Internal</th>
@@ -241,7 +355,20 @@
               <td><a href="/penelitian/perbandingan-rpi-siemens-iot2050/">Akses Dokumen</a></td>
             </tr>
           </tbody>
-        </table>
+          </table>
+        </div>
+
+        <h2>Berkas Kutipan Cepat</h2>
+        <p>Salin blok berikut ini untuk memulai daftar rujukan.</p>
+        <button id="copy-citation" class="hero-button hero-button-primary" type="button">Salin Berkas Kutipan</button>
+        <pre id="citation-main" class="citation-block"><code>@collection{rinaldi2026jurnal,
+  title     = {Jurnal Penelitian Ilmiah David Rinaldi},
+  editor    = {Rinaldi, David},
+  year      = {2026},
+  institution = {notedavidrinaldi.github.io},
+  address   = {Indonesia},
+  url       = {https://notedavidrinaldi.github.io/penelitian/}
+}</code></pre>
 
         <h2>Sumber Rujukan yang Disarankan</h2>
         <p>Untuk penelitian lanjutan, gunakan format sitasi berikut sebagai titik awal, lalu lengkapi dengan DOI atau ISBN jika sudah tersedia.</p>
@@ -270,6 +397,58 @@
   </a>
 
   <script>
+    const journalArticle = document.querySelector(".journal-portal") || null;
+    const comfortBtn = document.getElementById("journal-comfort");
+    const denseBtn = document.getElementById("journal-dense");
+    const journalModeKey = "research-journal-mode";
+
+    function applyJournalMode(mode) {
+      const isDense = mode === "dense";
+      if (journalArticle) {
+        journalArticle.classList.toggle("journal-dense", isDense);
+      }
+
+      comfortBtn && (comfortBtn.setAttribute("aria-pressed", String(!isDense)));
+      denseBtn && (denseBtn.setAttribute("aria-pressed", String(isDense)));
+      if (mode === "dense" || mode === "comfort") {
+        localStorage.setItem(journalModeKey, mode);
+      }
+    }
+
+    const savedMode = localStorage.getItem(journalModeKey);
+    if (savedMode === "dense") {
+      applyJournalMode("dense");
+    } else {
+      applyJournalMode("comfort");
+    }
+
+    comfortBtn?.addEventListener("click", () => {
+      applyJournalMode("comfort");
+    });
+
+    denseBtn?.addEventListener("click", () => {
+      applyJournalMode("dense");
+    });
+
+    const citationBtn = document.getElementById("copy-citation");
+    const citationCode = document.getElementById("citation-main");
+
+    citationBtn?.addEventListener("click", () => {
+      const text = citationCode?.innerText || "";
+      navigator.clipboard.writeText(text).then(() => {
+        const label = citationBtn.textContent;
+        citationBtn.textContent = "Tersalin ✓";
+        setTimeout(() => {
+          citationBtn.textContent = label;
+        }, 1300);
+      }).catch(() => {
+        citationBtn.textContent = "Tidak bisa menyalin";
+        setTimeout(() => {
+          citationBtn.textContent = "Salin Berkas Kutipan";
+        }, 1300);
+      });
+    });
+
     let menu = document.getElementById("menu");
     if (menu) {
       const e = localStorage.getItem("menu-scroll-position");
