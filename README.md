@@ -1,6 +1,14 @@
 # Notedavidrinaldi Hugo Site
 
 [![submit-search-index](https://github.com/notedavidrinaldi/notedavidrinaldi.github.io/actions/workflows/search-indexer.yml/badge.svg)](https://github.com/notedavidrinaldi/notedavidrinaldi.github.io/actions/workflows/search-indexer.yml)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fnotedavidrinaldi.github.io)](https://notedavidrinaldi.github.io)
+[![Stars](https://img.shields.io/github/stars/notedavidrinaldi/notedavidrinaldi.github.io?style=flat)](https://github.com/notedavidrinaldi/notedavidrinaldi.github.io/stargazers)
+[![Watchers](https://img.shields.io/github/watchers/notedavidrinaldi/notedavidrinaldi.github.io?style=flat)](https://github.com/notedavidrinaldi/notedavidrinaldi.github.io/watchers)
+[![Contributors](https://img.shields.io/github/contributors/notedavidrinaldi/notedavidrinaldi.github.io?style=flat)](https://github.com/notedavidrinaldi/notedavidrinaldi.github.io/graphs/contributors)
+[![Forks](https://img.shields.io/github/forks/notedavidrinaldi/notedavidrinaldi.github.io?style=flat)](https://github.com/notedavidrinaldi/notedavidrinaldi.github.io/network/members)
+[![Issues](https://img.shields.io/github/issues/notedavidrinaldi/notedavidrinaldi.github.io?style=flat)](https://github.com/notedavidrinaldi/notedavidrinaldi.github.io/issues)
+[![Last Commit](https://img.shields.io/github/last-commit/notedavidrinaldi/notedavidrinaldi.github.io?style=flat)](https://github.com/notedavidrinaldi/notedavidrinaldi.github.io/commits/main)
+[![Repo Size](https://img.shields.io/github/repo-size/notedavidrinaldi/notedavidrinaldi.github.io?style=flat)](https://github.com/notedavidrinaldi/notedavidrinaldi.github.io)
 
 Catatan operasional untuk build, deploy, dan notifikasi indexing mesin pencari.
 
