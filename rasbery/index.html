@@ -98,38 +98,38 @@
         <h2>2) Rasbery bisa digunakan apa saja?</h2>
         <p>Gunakan sesuai kelas kebutuhan:</p>
         <div class="doc-grid">
-          <div class="doc-box">
-            <h3>Kelas Belajar & Lab</h3>
+          <article class="doc-box">
+            <h3><a href="/rasbery/konsep/">Konsep Dasar</a></h3>
             <ul>
-              <li>Simulasi sensor suhu, tombol, barcode/RFID</li>
-              <li>Praktikum Linux, jaringan, automasi</li>
-              <li>Prototype aplikasi web lokal</li>
+              <li>Arsitektur edge node</li>
+              <li>Peran device, gateway, dan API</li>
+              <li>Mengerti flow sebelum implementasi</li>
             </ul>
-          </div>
-          <div class="doc-box">
-            <h3>Kelas Proyek Skala Kecil</h3>
+          </article>
+          <article class="doc-box">
+            <h3><a href="/rasbery/instalasi/">Panduan Instalasi</a></h3>
             <ul>
-              <li>Monitoring ruangan, gate access, log akses</li>
-              <li>Pengumpulan data produksi mini</li>
-              <li>Display digital dan alarm lokal</li>
+              <li>Flash OS + setup awal</li>
+              <li>SSH, firewall, dan hardening dasar</li>
+              <li>Bootstrap service edge</li>
             </ul>
-          </div>
-          <div class="doc-box">
-            <h3>Kelas Lapangan Operasional</h3>
+          </article>
+          <article class="doc-box">
+            <h3><a href="/rasbery/operasional/">Operasional Harian</a></h3>
             <ul>
-              <li>Kontrol akses berbasis kartu/NIP via API</li>
-              <li>Edge process sebelum data masuk backend</li>
-              <li>Fallback mode saat koneksi cloud putus</li>
+              <li>Checklist daily check</li>
+              <li>Troubleshoot cepat GPIO/network</li>
+              <li>Fallback & safety mode</li>
             </ul>
-          </div>
-          <div class="doc-box">
-            <h3>Integrasi Program Kita</h3>
+          </article>
+          <article class="doc-box">
+            <h3><a href="/rasbery/integrasi-program/">Integrasi Program</a></h3>
             <ul>
-              <li><a href="/program/">PocongPass Pi</a>: reader + GPIO + keputusan akses</li>
+              <li><a href="/program/">PocongPass Pi</a>: akses fisik + GPIO</li>
               <li><a href="/edge-zero-trust-iot-raspberry/">Edge Zero Trust Raspberry</a>: pola keamanan layer jaringan</li>
               <li><a href="/pitusk/">PiTUSK</a>: transfer/upload dan reliabilitas koneksi edge</li>
             </ul>
-          </div>
+          </article>
         </div>
       </section>
 
@@ -208,6 +208,7 @@ sudo apt install python3-venv -y</code></pre>
 
       <section class="doc-section" id="ai-librarian">
         <h2>6) AI Librarian mode: bantu tanya-jawab dan prediksi</h2>
+        <p>Lihat juga <a href="/rasbery/laporan/">halaman Laporan & AI Summary</a>.</p>
         <p>Berikut format dokumentasi yang siap “dipikirkan AI”:</p>
         <ul>
           <li>Setiap topik punya ringkasan satu kalimat.</li>
