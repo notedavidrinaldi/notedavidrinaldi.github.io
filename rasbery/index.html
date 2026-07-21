@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="id" dir="auto" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <title>Rasbery Library | Notedavidrinaldi Docs Hub</title>
+  <meta name="description" content="Perpustakaan Raspberry Pi: apa itu, kegunaan, instalasi, operasi, dan bagaimana dipakai untuk proyek edge seperti PocongPass Pi.">
+  <meta name="keywords" content="Raspberry Pi, Rasbery, edge, GPIO, Linux, Raspbian, Raspberry Pi OS, Instalasi, Network Setup, Home Automation, IoT, Access Control">
+  <meta name="author" content="David Rinaldi">
+  <link rel="canonical" href="https://notedavidrinaldi.github.io/rasbery/">
+  <link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" rel="preload stylesheet" as="style" integrity="sha256-2jIR5e+Ge/K3X9WmUVz+1xlcAR6KtzVpTiA4EKgnCXs=">
+  <link rel="icon" href="https://notedavidrinaldi.github.io/favicon.ico">
+  <script>
+    localStorage.getItem("pref-theme") === "dark"
+      ? document.querySelector("html").dataset.theme = "dark"
+      : localStorage.getItem("pref-theme") === "light"
+        ? document.querySelector("html").dataset.theme = "light"
+        : window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? document.querySelector("html").dataset.theme = "dark"
+          : document.querySelector("html").dataset.theme = "light"
+  </script>
+</head>
+<body class="single docs-shell" id="top">
+  <header class="header">
+    <nav class="nav">
+      <div class="logo">
+        <a href="/" accesskey="h" title="David Rinaldi (Alt + H)">David Rinaldi</a>
+        <div class="logo-switches">
+          <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+            <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+            </svg>
+            <svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <ul id="menu">
+        <li><a href="/" title="Home">Home</a></li>
+        <li><a href="/palasik/" title="PALASIK Docs">PALASIK Docs</a></li>
+        <li><a href="/pitusk/" title="PiTUSK Docs">PiTUSK Docs</a></li>
+        <li><a href="/pitusk/executive-summary/" title="PiTUSK Executive">PiTUSK Executive</a></li>
+        <li><a href="/pitusk/teknis/" title="PiTUSK Teknis">PiTUSK Teknis</a></li>
+        <li><a href="/palasik/executive-summary/" title="Executive Summary">Executive Summary</a></li>
+        <li><a href="/palasik/non-teknis/" title="Non-Teknis">Non-Teknis</a></li>
+        <li><a href="/palasik/stakeholder/" title="Stakeholder">Stakeholder</a></li>
+        <li><a href="/palasik/teknis/" title="Teknis">Teknis</a></li>
+        <li><a href="/demit/" title="DEMIT Runtime">DEMIT Runtime</a></li>
+        <li><a href="/docs/id/" title="Documentation Center">Documentation Center</a></li>
+        <li><a href="/docs/id/plan/" title="Plan">Plan</a></li>
+        <li><a href="/docs/id/history/" title="History">History</a></li>
+        <li><a href="/posts/" title="Posts">Posts</a></li>
+        <li><a href="/penelitian/" title="Penelitian">Penelitian</a></li>
+        <li><a href="/about/" title="About">About</a></li>
+        <li><a href="/program/" title="Program">Program</a></li>
+        <li><a href="/rasbery/" title="Rasbery"><span>Rasbery</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main docs-shell">
+    <article class="post-single">
+      <header class="post-header">
+        <div class="doc-kicker">Perpustakaan Device Edge</div>
+        <h1 class="page-title">Rasbery Library</h1>
+        <div class="doc-subtitle">Panduan komprehensif Raspberry Pi sebagai basis edge device untuk akses kontrol, pengawasan, dan integrasi IoT.</div>
+        <div class="doc-tags">
+          <span class="tag">Raspberry Pi</span>
+          <span class="tag">Linux</span>
+          <span class="tag">GPIO</span>
+          <span class="tag">PocongPass Pi</span>
+          <span class="tag">Edge Security</span>
+        </div>
+      </header>
+
+      <section class="doc-section" id="apa-itu-rasbery">
+        <h2>1) Apa itu Rasbery?</h2>
+        <p><strong>Rasbery</strong> di situs ini dipakai sebagai istilah mudah untuk <strong>Raspberry Pi</strong> family. Konsep dasarnya: komputer mini berbasis ARM yang hemat daya, stabil, dan fleksibel untuk dijadikan perangkat edge di jaringan lokal, industrial, atau IoT.</p>
+        <p>Singkatnya, Raspberry Pi tidak hanya untuk coding-mainan. Saat dipasang dengan arsitektur yang tepat, ia bisa menjadi:</p>
+        <ul>
+          <li><strong>Gateway Edge</strong> (penghubung sensor ke server)</li>
+          <li><strong>Controller Fisik</strong> (penggerak relay, sensor, LED, alarm)</li>
+          <li><strong>Node Monitoring</strong> (collect metrics, kirim health + status)</li>
+          <li><strong>Mini Server</strong> (Web UI lokal, API wrapper, autentikasi cepat)</li>
+        </ul>
+      </section>
+
+      <section class="doc-section" id="apa-bisa-digunakan">
+        <h2>2) Rasbery bisa digunakan apa saja?</h2>
+        <p>Gunakan sesuai kelas kebutuhan:</p>
+        <div class="doc-grid">
+          <div class="doc-box">
+            <h3>Kelas Belajar & Lab</h3>
+            <ul>
+              <li>Simulasi sensor suhu, tombol, barcode/RFID</li>
+              <li>Praktikum Linux, jaringan, automasi</li>
+              <li>Prototype aplikasi web lokal</li>
+            </ul>
+          </div>
+          <div class="doc-box">
+            <h3>Kelas Proyek Skala Kecil</h3>
+            <ul>
+              <li>Monitoring ruangan, gate access, log akses</li>
+              <li>Pengumpulan data produksi mini</li>
+              <li>Display digital dan alarm lokal</li>
+            </ul>
+          </div>
+          <div class="doc-box">
+            <h3>Kelas Lapangan Operasional</h3>
+            <ul>
+              <li>Kontrol akses berbasis kartu/NIP via API</li>
+              <li>Edge process sebelum data masuk backend</li>
+              <li>Fallback mode saat koneksi cloud putus</li>
+            </ul>
+          </div>
+          <div class="doc-box">
+            <h3>Integrasi Program Kita</h3>
+            <ul>
+              <li><a href="/program/">PocongPass Pi</a>: reader + GPIO + keputusan akses</li>
+              <li><a href="/edge-zero-trust-iot-raspberry/">Edge Zero Trust Raspberry</a>: pola keamanan layer jaringan</li>
+              <li><a href="/pitusk/">PiTUSK</a>: transfer/upload dan reliabilitas koneksi edge</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" id="instalasi-raspberry">
+        <h2>3) Gimana cara install Rasbery?</h2>
+        <p>Instalasi dibagi jadi 5 tahap supaya tidak skip langkah penting:</p>
+        <ol>
+          <li><strong>Siapkan perangkat</strong>: Raspberry Pi (Model 4/5 atau CM kalau industrial), catu daya stabil, SSD/SDCard, koneksi jaringan.</li>
+          <li><strong>Flash OS</strong>: gunakan Raspberry Pi Imager (rekomendasi), pilih Raspberry Pi OS Lite (tanpa desktop) untuk server/edge.</li>
+          <li><strong>Boot pertama</strong>: set hostname, user, SSH, timezone, locale, dan update paket.</li>
+          <li><strong>Hardening</strong>: ganti password default, disable login root, setup firewall ringan, update otomatis.</li>
+          <li><strong>Deploy program</strong>: taruh service di path tetap (mis. <code>/opt/pocongpass-pi</code>), lalu setup <code>systemd</code>.</li>
+        </ol>
+        <div class="doc-box">
+          <h3>Checklist instalasi cepat (7 menit)</h3>
+          <p>Jalankan:</p>
+          <pre><code>sudo apt update && sudo apt upgrade -y
+sudo apt install -y python3-pip git ca-certificates ufw
+sudo systemctl enable --now ssh
+sudo apt install python3-venv -y</code></pre>
+          <p>Dan tetap gunakan SD card grade A/A+ agar lebih tahan write-intensif.</p>
+        </div>
+      </section>
+
+      <section class="doc-section" id="operasi-dasar">
+        <h2>4) Apa yang perlu diketahui untuk mengoperasikan Rasbery?</h2>
+        <p>Biar orang tidak sering bingung, simpan 5 pilar berikut:</p>
+        <h3>Pilar 1 – Sistem Operasi</h3>
+        <ul>
+          <li>Versi kernel dan OS harus konsisten antar device</li>
+          <li>Update sistem dipadukan dengan jadwal maintenance</li>
+          <li>Gunakan SSH key, bukan password biasa</li>
+        </ul>
+        <h3>Pilar 2 – Jaringan</h3>
+        <ul>
+          <li>Static IP untuk gateway yang selalu dipakai</li>
+          <li>DNS internal yang stabil dan DNS fallback</li>
+          <li>Batasi port terbuka (firewall + policy)</li>
+        </ul>
+        <h3>Pilar 3 – Hardware I/O</h3>
+        <ul>
+          <li>Kenali pinout GPIO sebelum wiring</li>
+          <li>Pastikan ground & daya sesuai rating relay/sensor</li>
+          <li>Tambah optocoupler jika beban tinggi</li>
+        </ul>
+        <h3>Pilar 4 – Operasional</h3>
+        <ul>
+          <li>Logging terstruktur, jangan hanya <code>print</code></li>
+          <li>Gunakan queue untuk menahan beban burst</li>
+          <li>Timeout + retry wajib untuk request API</li>
+        </ul>
+        <h3>Pilar 5 – Keamanan</h3>
+        <ul>
+          <li>Token di env/secrets, bukan hardcode</li>
+          <li>TLS untuk endpoint internal</li>
+          <li>Audit event + trace id untuk pelacakan</li>
+        </ul>
+      </section>
+
+      <section class="doc-section" id="hubungkan-program">
+        <h2>5) Hubungan ke program kita (Rasbery + aplikasi)</h2>
+        <p>Di ekosistem ini, Rasbery adalah platform eksekusi. Program-program kamu memanfaatkan:</p>
+        <ul>
+          <li><strong>PocongPass Pi:</strong> kontrol akses (scan NIP/API/relay), cocok untuk edge gate.</li>
+          <li><strong>PiTUSK:</strong> layanan upload yang tahan putus untuk transfer file operasional.</li>
+          <li><strong>DEMIT / PALASIK:</strong> pola runtime, governance, dan struktur dokumentasi yang disiplin.</li>
+        </ul>
+        <p>Strategi koneksi antar program:</p>
+        <ol>
+          <li>Buat satu format <code>trace_id</code> untuk event tap ke open/closed.</li>
+          <li>Gunakan JSON schema konsisten agar dashboard & AI report bisa membaca lintas program.</li>
+          <li>Aktifkan health endpoint untuk observability tiap layanan.</li>
+          <li>Satukan naming service untuk memudahkan support.</li>
+        </ol>
+      </section>
+
+      <section class="doc-section" id="ai-librarian">
+        <h2>6) AI Librarian mode: bantu tanya-jawab dan prediksi</h2>
+        <p>Berikut format dokumentasi yang siap “dipikirkan AI”:</p>
+        <ul>
+          <li>Setiap topik punya ringkasan satu kalimat.</li>
+          <li>Setiap topik punya daftar <code>prereq</code> dan <code>impact</code>.</li>
+          <li>Setiap troubleshooting punya gejala, penyebab, dan langkah aman.</li>
+          <li>Setiap modul hardware punya checklist before-run + after-run.</li>
+        </ul>
+        <p>Jika dihubungkan dengan laporan performa, AI bisa bantu menjawab:</p>
+        <ul>
+          <li>“Kenapa tap ke keputusan terasa lambat?”</li>
+          <li>“Komponen mana yang bottleneck: API, GPIO, atau network?”</li>
+          <li>“Bagaimana cara meningkatkan stabilitas jam kerja 24/7?”</li>
+        </ul>
+      </section>
+
+      <section class="doc-section" id="faq">
+        <h2>7) FAQ Super Lengkap (biar gak sering tanya lagi)</h2>
+        <h3>Q: Raspberry Pi mati sendiri saat running relay?</h3>
+        <p>A: Cek power supply (arus dan voltase), cek beban relay, dan jangan lupa ground return yang benar.</p>
+        <h3>Q: Koneksi ke API sering timeout?</h3>
+        <p>A: Cek DNS, MTU, gateway jaringan, lalu naikkan timeout dan retry dengan backoff.</p>
+        <h3>Q: GPIO tidak merespons?</h3>
+        <p>A: Cek mode pin, permission, konfigurasi library, dan jalur fisik kabel.</p>
+        <h3>Q: SD Card cepat rusak?</h3>
+        <p>A: Matikan logging chatty, pindahkan log ke SSD atau rotasi lebih agresif.</p>
+      </section>
+
+      <section class="doc-section" id="quick-start">
+        <h2>8) Paket Quick Start Operasi Harian</h2>
+        <ul>
+          <li>1) cek health endpoint</li>
+          <li>2) cek service status <code>systemctl</code></li>
+          <li>3) cek ruang disk + RAM</li>
+          <li>4) cek jam server dan sinkronisasi waktu</li>
+          <li>5) validasi token & koneksi API target</li>
+          <li>6) cek GPIO test singkat</li>
+        </ul>
+        <a class="hero-button hero-button-primary" href="/program/">Lihat Halaman Program</a>
+      </section>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <span>&copy; 2026 <a href="/">David Rinaldi</a></span> ·
+    <span>Powered by
+      <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+      <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener noreferrer" target="_blank">PaperMod</a>
+    </span>
+  </footer>
+
+  <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+  </a>
+
+  <script>
+    const menu = document.getElementById("menu");
+    if (menu) {
+      const p = localStorage.getItem("menu-scroll-position");
+      p && (menu.scrollLeft = parseInt(p, 10));
+      menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+      };
+    }
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+      document.body.scrollTop > 800 || document.documentElement.scrollTop > 800
+        ? (mybutton.style.visibility = "visible", mybutton.style.opacity = "1")
+        : (mybutton.style.visibility = "hidden", mybutton.style.opacity = "0");
+    };
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      const e = document.querySelector("html");
+      e.dataset.theme === "dark" ? (e.dataset.theme = "light", localStorage.setItem("pref-theme", "light")) : (e.dataset.theme = "dark", localStorage.setItem("pref-theme", "dark"));
+    });
+  </script>
+</body>
+</html>
